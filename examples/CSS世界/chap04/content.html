@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深入理解content</title>
+    <style>
+        /* ex1 start */
+        dot {
+            display: inline-block;
+            height: 1em;
+            line-height: 1;
+            text-align: left;
+            vertical-align: -.25em;
+            overflow: hidden;
+        }
+        dot::before {
+            display: block;
+            content: '...\A..\A.';
+            white-space: pre-wrap;
+            animation: dotAni 3s infinite step-start both;
+            animation: name duration timing-function delay iteration-count direction fill-mode;
+        } 
+        @keyframes dotAni {
+            33% { transform: translateY(-2em) }
+            66% { transform: translateY(-1em) }
+        }
+
+        /* ex2: quotes */
+        .ask {
+            quotes: '问：“' '”';
+        }
+        .answer {
+            quotes: '答：“' '”';
+        }
+        .ask::before,
+        .answer::before{
+            content: open-quote;
+        }
+        .ask::after,
+        .answer::after{
+            content: close-quote;
+        }
+
+        /** ex3 */
+        .counter {
+            counter-reset: wangxiaoer 2 wangxiaosan 3; 
+            counter-increment: wangxiaoer;
+            font-size: 32px; 
+            font-family: Arial Black; 
+            color: #cd0000; 
+        }
+        .counter:before { 
+            content: counter(wangxiaoer); 
+        }
+        .counter::after {
+            content: counter(wangxiaosan);
+        }
+
+        /** ex4 */
+        .juxing {
+            width: 100px;
+            border: 1px solid #cd0000;
+        }
+        .juxing div{
+            padding: 50%;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h3>ex1: 使用content实现动态加载中</h3>
+    <p>content可以包含Unicode码，‘\A’是换行符号</p>
+    <div>
+        正在加载 <dot>...</dot>
+
+    </div>
+
+    <h2>
+        ex2: 
+    </h2>
+    <div class="ex-quotes">
+        <p class="ask">你叫什么名字？</p>
+        <p class="answer">我叫小明</p>
+    </div>
+
+    <h3>ex3:</h3>
+    <p>我叫王小二，字如其名，下面要出现的数字是：</p>
+    <p class="counter"></p>
+
+    <h3>ex4: 实现矩形</h3>
+    <div class="juxing">
+        <div class=""></div>
+    </div>
+</body>
+</html>

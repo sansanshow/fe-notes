@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>helloWorldGenerator</title>
+</head>
+<body>
+    <script>
+        // ex0
+        function* helloWorldGenerator() {
+            yield 'hello';
+            yield 'world';
+            return 'ending';
+        }
+
+        var hw = helloWorldGenerator()
+
+        // ex1
+        function* demo() {
+            console.log('Hello' + (yield)); // OK
+            console.log('Hello' + (yield 123)); // OK
+        }
+        var hw2 = demo();
+
+        // ex2
+        function* demo2() {
+            foo(yield 'a', yield 'b'); // OK
+            let input = yield; // OK
+        }
+
+        // ex3
+        function* f() {
+            for(var i = 0; true; i++) {
+                var reset = yield i;
+                console.log(reset);
+                if(reset) { i = -1; }
+            }
+        }
+
+        var g = f();
+
+        // ex4
+        function* dataConsumer() {
+            console.log('Started');
+            console.log(`1. ${yield}`);
+            console.log(`2. ${yield}`);
+            return 'result';
+        }
+
+        let genObj = dataConsumer();
+        genObj.next();
+        // Started
+        genObj.next('a')
+        // 1. a
+        genObj.next('b')
+        // 2. b
+
+
+        // ex5 : 斐波那契
+        function* fibonacci() {
+            let [prev, curr] = [0, 1];
+            while(true) {
+                yield curr;
+                [prev, curr] = [curr, prev + curr];
+            }
+        }
+        
+        for(let n of fibonacci()) {
+            if(n > 1000) break;
+            console.log(n);
+        }
+    </script>
+</body>
+</html>
