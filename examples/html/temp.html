@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="password" id="test">
+    <button onclick="getPwd()">getPwd</button>
+    <script>
+        // var questions = [{"id":72,"code":"#PL_KM11_CC1_Y1#","defVal":"","inRule":"","notNull":"0","optDesc":"[{\"optName\":\"是\",\"optVal\":1},{\"optName\":\"否\",\"optVal\":2}]","optId":null,"perCondition":"","questionDesc":"您的经营活动需要开具发票吗？","questionType":"1","valUnit":"","var":"#PL_KM11_CC1_Y1#","taskId":5263,"answer":null,"interfaceDisplay":null},{"id":73,"code":"#PL_KM11_CC1_X1#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|([1-9][0-9]{1,9})|([1-9][0-9]{1,9}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您开票的税点是多少","questionType":"2","valUnit":"元","var":"#PL_KM11_CC1_X1#","taskId":5264,"answer":null,"interfaceDisplay":null},{"id":74,"code":"#PL_KM11_CC1_X2#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|([1-9][0-9]{1,9})|([1-9][0-9]{1,9}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您每个月开票缴纳的税费是多少？","questionType":"2","valUnit":"元","var":"#PL_KM11_CC1_X2#","taskId":5265,"answer":null,"interfaceDisplay":null},{"id":75,"code":"#PL_KM11_CC1_X3#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|(100|100.0|100.00)|([1-9][0-9]{1})|(|[1-9][0-9]{1}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您开发票的销售收入占全部销售收入的比例","questionType":"2","valUnit":"%","var":"#PL_KM11_CC1_X3#","taskId":5266,"answer":null,"interfaceDisplay":null}];
+        // function isShowQuestion (item) {
+        //     if (!item.perCondition) {
+        //         return true
+        //     }
+        //     var optIds = `${item.optId}`.split(',')
+        //     var values = optIds.map(item => questions[item].inputVal)
+        //     var condition = item.perCondition.replace(/{\d+}/g, m => {
+        //         var index = /\d+/.exec(m)[0]
+        //         return values[index] || '0'
+        //     })
+        //     /* eslint-disable no-new-func */
+        //     var f = new Function(`return (${condition})`)
+        //     return f()
+        // }
+        // var i ={"id":74,"code":"#PL_KM11_CC1_X2#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|([1-9][0-9]{1,9})|([1-9][0-9]{1,9}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您每个月开票缴纳的税费是多少？","questionType":"2","valUnit":"元","var":"#PL_KM11_CC1_X2#","taskId":5265,"answer":null,"interfaceDisplay":null};
+        
+        // function getPwd() {
+        //     console.log(1);
+        //     alert(document.getElementById('test').value);
+        // }
+
+
+        for(var i=0;i<10;i++){
+            (function(i) {
+                setTimeout(function() {
+                    console.log(i);
+                }, 1000)
+            })(i)
+        }
+
+
+    </script>
+</body>
+</html>

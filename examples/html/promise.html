@@ -110,7 +110,7 @@
         .catch(e => {console.log('111', e); return e;})
         .then(res => {console.log('222', res)});
 
-        */
+        
 
         // ex
         var p = new Promise((resolve, reject) => {
@@ -138,11 +138,39 @@
 
         // 结果 ??? 为什么  'catch: 该prormise已被拒绝' 比 true(p === error) 先输出
         // 个人猜想 跟 resolve 类似
-        
+
         // this...........
         // rejected: Promise {<pending>}
         // catch: 该prormise已被拒绝
         // true
+
+
+        const p1 = Promise.reject('出错了');
+        // 等同于
+        // const p = new Promise((resolve, reject) => reject('出错了'))
+
+        p1.then(null, function (s) {
+            console.log(s)
+        });
+        
+        Promise.reject('该prormise已被拒绝233333').then(null, function (s) {
+            console.log(s)
+        });
+
+        */
+        // ex 
+
+        console.log(1);
+        console.log(2);
+        setTimeout(function(){
+            console.log('setTimeout1')
+            Promise.resolve().then(function(){
+                console.log('Promise')
+            })
+        })
+        setTimeout(function(){
+            console.log('setTimeout2')
+        })
     </script>
 </body>
 </html>
