@@ -6,6 +6,8 @@
 | 2 | [PC端JS打开摄像头并拍照](./notes/PC端JS打开摄像头并拍照.md)| 无 |
 | 3 | [DOMContentLoaded事件](./notes/DOMContentLoaded%E4%BA%8B%E4%BB%B6.md) | 无 |
 | 4 | [vue开发遇到的问题](./notes/vue开发遇到的问题.md) | 无 |
+| 5 | [LeetCode之路🙂](./notes/LeetCode之路🙂.md) | 无 |
+| 6 | [ 各种真机远程调试方法](./notes/各种真机远程调试方法.textfile) | 无 |
 
 
 
