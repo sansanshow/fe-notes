@@ -1,7 +1,7 @@
 # FE笔记
 
 | 序号 | 课题 | 案例 |
-| :-: | :- | :- | :- |
+| :-: | :- | :- |
 | 1 | [JS控制CSS3，添加浏览器兼容前缀](./notes/JS控制CSS3，添加浏览器兼容前缀.md)| [example](./notes/js-add-css3-prefixer.js) |
 | 2 | [PC端JS打开摄像头并拍照](./notes/PC端JS打开摄像头并拍照.md)| 无 |
 | 3 | [DOMContentLoaded事件](./notes/DOMContentLoaded%E4%BA%8B%E4%BB%B6.md) | 无 |
