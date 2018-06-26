@@ -5,15 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .moveDiv {
+            position: relative;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
 </head>
 <body>
+    <!-- ex1 -->
+    <h2>进度条</h2>
     <div id="requestAnimationFrame-test" style="width: 1px;height: 18px;background: #666;">0%</div>
     <button onclick="run()">Run</button>
+
+    <!-- ex2 -->
+    <h3>div平移300px(面试题)</h3>
+    <p>除了动画animation,过渡transition，也可以使用requestAnimationFrame</p>
+    <div id="moveDiv" class="moveDiv">
+
+    </div>
+    <button onclick="moveBtn()">向右移动300px</button>
+
+    <!-- ex3 -->
+    <h3>使用requestAnimationFrame模仿animation: infinite,实现无线循环</h3>
+
+    <div id="moveDiv2" class="moveDiv">
+
+    </div>
+
+    <button onclick="moveBtnInfinite()">向右移动300px,然后往复来回</button>
+
+
     <script>
         window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
         var start = 0;
         var ele = document.getElementById('requestAnimationFrame-test');
         var progress = 0
+        var stepUniqueId = null;
         function step(timestamp) {
             progress += 1;
             ele.style.width = progress+'%';
@@ -22,11 +53,65 @@
                 requestAnimationFrame(step)
             }
         }
-
+        
         function run() {
             ele.style.width = "1px";
             progress = 0;
-            requestAnimationFrame(step);
+            window.cancelAnimationFrame(stepUniqueId);
+            stepUniqueId = requestAnimationFrame(step);
+        }
+
+        // ex2
+        var offestX = 0;
+        var moveDiv = document.getElementById('moveDiv');
+        var originX = moveDiv.style.left;
+        var moveUniqueId = [];
+        function moveBtn() {
+            moveDiv.style.left = "0px";
+            offestX = 0;
+            moveUniqueId.forEach(uniqueId => { // 防止重复触发动画。如果没有此操作，会发现，连续点击运行按钮，会使得动画运行越来越快
+                window.cancelAnimationFrame(uniqueId);
+            })
+            moveUniqueId.push(requestAnimationFrame(move))
+        }
+        
+        function move(timestamp) {
+            offestX += 1;
+            moveDiv.style.left = offestX + "px";
+            if(offestX < 300) {
+                moveUniqueId.push(requestAnimationFrame(move))
+            }
+        }
+
+        // ex3
+        var offestX2 = 0;
+        var moveDiv2 = document.getElementById('moveDiv2');
+        var moveUniqueId2 = [];
+        function moveBtnInfinite() {
+            moveDiv2.style.left = "0px";
+            offestX2 = 0;
+            moveUniqueId2.forEach(uniqueId => { // 防止重复触发动画。如果没有此操作，会发现，连续点击运行按钮，会使得动画运行越来越快
+                window.cancelAnimationFrame(uniqueId);
+            })
+            moveUniqueId2.push(requestAnimationFrame(moveForward))
+        }
+        function moveForward(timestamp) {
+            offestX2 += 1;
+            moveDiv2.style.left = offestX2 + "px";
+            if(offestX < 60) {
+                moveUniqueId2.push(requestAnimationFrame(moveForward))
+            } else {
+                requestAnimationFrame(moveBack)
+            }
+        }
+        function moveBack(timestamp) {
+            offestX2 += -1;
+            moveDiv2.style.left = offestX2 + "px";
+            if(offestX2 > -1) {
+                moveUniqueId2.push(requestAnimationFrame(moveBack))
+            } else {
+                requestAnimationFrame(moveForward)
+            }
         }
     </script>
 </body>
