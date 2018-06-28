@@ -166,6 +166,151 @@ function move(timestamp) {
 }
         </code>
     </pre>
+    <h3>4. 小球左右运动</h3>
+
+    <style>
+        .box-wrap {
+            margin-top: 200px;
+        }
+    .box {
+        width: 100px;
+        height: 100px;
+        background: green;
+        border-radius: 50%;
+        position: relative;
+        left: 200px;
+       
+    }
+    </style>
+    <div class="box-wrap">
+        <div id="box" class="box">
+        </div>
+        <button onclick="snakeAction()">左右摆动</button> &nbsp;&nbsp; <button onclick="clockAction()">模仿摆钟摆动</button>
+    </div>
+
+<pre>
+    <code>
+>> css
+ &lt;style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background: green;
+        border-radius: 50%;
+        position: relative;
+        left: 200px;
+       
+    }
+&lt;/style>
+
+
+>> html
+
+&lt;div id="box" class="box">
+&lt;/div>
+&lt;button onclick="snakeAction()">左右摆动&lt;/button> &nbsp;&nbsp; &lt;button onclick="clockAction()">模仿摆钟摆动&lt;/button>
+>> javascript
+
+&lt;script>
+// 左右摆动
+var clock_id = null; // 用来记录动画的值
+var snake_id = null; // 
+
+// 保存原样式
+var origin_css = ele.style.cssText;
+
+function snakeAction() {
+    var ball = document.getElementById('box');
+    // 恢复 原来的样式
+    ball.style = origin_css;
+    // 清除摆钟动画
+    if(clock_id) { 
+        cancelAnimationFrame(clock_id);
+    }
+    snake(ball, 500, 20);
+}
+
+function clockAction() {
+    var ball = document.getElementById('box');
+    // 恢复 原来的样式
+    ball.style = origin_css;
+    // 清除摆左右摆动
+    if(snake_id) {
+        cancelAnimationFrame(snake_id);
+    }
+    clock(ball, 1000, 200);
+}
+
+// 摆钟运动
+// 参数：元素， 一次摆动的周期， 摆动的半径
+function clock(ele, once, radius) {
+    once = parseInt(once) || 500;
+    radius =  Math.max(radius, 300);
+    // 最大摆动角度
+    var MAX_DEGREE = Math.PI / 4;
+    // 最大横向运动范围
+    var MAX_DISTANCE = Math.sin(MAX_DEGREE) * radius;
+    if(ele) {
+        ani();
+    } else {
+        alert('元素没有找到');
+    }
+    
+    function ani () {
+        var PI = Math.PI;
+        var start = null;
+        requestAnimationFrame(act)
+        function act(timestamp) {
+
+            start = start || timestamp;
+            var elapsed = (timestamp - start) % once; // 
+            var progress = elapsed / once;
+            var cita = Math.abs(Math.sin(2 * PI * progress) * MAX_DEGREE);
+            var oX = MAX_DISTANCE * Math.sin(2 * PI * progress); // x 的偏移量，是sin函数决定
+            var oY = radius * (Math.cos(cita) - 1);  // y轴的偏移量，半径r * cos(偏移的角度) - 半径r
+            ele.style.transform = "translate("+oX+"px, "+oY+"px)"
+            clock_id = requestAnimationFrame(act);
+
+        }
+    }
+}
+
+// 左右摆动
+function snake(ele, duration, distance) {
+    // 设置默认值
+    duration = duration || 500; 
+    distance = distance || 20;
+    if(ele) {
+        ani()
+    }
+    function ani() {
+        var start = null;
+        // 保存原样式
+        var n = 2; // duration 时间内摆动的来回
+        var time_id = null;
+        ele.style.background = "red";
+        requestAnimationFrame(act);
+        function act(timestamp) {
+            if(start == null) {start = timestamp;}
+            var elapsed = timestamp - start; // 过去了多久
+            if((elapsed / duration) < 1) { // 是否超过了时间
+                // x轴的偏移量
+                // 使用 sin函数使得左右摆动
+                var oX = distance * Math.sin((elapsed / duration) * 2 * n * Math.PI)
+                ele.style.transform = "translateX("+ oX +"px)";
+                snake_id = requestAnimationFrame(act);
+            } else {
+                // 恢复原样式
+                ele.style = origin_css;
+                cancelAnimationFrame(snake_id);
+            }
+        }
+    }
+
+}
+&lt;/script>
+    </code>
+</pre>
 
 
     <script>
@@ -191,6 +336,107 @@ function move(timestamp) {
                 moveUniqueId.push(requestAnimationFrame(move))
             }
         }
+
+        // ex4 小球摆动
+        // 左右摆动
+        var clock_id = null; // 用来记录动画的值
+        var snake_id = null; // 
+
+        // 保存原样式
+        var origin_css = ele.style.cssText;
+
+        function snakeAction() {
+            var ball = document.getElementById('box');
+            // 恢复 原来的样式
+            ball.style = origin_css;
+            // 清除摆钟动画
+            if(clock_id) { 
+                cancelAnimationFrame(clock_id);
+            }
+            snake(ball, 500, 20);
+        }
+
+        function clockAction() {
+            var ball = document.getElementById('box');
+            // 恢复 原来的样式
+            ball.style = origin_css;
+            // 清除摆左右摆动
+            if(snake_id) {
+                cancelAnimationFrame(snake_id);
+            }
+            clock(ball, 1000, 200);
+        }
+
+        // 摆钟运动
+        // 参数：元素， 一次摆动的周期， 摆动的半径
+        function clock(ele, once, radius) {
+            once = parseInt(once) || 500;
+            radius =  Math.max(radius, 300);
+            // 最大摆动角度
+            var MAX_DEGREE = Math.PI / 4;
+            // 最大横向运动范围
+            var MAX_DISTANCE = Math.sin(MAX_DEGREE) * radius;
+            if(ele) {
+                ani();
+            } else {
+                alert('元素没有找到');
+            }
+            
+            function ani () {
+                var PI = Math.PI;
+                var start = null;
+                requestAnimationFrame(act)
+                function act(timestamp) {
+
+                    start = start || timestamp;
+                    var elapsed = (timestamp - start) % once; // 
+                    var progress = elapsed / once;
+                    var cita = Math.abs(Math.sin(2 * PI * progress) * MAX_DEGREE);
+                    var oX = MAX_DISTANCE * Math.sin(2 * PI * progress); // x 的偏移量，是sin函数决定
+                    var oY = radius * (Math.cos(cita) - 1);  // y轴的偏移量，半径r * cos(偏移的角度) - 半径r
+                    ele.style.transform = "translate("+oX+"px, "+oY+"px)"
+                    clock_id = requestAnimationFrame(act);
+
+                }
+            }
+        }
+        
+        // 左右摆动
+        function snake(ele, duration, distance) {
+            // 设置默认值
+            duration = duration || 500; 
+            distance = distance || 20;
+            if(ele) {
+                ani()
+            }
+            function ani() {
+                var start = null;
+                // 保存原样式
+                var n = 2; // duration 时间内摆动的来回
+                var time_id = null;
+                ele.style.background = "red";
+                requestAnimationFrame(act);
+                function act(timestamp) {
+                    if(start == null) {start = timestamp;}
+                    var elapsed = timestamp - start; // 过去了多久
+                    if((elapsed / duration) < 1) { // 是否超过了时间
+                        // x轴的偏移量
+                        // 使用 sin函数使得左右摆动
+                        var oX = distance * Math.sin((elapsed / duration) * 2 * n * Math.PI)
+                        ele.style.transform = "translateX("+ oX +"px)";
+                        snake_id = requestAnimationFrame(act);
+                    } else {
+                        // 恢复原样式
+                        ele.style = origin_css;
+                        cancelAnimationFrame(snake_id);
+                    }
+                }
+            }
+
+        }
+
+
+
     </script>
 </body>
 </html>
