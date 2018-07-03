@@ -1,6 +1,9 @@
-## 3.
+## 3. 哪些操作会引起浏览器重绘和重排？
 
-
+> 1. postion:absolute; left:100px;会不会引起？
+> 2. translateX:100px;会不会引起？
+> 3. getBoundingClientRect会不会引起？
+> 4. getClientWidth、getClientHeight会不会引起？ 
 **重绘 && 重排**
 
 无论何时总会有一个初始化的页面布局伴随着一次绘制。（除非你希望你的页面是空白的:)）之后，每一次改变用于构建渲染树的信息都会导致以下至少一个的行为：
