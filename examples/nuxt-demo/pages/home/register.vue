@@ -71,11 +71,11 @@ export default {
     methods: {
         login () {
             console.log('--click-login')
-            axios.get('api/m/login/smsVerifyCode').then(res => {
-                console.log('success-axios-register-'+ res);
-            }).catch(err => {
-                console.log('error-axios-register-'+ err);
-            })
+            // axios.get('api/m/login/smsVerifyCode').then(res => {
+            //     console.log('success-axios-register-'+ res);
+            // }).catch(err => {
+            //     console.log('error-axios-register-'+ err);
+            // })
             this.$store.commit('login')
             this.$router.push({
                 path: '/test'

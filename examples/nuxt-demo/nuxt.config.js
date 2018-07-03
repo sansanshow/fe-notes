@@ -22,7 +22,7 @@ module.exports = {
   */
   plugins: [
     '~plugins/mint-ui',
-    '~plugins/axios',
+    // '~plugins/axios',
   ],
   /*
   ** css

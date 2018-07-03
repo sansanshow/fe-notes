@@ -9,11 +9,10 @@ app.use(nuxt.render)
 
 // 在开发模式下进行编译
 if (config.dev) {
-    nuxt.build()
-        .catch((error) => {
-            console.error(error)
-            process.exit(1)
-        })
+    nuxt.build().catch((error) => {
+        console.error(error)
+        process.exit(1)
+    })
 }
 
 // 监听制定端口
