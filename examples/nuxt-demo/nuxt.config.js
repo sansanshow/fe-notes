@@ -20,7 +20,7 @@ module.exports = {
   /*
   ** Build configuration
   */
-  // plugins: ['~/plugins/mint-ui'],
+  plugins: ['~/plugins/mint-ui'],
   build: {
     /*
     ** Run ESLint on save

@@ -1,17 +1,45 @@
 <template>
-  <section class="container">
-    <div>
-      <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
-        <mt-button icon="back">返回</mt-button>
-        <mt-button icon="more" slot="right"></mt-button>
-      </mt-header>
-    </div>
-  </section>
+    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+      <ul>
+        <li :key="item" v-for="item in list">{{ item }}</li>
+      </ul>
+    </mt-loadmore>
 </template>
 
 <script>
 
 export default {
+  layout: 'common',
+  data() {
+    return {
+      list: [1, 2, 3, 4, 5],
+      allLoaded: false,
+      title: 'Test title demo'
+    }
+  },
+  methods: {
+    loadTop() {
+      console.log('----loadTop');
+    },
+    loadBottom() {
+      console.log('----loadBottom');
+    }
+  },
+  asyncData(ctx) {
+    console.log('--2isClient', ctx.isClient, '--isServer', ctx.isServer)
+  },
+  fetch() {
+
+  },
+  head() {
+    return {
+      title: this.title,
+      meta : [
+        { hid: 'description', name: 'description', content: 'My custom Test meta description' }
+      ]
+    }
+  }
+
 }
 </script>
 
