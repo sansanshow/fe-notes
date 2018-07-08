@@ -1,16 +1,9 @@
-## 1. 用 js 实现双链表，手写代码？
-https://www.jianshu.com/p/298623cc2026
-
-## 2. vue 的双向绑定机制？详细介绍。
-
-
 ## 3. 哪些操作会引起浏览器重绘和重排？
 
 > 1. postion:absolute; left:100px;会不会引起？
 > 2. translateX:100px;会不会引起？
 > 3. getBoundingClientRect会不会引起？
 > 4. getClientWidth、getClientHeight会不会引起？ 
-
 **重绘 && 重排**
 
 无论何时总会有一个初始化的页面布局伴随着一次绘制。（除非你希望你的页面是空白的:)）之后，每一次改变用于构建渲染树的信息都会导致以下至少一个的行为：
@@ -105,8 +98,7 @@ for(big; loop; here) {
 4. 绝对定位具有复杂动画的元素。绝对定位使它脱离文档刘，否则会引起父元素及后续元素大量的重排。
 >使用CSS3的transition也可以获得不错的性能。
 
-## 盒模型分为IE盒模型和W3C标准盒模型。
-> IE盒模型和W3C标准盒模型的区别是什么？
+## 4. 
 1. W3C 标准盒模型：
 属性width,height只包含内容content，不包含border和padding。
 2. IE 盒模型：
@@ -115,8 +107,8 @@ for(big; loop; here) {
    在ie8+浏览器中使用哪个盒模型可以由box-sizing(CSS新增的属性)控制，默认值为content-box，即标准盒模型；如果将box-sizing设为border-box则用的是IE盒模型。如果在ie6,7,8中DOCTYPE缺失会触发IE模式。在当前W3C标准中盒模型是可以通过box-sizing自由的进行切换的。
 
 
-## javascript事件机制
 
+## 5. 
 > javascript 之 - 深入事件机制
 参考：https://juejin.im/entry/5864af5861ff4b00631b259d
 
@@ -133,3 +125,11 @@ for(big; loop; here) {
 3.` return false `
 
 这个方法比较暴力，他会同事阻止事件冒泡也会阻止默认事件；写上此代码，连接不会被打开，事件也不会传递到上一层的父元素；可以理解为return false就等于同时调用了event.stopPropagation()和event.preventDefault()
+
+## 6. 浏览器缓存
+
+浏览器 缓存 的过程：
+
+首次访问一个 URL ，没有 缓存 ，但是，服务器会响应一些 header 信息，如： expires、cache-control、last-modified、etag 等，来记录下次请求是否缓存、如何缓存。
+
+再次访问这个 URL 时候，浏览器会根据首次访问返回的 header 信息，来决策是否缓存、如何缓存。
