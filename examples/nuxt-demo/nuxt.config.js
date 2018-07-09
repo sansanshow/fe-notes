@@ -21,7 +21,7 @@ module.exports = {
   ** plugins
   */
   plugins: [
-    '~plugins/mint-ui',
+    '~plugins/mint-ui'
     // '~plugins/axios',
   ],
   /*
@@ -36,9 +36,20 @@ module.exports = {
     middleware: 'user-agent'
   },
   /*
+  ** config axios
+  */
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+  axios: { 
+    prefix: '/api/', proxy: true // Can be also an object with default options 
+  },
+  proxy: [
+    ['/api', { target: 'http://localhost:3001/', pathRewrite: { '^/api': '' } }]
+  ],
+  /*
   ** Build configuration
   */
   build: {
+    vendor: ['axios'],
     // analyze: {
     //   analyzerMode: 'static'
     // },

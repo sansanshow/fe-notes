@@ -24,7 +24,8 @@
   </section>
 </template>
 <script>
-// import axios from '~/plugins/axios'
+// import axios from '~plugins/axios'
+import axios from 'axios'
 export default {
     layout: "full",
     data () {
@@ -71,11 +72,22 @@ export default {
     methods: {
         login () {
             console.log('--click-login')
-            // axios.get('api/m/login/smsVerifyCode').then(res => {
+            // this.$axios.get('/users').then(res => {
             //     console.log('success-axios-register-'+ res);
             // }).catch(err => {
             //     console.log('error-axios-register-'+ err);
             // })
+
+            // axios.all([axios.get('/users'), axios.get('/users')]).then(axios.spread((users1, users2) => {
+            //     console.log('success-axios-register-'+ users1);
+            //     console.log('success-axios-register-'+ users2);
+            // }))
+            axios.get('/users/1').then(res => {
+                console.log('success-axios-register-'+ res);
+            }).catch(err => {
+                console.log('error-axios-register-'+ err);
+            })
+            
             this.$store.commit('login')
             this.$router.push({
                 path: '/test'

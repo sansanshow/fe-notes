@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        ssss
+    </div>
+    <script>
+        var person = {
+            myfunc: function (params) {
+                
+            }
+        }
+        function func () {
+            var a=1;
+            var b =3;
+            var c= a+b;
+            console.log(arguments.callee.caller)
+            console.log(arguments.caller)
+            return c;
+        }
+        function add() {
+            func();
+        }
+        var obj = {
+            a: add
+        }
+        obj.a();
+    </script>
+</body>
+</html>

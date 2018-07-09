@@ -86,3 +86,57 @@ router.push({ path: `/user/${userId}` }) // -> /user/123
 // 这里的 params 不生效
 router.push({ path: '/user', params: { userId }}) // -> /user
 ```
+
+## Nuxt 使用axios 
+事实上，nuxt, 是自带axios的.    
+
+详细使用见githb(https://github.com/nuxt/nuxt.js/tree/dev/examples/axios)
+
+## Nuxt 插件使用
+在nuxt中使用UI框架，比如 mint-ui
+1. 运行
+```
+npm install mint-ui --save
+```
+2. plugins中创建 mint-ui.js
+```
+import Vue from 'vue'
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.min.css'
+
+Vue.use(MintUI)
+```
+
+3. nuxt.config.js中加入
+```
+module.exports = {
+ /*
+  ** plugins
+  */
+  plugins: [
+    // ……
+    '~plugins/mint-ui'
+    // ……
+  ],
+}
+```
+
+4. 如果需要在页面中多次引用，则会被多次打包，需要配置只打包一次。    
+配置如下：
+```
+module.exports = {
+  build: {
+    vendor: ['mint-ui'],
+    // ...其他配置
+  }
+}
+```
+# Nuxt + express 快速构建项目
+https://www.cnblogs.com/stealth7/p/7299614.html
+
+
+**生成模板项目**
+
+```
+vue init nuxt/express mynuxtexpress
+```

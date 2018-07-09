@@ -160,16 +160,21 @@
         */
         // ex 
 
-        console.log(1);
-        console.log(2);
-        setTimeout(function(){
-            console.log('setTimeout1')
-            Promise.resolve().then(function(){
-                console.log('Promise')
-            })
-        })
-        setTimeout(function(){
-            console.log('setTimeout2')
+        // console.log(1);
+        // console.log(2);
+        // setTimeout(function(){
+        //     console.log('setTimeout1')
+        //     Promise.resolve().then(function(){
+        //         console.log('Promise')
+        //     })
+        // })
+        // setTimeout(function(){
+        //     console.log('setTimeout2')
+        // })
+
+
+        const p1 = new Promise((resolve, reject) => {
+
         })
     </script>
 </body>
