@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>javascript高级程序设计</title>
 </head>
 <body>
     <div>
         ssss
     </div>
     <script>
+        // chap03 -- 函数
+    /*
+
         var person = {
             myfunc: function (params) {
                 
@@ -31,6 +34,155 @@
             a: add
         }
         obj.a();
+    */
+
+
+        // chap06 面向对象
+        var per1 = {}
+        Object.defineProperty(per1, 'name', {
+            configurable: false,
+            value: 'Jack'
+        })
+        console.log('per1.name', per1.name)
+        delete per1.name
+        console.log('delete per1.name', per1.name)
+
+        // Object.defineProperty(per1, 'name', {
+        //     configurable: true,
+        //     value: 'Jack'
+        // })
+
+
+        // ex2
+        var per2 = {};
+        Object.defineProperty(per2, 'name', {
+            writable: false,
+            value: 'Rose'
+        })
+        per2.name = 'Rose & Jack'
+        console.log('per2.name', per2.name);
+
+        // 访问器属性
+        var book = {
+            _year: 2004,
+            edition: 1
+        }
+        book.__defineGetter__('year', function() {
+            return this._year
+        })
+        book.__defineSetter__('year', function(val) {
+            if(parseInt(val) > 2004) {
+                this.edition += parseInt(val) - this._year
+                this._year = val
+            }
+        })
+        book.year = 2550
+        console.log('book.year', book.year)
+        console.log('book.edition', book.edition)
+
+        // 6.2 创建对象
+        // ex1 工厂模式
+        function createPerson(name, age, job){
+            var obj = new Object()
+            obj.name = name
+            obj.age = age
+            obj.job = job
+            obj.sayName = function (){
+                alert(this.name)
+            }
+            return obj
+        }
+        // ex2 构造函数模式
+        // function Person(name, age, job) {
+        //     this.name = name
+        //     this.age = age
+        //     this.job = job
+        //     this.sayName = function (){
+        //         alert(this.name)
+        //     }
+        // }
+        
+        // ex3 原型模式
+        function Person2() {}
+        Person2.prototype.name = 'Pserson2 default name',
+        Person2.prototype.age = 21,
+        Person2.prototype.job = 'Software Engineer',
+        Person2.prototype.sayName = function() {
+            alert(this.name)
+        }
+        var per2 = new Person2()
+        console.log(Object.keys(per2))
+        per2.name = 'ssss'
+        per2.toString = function() {
+            return this.name
+        }
+        for(var key in per2) {
+            console.log(key)
+        }
+        console.log(Object.keys(per2))
+        console.log(Object.getOwnPropertyNames(Person2.prototype))
+
+        /**
+         * 借用构造函数继承
+         */
+
+        // function SuperType() {
+        //     this.name = 'Greg'
+        //     this.colors = ['red', 'blue']
+        //     this.somFunc = function() {
+        //         alert('somFunc')
+        //     }
+        // }
+        // SuperType.prototype.sayName = function() {
+        //     alert(this.name)
+        // }
+        
+        // function SubType() {
+        //     SuperType.call(this) //
+
+        //     this.age = 18
+        // }
+
+        // SubType.prototype.sayAge = function() {
+        //     alert(this.age)
+        // }
+
+        // var sub = new SubType()
+        // sub.sayAge() // 18
+        // sub.colors.push('green')
+        // var superObj = new SubType()
+        // alert(superObj.colors)
+        // sub.sayName() // 报错--Uncaught TypeError: sub.sayName is not a function
+        // sub.somFunc()  // 'somFunc'
+
+
+        /**
+         * 组合继承
+         */
+        // 超类
+        function SuperType(name = 'Greg') {
+            this.name = name
+            this.colors = ['red', 'blue']
+        }
+        SuperType.prototype.sayName = function(){
+            alert(this.name)
+        }
+
+        // 子类
+        function SubType(name, age) {
+            // 继承属性
+            SuperType.call(this, 'Nick')
+
+            // 定义子类的属性
+            this.age = 18
+        }
+
+        // 继承方法
+        SubType.prototype = new SuperType()
+        // 定义子类 方法
+        SubType.prototype.sayAge = function () {
+            alert(age)
+        }
     </script>
 </body>
 </html>
