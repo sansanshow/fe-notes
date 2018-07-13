@@ -317,3 +317,216 @@ SubType.prototype.sayAge = function () {
     alert(age)
 }
 ```
+
+
+## 第8章 BOM
+
+定义全局变量，与在window上定义属性的差别：全局变量不能使用`delete`删除，window上的属性可以使用`delete`删除
+
+```
+var age = 29;
+window.color = 'red';
+
+delete window.age; // 返回false 在IE < 9的时候会直接抛出错误
+delete window.color; // 返回true 在IE < 9的时候会直接抛出错误
+```
+因为`var `添加的属性将`[[Configurable]]`设置为`false`, 所以不能删除
+
+- 窗口位置
+```
+screenTop(screenY--Firefox) 
+
+screenLeft(screenX--Firefox)
+
+// 移动窗口位置 -- 有可能被禁用，慎用
+moveTo(x, y) // 移动至 坐标(x,y)
+moveBy(x, y) // 在现有的基础上移动， 水平偏移x, 垂直偏移y
+
+```
+
+- 窗口大小
+
+```
+// 返回整个浏览器的大小
+window.outerWidth
+window.outerHeight
+
+// 返回浏览器页面可视区的大小，假如开启debug模式，宽度变小
+window.innerWidth
+window.innerHeight
+
+// 页面视口 信息
+document.documentElement.clientWidth
+document.documentElement.clientHeight
+
+// IE6 混杂模式 页面视口 信息
+document.body.clientWidth
+document.body.clientHeight
+
+// 调整窗口大小 -- 有可能被禁用，慎用
+resizeTo(x, y) // 移动到坐标位置(x,y)
+resizeBy(x, y) // X，Y坐标分别移动x,y大小
+```
+
+- 弹出窗口屏蔽检测
+如果浏览器`内置`的屏蔽程序阻止的弹出窗口，那么window.open()很可能`返回null`。   
+如果是`浏览器扩展`或`其他程序阻止`的弹出窗口，那么window.open()通常会`抛出一个错误`   
+
+可以通过以下代码检测是哪种阻止弹出
+```
+var blocked = false
+try {
+    var wroxWin = window.open('http://xxx.com')
+    if(wroxWin == null){
+        blocked = true
+        // 程序运行到此，说明是<浏览器内置>阻止的弹出窗口
+    }
+} catch (error) {
+    blocked = true
+    // 程序运行到此，说明是 <浏览器扩展>或<其他程序阻止>的弹出窗口
+}
+
+```
+
+
+### location
+
+查询字符串`location.search `  --"?key1=111&key2=222"
+#### 获取字符串键值对   
+>实现代码
+```
+function getQueryArgs() {
+    var searchSrt = location.search.length ? location.search.substring(1) : "" // 截取从1开始的字符串
+    var Args = {} // 存放query字符串
+    var items = searchSrt.split('&') // 分隔字符串 'name=value'
+
+    var item = null, name = null, value = null
+    
+    for(var i = 1, len = items.length; i < len; i++) {
+        item = items[i].split('=') //
+        name = item[0] // key
+        value = item[1] // value
+        if(name) { // name存在的情况下，将key-val 放入对象内
+            Args[name] = value
+        }
+    }
+    return Args
+}
+```
+### navigator 
+
+#### 插件-检测
+
+非IE下才有navigator.plugins
+
+所以非IE下插件的检测
+```
+// 非ie下插件检测
+function hasPlugin(name) {
+    var plugins = navigator.plugins || [];
+    name = name.toLowerCase()
+    for(var len = plugins.length, i = 0; i < len; i++) {
+        if(plugins[i].name.toLowerCase().indexOf(name) > -1) {
+            return true
+        }
+    }
+
+    return false
+}
+
+// 检测Flas
+
+alert(hasPlugin('Flash'))
+
+```
+
+IE下面的检测插件方法
+```
+// IE下面只能使用 ActiveXObject 来检测
+
+function hasIEPlugin(name) {
+    try {
+        new ActiveXObject(name)
+        return true
+    } catch (error) {
+        return false
+    }
+}
+
+// 检测Flash
+alert(hasIEPlugin('ShockwaveFlash.ShockwaveFlash'))
+
+```
+两个方法差异大，因此在使用的时候，要针对插件写特定的方法
+
+比如：检测是否包含Flash
+```
+// 检测Flash
+function hasFlash() {
+    var result = hasPlugin('Flash');
+    if(!result) {
+        result = hasIEPlugin('ShockwaveFlash.ShockwaveFlash');
+    }
+    return result;
+}
+```
+
+## 第9章 客户端检测
+
+检测对象的某个属性是否存在
+```
+// 检测对象的某个属性是否存在
+function isHostMethod(object, property) {
+    var t = typeof object[property]
+
+    return t == 'function' || 
+        (!!(t == 'object' && object[property])) || 
+        t == 'unknown' // IE ActiveXObject 属性 怪胎检测
+}
+```
+
+## 第10章
+someNode.childNodes 保存的是一个`NodeList`对象.    
+
+`NodeList` 实际上是DOM结构动态执行查询的结果，因此DOM结构的变化能自动反应在`NodeList`之中。
+> 即我们在第一次获取的`NodeList`并不是一成不变 ，当我们对DOM进行操作后，就会实时的反映在我们的`NodeList`中
+
+
+```
+<div id="test">
+    <p>1111</p>
+    <p id="willDel"></p>
+</div>
+<script>
+    // console.log(document.getElementById('test') == document.body.childNodes[0])
+    var div = document.getElementById('test')
+    var divNodes = div.childNodes;
+    console.log(divNodes)
+    var ele = document.getElementById('willDel')
+    setTimeout(function(){
+        div.removeChild(document.getElementById('willDel'))
+        ele.innerHTML = 'sssss'
+        console.log(divNodes)
+    }, 2000) 
+</script>
+```
+
+在Chrome中，两次输出`divNodes`, 长度第一次是5，但是展开只有4个元素
+第二次输出，长度是4展开确实有4个元素
+
+![图片](./images/15/15-1.png)
+
+但是假如在第二次结果输出前，展开第一次结果就会显示正确，
+
+个人感觉是在控制台展开的时候才是真正读取元素的
+
+![图片](./images/15/15-2.png)
+
+
+-
+
+任何DOM节点不能同时出现在同一个文档中。
+比如，选中某个节点的第一个元素，将第一个元素appendChild()到最后一个元素中
+
+
+

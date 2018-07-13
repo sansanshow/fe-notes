@@ -16,7 +16,7 @@
 | 12 | [ 前端性能优化 ](./notes/12-前端性能优化.md) | 无 | 无 |
 | 13 | [ 实现跨域请求的几种方式 ](./notes/13-实现跨域请求的几种方式.md) | 无 | 无 |
 | 14 | [ vue开发遇到的问题.md ](./notes/14-vue开发遇到的问题.md) | 无 | 无 |
-| 15 | [ javascript高级程序notes.md ](./notes/15-javascript高级程序notes.md) | 无 | 无 |
+| 15 | [ javascript高级程序设计-对象构造函数及继承.md ](./notes/15-javascript高级程序notes.md) | 无 | 无 |
 
 
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- <frameset rows="160, *" name="parentSet">
+    <frame src="https://www.baidu.com">
+    <frameset cols="50%,50%" name="bottomSet">
+        <frame src="https://www.baidu.com" name="leftFrame">
+        <frame src="https://www.baidu.com"></frame>
+    </frameset>
+
+</frameset> -->
+<body>
+    
+<script>
+var blocked = false
+try {
+    var wroxWin = window.open('http://xxx.com')
+    if(wroxWin == null){
+        blocked = true
+        // 程序运行到此，说明是<浏览器内置>阻止的弹出窗口
+    }
+} catch (error) {
+    blocked = true
+    // 程序运行到此，说明是 <浏览器扩展>或<其他程序阻止>的弹出窗口
+}
+
+// location 
+// 获取查询字符串
+
+function getQueryArgs() {
+    var searchSrt = location.search.length ? location.search.substring(1) : "" // 截取从1开始的字符串
+    var Args = {} // 存放query字符串
+    var items = searchSrt.split('&') // 分隔字符串 'name=value'
+
+    var item = null, name = null, value = null
+    
+    for(var i = 1, len = items.length; i < len; i++) {
+        item = items[i].split('=') //
+        name = item[0] // key
+        value = item[1] // value
+        if(name) { // name存在的情况下，将key-val 放入对象内
+            Args[name] = value
+        }
+    }
+    return Args
+}
+
+// 非ie下插件检测
+function hasPlugin(name) {
+    var plugins = navigator.plugins || [];
+    name = name.toLowerCase()
+    for(var len = plugins.length, i = 0; i < len; i++) {
+        if(plugins[i].name.toLowerCase().indexOf(name) > -1) {
+            return true
+        }
+    }
+
+    return false
+}
+
+// IE下面只能使用 ActiveXObject 来检测
+
+function hasIEPlugin(name) {
+    try {
+        new ActiveXObject(name)
+        return true
+    } catch (error) {
+        return false
+    }
+}
+
+// 检测Flash
+function hasFlash() {
+    var result = hasPlugin('Flash');
+    if(!result) {
+        result = hasIEPlugin('ShockwaveFlash.ShockwaveFlash');
+    }
+    return result;
+}
+
+
+var xhr = new ActiveXObject("Microsoft.XMLHttp")
+try {
+    if(xhr.open) {
+        console.log('ok---')
+    } else {
+        console.log('error')
+    } 
+} catch (error) {
+    alert(error.name+","+error.message+","+error.lineNumber)
+}
+
+
+// 检测某个方法是否存在 
+function isHostMethod(object, property) {
+    var t = typeof object[property]
+
+    return t == 'function' || 
+        (!!(t == 'object' && object[property])) || 
+        t == 'unknown' // IE ActiveXObject 属性 怪胎检测
+}
+</script>
+</body>
+</html>

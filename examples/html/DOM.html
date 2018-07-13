@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM方法回顾</title>
+</head>
+<body>
+    <div id="test">
+        <p>1111</p>
+        <p id="willDel"></p>
+    </div>
+    <script>
+        // console.log(document.getElementById('test') == document.body.childNodes[0])
+        var div = document.getElementById('test')
+        var divNodes = div.childNodes;
+        console.log(divNodes)
+        console.log(Array.prototype.slice.call(divNodes, 0))
+        var ele = document.getElementById('willDel')
+        console.log(ele.ownerDocument)
+        // setTimeout(function(){
+            div.removeChild(document.getElementById('willDel'))
+            ele.innerHTML = 'sssss'
+            console.log(divNodes)
+            console.log(Array.prototype.slice.call(divNodes, 0))
+        // }, 2000) 
+    </script>
+</body>
+</html>

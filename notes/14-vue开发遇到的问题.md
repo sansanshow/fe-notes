@@ -209,6 +209,25 @@ this.$once('hook:beforeDestroy', () => {
   color: red;
 }
 ```
+
 其实是在你写的组件的样式，添加了一个属性而已，这样就实现了所谓的私有作用域。但是也会有弊端，考虑到浏览器渲染各种 CSS 选择器的方式，当` p { color: red } `设置了作用域时 (即与特性选择器组合使用时) 会慢很多倍。如果你使用 class 或者 id 取而代之，比如 `.example { color: red }`，性能影响就会消除。所以，在你的样式里，进来避免直接使用标签，取而代之的你可以给标签起个class名
 
+### 6. 如何跳出forEach循环
 
+**使用try...catch 自定义异常**
+
+```
+var arr =[1, 2, 3]
+try {
+    arr.forEach((item, index, array) => {
+        // ...
+        if(someCondition) { // 某些条件跳出循环
+            throw new Error('someError')
+        }
+        obj.value = 6 // 
+    })
+} catch (error) {
+    // 为了不影响其它异常， 比如上面obj.value,  obj未定义，所以引用不存在
+    if(error.message !== 'someError') throw error
+}
+```
