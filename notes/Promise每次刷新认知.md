@@ -94,3 +94,26 @@ console.log('one');
 // three
 ```
 上面代码中，setTimeout(fn, 0)在**下一轮“事件循环”开始时**执行，Promise.resolve()在**本轮“事件循环”结束时**执行，console.log('one')则是立即执行，因此最先输出。
+
+
+一段有意思的代码
+
+```
+var p1 = this.$http.get(`someurl2`, {params: {key: 1}}).then(res => {
+    this.list = template
+}).catch(() => {})
+// 获取驳回补件-附件-列表
+var p2 = this.$http.get(`someurl2`, {params: {key: 2}}).then(res => {
+    
+    this.data2 = template
+}).catch(() => {})
+
+Promise.all([p1, p2]).then(() => {
+    // 这是里是跟前面的p1,p2的then 并列执行的代码
+    // 而检查数据dataValid，要在这两个请求返回之后并处理完成进行检查
+    // 所以 根据事件机制，可以加一个setTimeOut来使得他在请求返回后的下一个轮回进行操作
+    setTimeout(() => {
+        this.dataValid()
+    }, 0)
+})
+```

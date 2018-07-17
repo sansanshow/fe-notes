@@ -529,4 +529,15 @@ someNode.childNodes 保存的是一个`NodeList`对象.
 比如，选中某个节点的第一个元素，将第一个元素appendChild()到最后一个元素中
 
 
+DOM操作是JavaScript中开销最大的一部分
 
+
+NodeList 对象都是动态的，每次访问NodeList都会执行一次查询，所以，减少DOM操作
+
+
+为了消除空白字符对childNodes的影响， 添加了如下属性及方法
+- childElementCount 非空白元素的个数
+- firstElementChild 第一个非空白Node元素 firstChild的元素版
+- lastElementChild 最后一个非空白节点的元素 lastChild的元素版
+- previousElementSibling 上一个兄弟元素
+- nextElementSibling 下一个兄弟元素

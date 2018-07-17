@@ -7,9 +7,21 @@
     <title>DOM方法回顾</title>
 </head>
 <body>
+    <s:sml xmlns:s="http://www.w3.org/2000/sml" align="center2" class="id2">
+        <s:div id="id2">
+            <s:span>ssss222</s:span>
+            <s:span>1111222</s:span>
+        </s:div>
+    </s:sml>
     <div id="test">
         <p>1111</p>
-        <p id="willDel"></p>
+        <p id="willDel"></p>http://www.w3.org/199/xhtml
+
+        <div align="center" id="id" class="id">
+            <span>ssss</span>
+            <span>1111</span>
+        </div>
+       
     </div>
     <script>
         // console.log(document.getElementById('test') == document.body.childNodes[0])
@@ -25,6 +37,12 @@
             console.log(divNodes)
             console.log(Array.prototype.slice.call(divNodes, 0))
         // }, 2000) 
+        console.log(document.getElementById('id').attributes);
+        var div1 = document.getElementById('id')
+        var div2 = document.getElementById('id2')
+        console.log('id2.localName', id2.localName)
+        console.log('id2.namespaceURI', id2.namespaceURI)
+        console.log('id2.prefix', id2.prefix)
     </script>
 </body>
 </html>
