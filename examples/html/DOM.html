@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DOM方法回顾</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div>
+        some text 
+        <p>ssss</p>
+        ssss
+        <input type="button" value="iiiii" onclick="alert(value)">
+    </div>
+    <form method="post">
+        <input type="text" name="userName" value="default">
+        <input type="button" value="Clieck Me!" onclick="alert(userName.value)">
+    </form>
     <s:sml xmlns:s="http://www.w3.org/2000/sml" align="center2" class="id2">
         <s:div id="id2">
             <s:span>ssss222</s:span>
@@ -43,6 +54,21 @@
         console.log('id2.localName', id2.localName)
         console.log('id2.namespaceURI', id2.namespaceURI)
         console.log('id2.prefix', id2.prefix)
+        console.log('----------------------------------')
+        function getStyleSheet(element) {
+            return element.sheet || element.styleSheet
+        }
+        var link = document.getElementsByTagName('link')[0]
+        var styleSheet = getStyleSheet(link)
+        console.log(styleSheet)
+        var body = document.body
+        var it = document.createNodeIterator(body, NodeFilter.SHOW_ALL, null, false)
+        var node = it.nextNode()
+        
+        while(node !== null) {
+            console.log(node.tagName)
+            node = it.nextNode()
+        }
     </script>
 </body>
 </html>
