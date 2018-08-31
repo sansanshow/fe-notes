@@ -1,3 +1,37 @@
+if(true) {
+    var c =3333}
+console.log(c)
+-- 3333
+c
+3333
+window.c
+3333
+
+###判断数组
+1. 简单的检测--不可靠
+```
+function isArray(val) {
+    return val && typeof val === 'object' && // 不为空
+        val.constructer === Array // length 可枚举
+}
+```
+2. 更可靠的检测方法。（但是这个方法会把arguments检测为数组）
+```
+function isArray(val) {
+    return val && typeof val === 'object' && // 不为空
+        typeof val.length === 'number' && // length 检测
+        val.propertyisenumerable('length') // length 可枚举
+}
+```
+
+3. 过滤arguments为数组--依据arguments不包含任何数组方法 `typeof val.slice === 'function'`
+function isArray(val) {
+    return val && typeof val === 'object' && // 不为空
+        typeof val.length === 'number' && // length 检测
+        val.propertyisenumerable('length') && // length 可枚举
+        typeof val.slice === 'function' 
+}
+
 ## 第六章：面向对象
 ### 
 1. Object.defineProperty() - 一次只能一个属性

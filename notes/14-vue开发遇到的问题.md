@@ -191,7 +191,7 @@ this.$once('hook:beforeDestroy', () => {
     clearInterval(timer);                                    
 })
 ```
-## 6. CSS的scoped私有作用域和深度选择器
+### 6. CSS的scoped私有作用域和深度选择器
 
 编译前：
 ```
@@ -212,7 +212,7 @@ this.$once('hook:beforeDestroy', () => {
 
 其实是在你写的组件的样式，添加了一个属性而已，这样就实现了所谓的私有作用域。但是也会有弊端，考虑到浏览器渲染各种 CSS 选择器的方式，当` p { color: red } `设置了作用域时 (即与特性选择器组合使用时) 会慢很多倍。如果你使用 class 或者 id 取而代之，比如 `.example { color: red }`，性能影响就会消除。所以，在你的样式里，进来避免直接使用标签，取而代之的你可以给标签起个class名
 
-### 6. 如何跳出forEach循环
+### 7. 如何跳出forEach循环
 
 **使用try...catch 自定义异常**
 
@@ -231,3 +231,19 @@ try {
     if(error.message !== 'someError') throw error
 }
 ```
+
+### 8. npm 包升级后，打包注意
+
+假如包升级前有迭代开发， 同时在进行包升级后的迭代。要注意上线的时候的包版本的确认。
+
+最好的办法是升级前后各建一个文件夹，node_modules各自运行各自的，互不影响。
+
+
+### 9. vuex 相关问题
+1. vuex双向绑定的问题
+在一些修改store对象中体现。
+```
+<input v-model="obj.message">
+```
+假设这里的 obj 是在计算属性中返回的一个属于 Vuex store 的对象，在用户输入时，v-model 会试图直接修改 obj.message。在严格模式中，由于这个修改不是在 mutation 函数中执行的, 这里会抛出一个错误。
+

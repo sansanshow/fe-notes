@@ -2,6 +2,7 @@
 
 | 序号 | 课题 | src | demo | 备注 |
 | :-: | :- | :- | :-: | :-: |
+| ## | [工具函数](./notes/##-utils.md) | 无 | 无 | 无 |
 | 0 | [ ES5 and ES6.md ](./notes/0-ES5-and-ES6.md) | -- | 无 | 待整理 |
 | 1 | [JS控制CSS3，添加浏览器兼容前缀](./notes/JS控制CSS3，添加浏览器兼容前缀.md)| [example](./notes/js-add-css3-prefixer.js) | 无 | 无 |
 | 2 | [PC端JS打开摄像头并拍照](./notes/PC端JS打开摄像头并拍照.md)| 无 | 无 | 无 |
@@ -22,6 +23,12 @@
 | 17 | [ Node入门.md ](./notes/17-Node入门.md) | [source](../master/examples/nodejs/index.js) | 无 | 待整理 |
 | 18 | [ flutter环境搭建.md ](./notes/18-flutter环境搭建.md) | [source](../master/examples/flutter_demo) | 无 | 待整理 |
 | 19 | [ indexDB入门.md ](./notes/19-indexDB入门.md) | [source](../master/examples/html/indexDB.html.) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/indexDB.html) | 待整理 |
+
+
+其他链接
+#### 1. 微信小程序   
+1. 避坑指南：[WTF小程序之<web-view>](https://www.cnblogs.com/imgss/p/8504185.html)
+2. [坑点整理](./notes/浅谈小程序.md)
 
 
 

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>翻书效果实现</title>
+    <style>
+        html, body, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #f5f5f5;
+        }
+        ul {
+            margin: 100px;
+            margin-left: 400px;
+            list-style: none;
+            position: relative;
+            width: 700px;
+            height: 240px;
+        }
+        li.paper {
+            width: 350px;
+            height: 240px;
+            position: absolute;
+            z-index: 1;
+            display: none;
+            right: 0;
+            transform-style: preserve-3d;
+        }
+       
+        li.paper[data-right] {
+            display: block;
+            right: 0;
+            top: 0;
+        }
+        li.paper[data-left] {
+            display: block;
+            transform-origin: center center;
+            left: 0;
+            top: 0;
+        }
+        li.paper[data-left] .page-back {
+            z-index: 2;
+            transform: translateZ(1px);
+        }
+
+        li.paper[data-right] .page-front {
+            z-index: 2;
+            transform: translateZ(1px);
+        }
+        
+        div.page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        div.page img {
+            width: 350px;
+            height: 240px;
+        }
+        .page-front {
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .page-back {
+            transform: scale(-1, 1);
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        @keyframes flip-to-left {
+            from {
+                transform: perspective(1000px) rotateY(0);
+            }
+            to {
+                transform: perspective(1000px) rotateY(-180deg);
+            }
+        }
+        li.paper[data-begin-animate] {
+            z-index: 9;
+            transform-origin: left center;
+            animation: flip-to-left 2s ease-in-out forwards;
+        }
+
+        @keyframes flip-to-right {
+            from {
+                transform: perspective(1000px) rotateY(0);
+            }
+            to {
+                transform: perspective(1000px) rotateY(180deg);
+            }
+        }
+        li.paper.page-right {
+            z-index: 9;
+            transform-origin: right center;
+            animation: flip-to-right 2s ease-in-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="pages">
+        <li class="paper" data-left>
+            <div class="page page-front">
+                <img src="./images/book/0-f.png" alt="">
+            </div>
+            <div class="page page-back">
+                <img src="./images/book/0-b.png" alt="">
+            </div>
+        </li>
+        <li class="paper" data-right>
+            <div class="page page-front">
+                <img src="./images/book/1-f.png" alt="">
+            </div>
+            <div class="page page-back">
+                <img src="./images/book/1-b.png" alt="">
+            </div>
+        </li>
+        <li class="paper">
+            <div class="page page-front">
+                <img src="./images/book/2-f.png" alt="">
+            </div>
+            <div class="page page-back">
+                <img src="./images/book/2-b.png" alt="">
+            </div>
+        </li>
+        <li class="paper">
+            <div class="page page-front">
+                <img src="./images/book/3-f.png" alt="">
+            </div>
+            <div class="page page-back">
+                <img src="./images/book/3-b.png" alt="">
+            </div>
+        </li>
+        <li class="paper">
+            <div class="page page-front">
+                <img src="./images/book/4-f.png" alt="">
+            </div>
+            <div class="page page-back">
+                <img src="./images/book/4-b.png" alt="">
+            </div>
+        </li>
+    </ul>
+    <script src="./js/jquery-2.1.4/jquery.js"></script>
+    <script>
+        var data = {
+            pages: [
+                {front: './images/book/0-f.png', back: './images/book/0-b.png'},
+                {front: './images/book/1-f.png', back: './images/book/1-b.png'},
+                {front: './images/book/2-f.png', back: './images/book/2-b.png'},
+                {front: './images/book/3-f.png', back: './images/book/3-b.png'},
+                {front: './images/book/4-f.png', back: './images/book/4-b.png'}
+            ],
+            current: 0
+        }
+
+        $(function(){
+            var flipAnimateTime = 2000;
+            var liELes = $('.paper');
+            $('ul.pages').on('click', function(e) {
+                console.log($(e.target).parents('li'))
+                var liEle = $(e.target).parents('li')
+                console.log("liEle.attr('page-left')", liEle.is('[page-left]'))
+                if(liEle.attr('[page-left]')) {
+                    console.log('--page will right');
+                    $(e.target).parents('li').addClass('page-right');
+                } else {
+                    liEle.attr('data-begin-animate', '').next().attr('data-right', '');
+                    setTimeout(function() {
+                        liEle.removeAttr('data-right').attr('data-left', '')
+                    }, flipAnimateTime)
+                }
+            })
+            // $(liELes[1]).addClass('page-left').next().css('display', 'block');
+
+        })
+    </script>
+</body>
+
+</html>

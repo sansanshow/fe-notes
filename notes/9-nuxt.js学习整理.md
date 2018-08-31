@@ -1,5 +1,7 @@
 # nuxt.js学习整理
+[环境部署](https://juejin.im/post/5a24df9ef265da43133cfb2e)
 
+[git部署介绍](https://github.com/wmui/web-deploy/blob/master/httpsbu-shu.md)
 ## vue-router 基础
 ### 1. /users/1 -> /users/2  目的地和当前路由相同
 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 /users/1 -> /users/2)，你需要使用` beforeRouteUpdate `来响应这个变化 (比如抓取用户信息)。    
