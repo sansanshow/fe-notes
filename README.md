@@ -27,7 +27,7 @@
 
 其他链接
 #### 1. 微信小程序   
-1. 避坑指南：[WTF小程序之<web-view>](https://www.cnblogs.com/imgss/p/8504185.html)
+1. 避坑指南：[WTF小程序之\<web-view\>](https://www.cnblogs.com/imgss/p/8504185.html)
 2. [坑点整理](./notes/浅谈小程序.md)
 
 
