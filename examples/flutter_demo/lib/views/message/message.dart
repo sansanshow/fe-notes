@@ -4,9 +4,7 @@ class Message extends StatelessWidget {
   Widget build(BuildContext context) {
     print('消息');
     return new Scaffold(
-      body: new Center(
-        child: new Text("消息"),
-      ),
+      body:new Text("消息"),
     );
   }
 }

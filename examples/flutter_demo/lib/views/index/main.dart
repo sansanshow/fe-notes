@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import './detail/index.dart';
 
 class IndexMain extends StatelessWidget {
   @override
@@ -60,12 +61,6 @@ class RandomWordsState extends State<RandomWords> {
         color: alreadySaved ? Colors.red : null,
       ),
       onTap: () {
-        if (alreadySaved) {
-          Navigator.pushNamed(context, '/a'); // 导航跳转
-        } else {
-          Navigator.pushNamed(context, '/b'); // 导航跳转
-        }
-       
         setState(() {
           if (alreadySaved) {
             _saved.remove(pair);
@@ -73,6 +68,19 @@ class RandomWordsState extends State<RandomWords> {
             _saved.add(pair);
           }
         });
+
+        Navigator.of(context).push(new PageRouteBuilder(
+          opaque: false,
+          pageBuilder: (BuildContext context, _, __) {
+            return new DetailIndex();
+          }
+        ));
+
+        // if (alreadySaved) {
+        //   Navigator.pushNamed(context, '/a'); // 导航跳转
+        // } else {
+        //   Navigator.pushNamed(context, '/b'); // 导航跳转
+        // }
       },
     );
   }

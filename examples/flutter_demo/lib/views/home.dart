@@ -9,7 +9,7 @@ class Home extends StatefulWidget {
   }
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   var _pageController = new PageController(initialPage: 0);
   int _currentIndex = 0;
   @override
