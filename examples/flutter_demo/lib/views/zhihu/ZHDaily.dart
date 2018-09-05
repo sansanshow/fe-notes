@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import './model/dailyModel.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+
+import './ZHDailyDetail.dart';
 // 知乎日报
 class ZHDaily extends StatelessWidget {
   @override
@@ -49,6 +51,17 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin{
   }
 
   Widget swiperSection = new _TopSwiper();
+  Widget newSwiper = new Container(
+    height: 120.0,
+    child: new Swiper(
+      itemBuilder: (BuildContext context,int index){
+        return new Image.network("http://img.jandan.net/news/2018/09/2d5ff15b73f85dbd9ff302b9d4f85d4b.jpg",fit: BoxFit.fill,);
+      },
+      itemCount: 3,
+      pagination: new SwiperPagination(),
+      control: new SwiperControl(),
+    ),
+  );
 
   Widget titleSection = new Container(
     child: new Column(
@@ -83,7 +96,7 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin{
           var storiesIndex = index - 2;
           var title = _dailyModel.stories[storiesIndex].title;
           var src = _dailyModel.stories[storiesIndex].getFirstImageUrl();
-          return new ListItem(title, src);
+          return new ListItem(title, src, _dailyModel.stories[storiesIndex]);
         }
         
       },
@@ -158,10 +171,10 @@ class SwiperItem extends StatelessWidget {
 class ListItem extends StatelessWidget {
   final String _src;
   final String _title;
-  ListItem(this._title, this._src);
+  Story _story;
+  ListItem(this._title, this._src, this._story);
   Widget _buidImage(src) {
     if(src == null) {
-      print(src);
       return new Image.asset(
         'images/girl.jpg',
         height: 140.0,
@@ -172,42 +185,54 @@ class ListItem extends StatelessWidget {
     return new Image.network(src, height: 140.0, width: 140.0, fit: BoxFit.fill);
   }
   @override
-    Widget build(BuildContext context) {
-      // 
-      return new Container(
-        height: 80.0,
-        margin: const EdgeInsets.only(top: 8.0),
-        padding: const EdgeInsets.only(left:8.0, right: 8.0),
-        child: new Column(
-          children: <Widget>[
-            new Row(
-              children: <Widget>[
-                new Container(
-                  // padding: const EdgeInsets.only(left:8.0, top:8.0, right: 8.0),
+  Widget build(BuildContext context) {
+    // 
+    return new GestureDetector(
+    onTap: () {
+      // Navigator.of(context).pushNamed('/a');
+      Navigator.of(context).push(new MaterialPageRoute(
+        settings: new RouteSettings(name: 'ZHDailyDetail'),
+        builder: (BuildContext context) {
+          return new ZHDailyDetail(_story.id, _story.title);
+        }
+      ));
+      print('${_story.id}. was tapped!');
+    },
+    child: new Container(
+      height: 80.0,
+      margin: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.only(left:8.0, right: 8.0),
+      child: new Column(
+        children: <Widget>[
+          new Row(
+            children: <Widget>[
+              new Container(
+                // padding: const EdgeInsets.only(left:8.0, top:8.0, right: 8.0),
+                height: 80.0,
+                width: 80.0,
+                // margin: const EdgeInsets.all(4.0),
+                child: _buidImage(_src),
+              ),
+              new Expanded(
+                child: new Container(
+                  padding: const EdgeInsets.only(left:8.0, right: 8.0),
                   height: 80.0,
-                  width: 80.0,
-                  // margin: const EdgeInsets.all(4.0),
-                  child: _buidImage(_src),
-                ),
-                new Expanded(
-                  child: new Container(
-                    padding: const EdgeInsets.only(left:8.0, right: 8.0),
-                    height: 80.0,
-                    child: new Column(
-                      children: <Widget>[
-                        new Expanded(
-                          child: new Text(_title.trim()),
-                        ),
-                        new Divider(height: 0.0, color: Colors.grey),
-                      ],
-                    ),
+                  child: new Column(
+                    children: <Widget>[
+                      new Expanded(
+                        child: new Text(_title.trim()),
+                      ),
+                      new Divider(height: 0.0, color: Colors.grey),
+                    ],
                   ),
-                )
-              ],
-            ),
-            // new Divider(height: 8.0, color: Colors.red),
-          ]
-        )
-      ); 
-    }
+                ),
+              )
+            ],
+          ),
+          // new Divider(height: 8.0, color: Colors.red),
+        ]
+      )
+    )
+    ); 
+  }
 }

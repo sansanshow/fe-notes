@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './daily.dart';
+import './ZHDaily.dart';
 
 class Zhuanlan extends StatelessWidget{
   @override

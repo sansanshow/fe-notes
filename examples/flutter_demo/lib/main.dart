@@ -7,10 +7,11 @@ import './views/index/detail/MyPage.dart';
 import './views/index/detail/myHomePage.dart';
 import './views/index/detail/index.dart';
 import './views/zhihu/zhuanlan.dart';
+import './views/zhihu/ZHIndex.dart';
 void main() {
   debugPaintSizeEnabled=true;
   runApp(new MyApp());
-} 
+}
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: new DetailIndex(),
       // home: new Home(),
-      home: new Zhuanlan(),
+      // home: new Zhuanlan(),
+      home: new ZHIndex(),
       // home: new Main(),
       routes: <String, WidgetBuilder> {
         '/a': (BuildContext context) => new DetailIndex(),

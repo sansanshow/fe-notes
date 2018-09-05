@@ -10,7 +10,6 @@ class DailyModel {
     date = jsonRes["date"];
     var dataArr = jsonRes['stories'];
     for(var i = 0; i < dataArr.length; i++){
-      print(dataArr[i]["type"]);
       stories.add(new Story.fromJson(dataArr[i]));
     }
   }
