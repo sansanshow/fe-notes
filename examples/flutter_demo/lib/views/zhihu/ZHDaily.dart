@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './model/dailyModel.dart';
+import './model/ZHDailyItemModel.dart';
+import './model/ZHStoryModel.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import './ZHDailyDetail.dart';
@@ -8,26 +9,7 @@ import './ZHDailyDetail.dart';
 class ZHDaily extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new NewsList(),
-      floatingActionButton: new Builder(builder: (BuildContext context) {
-        return new FloatingActionButton(
-          child: const Icon(Icons.refresh),
-          tooltip: "Hello",
-          foregroundColor: Colors.white,
-          backgroundColor: Theme.of(context).primaryColor,
-          heroTag: null,
-          elevation: 7.0,
-          highlightElevation: 1.0,
-          onPressed: () {
-            
-          },
-          mini: true,
-          shape: new CircleBorder(),
-          isExtended: false,
-        );
-      }),
-    );
+    return new NewsList();
   }
 }
 
@@ -40,12 +22,18 @@ class NewsList extends StatefulWidget {
 }
 
 class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin{
-  DailyModel _dailyModel;
+  ZHDailyItemModel _dailyModel;
+  ScrollController _scrollController = new ScrollController();
   // var arr = getLatest()['stories'];
-  getList() {
-    http.read("https://news-at.zhihu.com/api/4/news/latest").then((response) {
+  getList() async{
+    await http.read("https://news-at.zhihu.com/api/4/news/latest").then((response) {
       setState(() {
-        this._dailyModel = new DailyModel.fromJson(response);
+        print("========== news list loaded =============");
+        this._dailyModel = new ZHDailyItemModel.fromJson(response);
+        _scrollController.animateTo(0.0, 
+          curve: Curves.easeOut, 
+          duration: const Duration(milliseconds: 300)
+        );
       });
     });
   }
@@ -85,21 +73,45 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     // 
-    return new ListView.builder(
-      itemCount: _dailyModel?.stories == null ? 0 : _dailyModel.stories.length + 2,
-      itemBuilder: (context, index) {
-        if(index == 0) {
-          return swiperSection;
-        } else if (index == 1) {
-          return titleSection;
-        } else {
-          var storiesIndex = index - 2;
-          var title = _dailyModel.stories[storiesIndex].title;
-          var src = _dailyModel.stories[storiesIndex].getFirstImageUrl();
-          return new ListItem(title, src, _dailyModel.stories[storiesIndex]);
-        }
-        
-      },
+    return new Scaffold(
+      body: new Container(
+        child: ListView.builder(
+          shrinkWrap: false,
+          controller: _scrollController,
+          reverse: false,
+          itemCount: _dailyModel?.stories == null ? 0 : _dailyModel.stories.length + 2,
+          itemBuilder: (context, index) {
+            if(index == 0) {
+              return swiperSection;
+            } else if (index == 1) {
+              return titleSection;
+            } else {
+              var storiesIndex = index - 2;
+              var title = _dailyModel.stories[storiesIndex].title;
+              var src = _dailyModel.stories[storiesIndex].getFirstImageUrl();
+              return new ListItem(title, src, _dailyModel.stories[storiesIndex]);
+            }
+            
+          },
+        )
+      ),
+      floatingActionButton: new Builder(builder: (BuildContext context) {
+        return new FloatingActionButton(
+          child: const Icon(Icons.refresh),
+          tooltip: "Hello",
+          foregroundColor: Colors.white,
+          backgroundColor: Theme.of(context).primaryColor,
+          heroTag: null,
+          elevation: 7.0,
+          highlightElevation: 1.0,
+          onPressed: () {
+            getList();
+          },
+          mini: true,
+          shape: new CircleBorder(),
+          isExtended: false,
+        );
+      }),
     );
   }
 
@@ -171,7 +183,7 @@ class SwiperItem extends StatelessWidget {
 class ListItem extends StatelessWidget {
   final String _src;
   final String _title;
-  Story _story;
+  ZHStoryModel _story;
   ListItem(this._title, this._src, this._story);
   Widget _buidImage(src) {
     if(src == null) {
@@ -188,51 +200,51 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // 
     return new GestureDetector(
-    onTap: () {
-      // Navigator.of(context).pushNamed('/a');
-      Navigator.of(context).push(new MaterialPageRoute(
-        settings: new RouteSettings(name: 'ZHDailyDetail'),
-        builder: (BuildContext context) {
-          return new ZHDailyDetail(_story.id, _story.title);
-        }
-      ));
-      print('${_story.id}. was tapped!');
-    },
-    child: new Container(
-      height: 80.0,
-      margin: const EdgeInsets.only(top: 8.0),
-      padding: const EdgeInsets.only(left:8.0, right: 8.0),
-      child: new Column(
-        children: <Widget>[
-          new Row(
-            children: <Widget>[
-              new Container(
-                // padding: const EdgeInsets.only(left:8.0, top:8.0, right: 8.0),
-                height: 80.0,
-                width: 80.0,
-                // margin: const EdgeInsets.all(4.0),
-                child: _buidImage(_src),
-              ),
-              new Expanded(
-                child: new Container(
-                  padding: const EdgeInsets.only(left:8.0, right: 8.0),
+      onTap: () {
+        // Navigator.of(context).pushNamed('/a');
+        Navigator.of(context).push(
+          new MaterialPageRoute(
+            settings: new RouteSettings(name: 'ZHDailyDetail'),
+            builder: (BuildContext context) {
+              return new ZHDailyDetail(_story.id, _story.title);
+            }
+          ));
+        print('${_story.id}. was tapped!');
+      },
+      child: new Container(
+        height: 80.0,
+        margin: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(left:8.0, right: 8.0),
+        child: new Column(
+          children: <Widget>[
+            new Row(
+              children: <Widget>[
+                new Container(
+                  // padding: const EdgeInsets.only(left:8.0, top:8.0, right: 8.0),
                   height: 80.0,
-                  child: new Column(
-                    children: <Widget>[
-                      new Expanded(
-                        child: new Text(_title.trim()),
-                      ),
-                      new Divider(height: 0.0, color: Colors.grey),
-                    ],
-                  ),
+                  width: 80.0,
+                  // margin: const EdgeInsets.all(4.0),
+                  child: _buidImage(_src),
                 ),
-              )
-            ],
-          ),
-          // new Divider(height: 8.0, color: Colors.red),
-        ]
-      )
-    )
-    ); 
+                new Expanded(
+                  child: new Container(
+                    padding: const EdgeInsets.only(left:8.0, right: 8.0),
+                    height: 80.0,
+                    child: new Column(
+                      children: <Widget>[
+                        new Expanded(
+                          child: new Text(_title.trim()),
+                        ),
+                        new Divider(height: 0.0, color: Colors.grey),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+            // new Divider(height: 8.0, color: Colors.red),
+          ]
+        )
+      )); 
   }
 }
