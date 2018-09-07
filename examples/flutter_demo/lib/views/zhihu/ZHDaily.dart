@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './model/ZHDailyItemModel.dart';
-import './model/ZHStoryModel.dart';
+import './model/ZHDailyModel.dart';
+import './model/ZHDailyStoryModel.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import './ZHDailyDetail.dart';
@@ -22,14 +22,14 @@ class NewsList extends StatefulWidget {
 }
 
 class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin{
-  ZHDailyItemModel _dailyModel;
+  ZHDailyModel _dailyModel;
   ScrollController _scrollController = new ScrollController();
   // var arr = getLatest()['stories'];
   getList() async{
     await http.read("https://news-at.zhihu.com/api/4/news/latest").then((response) {
       setState(() {
         print("========== news list loaded =============");
-        this._dailyModel = new ZHDailyItemModel.fromJson(response);
+        this._dailyModel = new ZHDailyModel.fromJson(response);
         _scrollController.animateTo(0.0, 
           curve: Curves.easeOut, 
           duration: const Duration(milliseconds: 300)
@@ -183,7 +183,7 @@ class SwiperItem extends StatelessWidget {
 class ListItem extends StatelessWidget {
   final String _src;
   final String _title;
-  ZHStoryModel _story;
+  ZHDailyStoryModel _story;
   ListItem(this._title, this._src, this._story);
   Widget _buidImage(src) {
     if(src == null) {

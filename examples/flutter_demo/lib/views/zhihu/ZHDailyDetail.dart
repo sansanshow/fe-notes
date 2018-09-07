@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import './model/ZHDailyDetailModel.dart';
+import './model/ZHStoryDetailModel.dart';
 import './ZHComments.dart';
 
 
@@ -37,7 +37,7 @@ class _Main extends StatefulWidget {
 }
 
 class _MainState extends State<_Main> {
-  ZHDailyDetailModel data;
+  ZHStoryDetailModel data = new ZHStoryDetailModel();
   @override
   void initState() {
     // TODO: implement initState
@@ -51,14 +51,32 @@ class _MainState extends State<_Main> {
     Widget titleSection = new Container(
       padding: const EdgeInsets.all(10.0),
       child: new Column(children: <Widget>[
-        new Container(child: new Text(data?.title != null ? data.title : '', style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600))),
+        new Container( child: new Text(data?.title != null ? data.title : '', softWrap: true, style: new TextStyle(color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.w600))),
         new Container(child: new Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            new Text(data?.image_source != null ? data.image_source : '', style: new TextStyle(color: Colors.green[600]))
+            new Text(data?.image_source != null ? data.image_source : '', style: new TextStyle(color: const Color.fromARGB(60, 255, 255, 255)))
           ],))
-      ],),
+      ],crossAxisAlignment: CrossAxisAlignment.start,),
     );
+
+    Widget topSection = new AspectRatio(
+      aspectRatio: 4.0 / 3.0,  //    ratio = 宽 / 高 ,
+      child: new Container(
+        color: Colors.grey,
+        child: new Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            new Container(child: data?.image != null ? new Image.network(data.image, fit: BoxFit.fitWidth,) : new Text('')),
+            new Positioned(
+              left: 0.0, bottom: 0.0, right: 0.0,
+              child: titleSection,
+            )
+          ],
+        ),
+    ));
+
+    
     Column buildButtonColumn(IconData icon, String label) {
       Color color = Theme.of(context).primaryColor;
 
@@ -69,12 +87,7 @@ class _MainState extends State<_Main> {
           new Icon(icon, color: color),
           new Container(
             padding: const EdgeInsets.only(top: 8.0),
-            child: new Text(label,
-              style: new TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.w400,
-                color: color
-              ),
+            child: new Text(label, style: new TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400, color: color),
             ),
           )
         ],
@@ -92,21 +105,26 @@ class _MainState extends State<_Main> {
       ),
     );
 
-    List<Widget> arr = List(10);
-
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(widget._title),
-      ),
+        title: new DefaultTextStyle(
+          style: new TextStyle(
+            color: Colors.white,
+          ),
+          maxLines: 1,
+          softWrap: true,
+          overflow: TextOverflow.ellipsis,
+          child: new Text(data?.title != null ? data.title : ''))
+        ),
       body: new Stack(
         children: [
           new ListView(
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 48.0),
+            padding: const EdgeInsets.only(bottom: 48.0),
             children: <Widget>[
-              titleSection,
-              new Text(data?.body != null ? data.body : ''),
+              topSection,
+              new Container( padding: const EdgeInsets.only(left: 10.0, right: 12.0,bottom: 48.0), child: new Text(data?.body != null ? data.body : '')),
               buttonSection,
-              new ZHComments(widget._id),
+              new Container( padding: const EdgeInsets.only(left: 10.0, right: 12.0), child: new ZHComments(widget._id)),
             ],
           ),
           new Positioned(
@@ -142,7 +160,7 @@ class _MainState extends State<_Main> {
   getDetail() async{
     await http.read("http://news-at.zhihu.com/api/4/news/${widget._id}").then((response) {
       setState(() {
-        data = new ZHDailyDetailModel.fromJson(response);
+        data = new ZHStoryDetailModel.fromJson(response);
         // print(data);
       });
     });

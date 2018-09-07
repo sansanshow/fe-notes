@@ -1,20 +1,25 @@
 import 'dart:convert';
-class ZHDailyDetailModel {
-  String body;
-  String image_source;
-  String title;
+class ZHStoryDetailModel {
+  String body = "";
+  String image_source = "";
+  String title = "";
   String image;
-  String share_url;
-  List js;
-  String ga_prefix;
-  List<String> images;
+  String share_url = "";
+  List js = [];
+  String ga_prefix = "";
+  List<String> images = [];
   int type;
   num id;
   List<String> css;
+  
+  ZHStoryDetailModel();
 
-  ZHDailyDetailModel.fromJson(jsonStr) {
+  ZHStoryDetailModel.fromJson(jsonStr) {
     var jsonRes = JSON.decode(jsonStr.toString());
-    body = jsonRes["body"];
+    if(jsonRes["body"] != null) {
+      body = jsonRes["body"].replaceAll(new RegExp('<.+?>'), '');
+    }
+    // body = jsonRes["body"];
     image_source = jsonRes["image_source"];
     title = jsonRes["title"];
     image = jsonRes["image"];

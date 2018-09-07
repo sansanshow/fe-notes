@@ -1,10 +1,10 @@
-class ZHStoryModel {
+class ZHDailyStoryModel {
   List images;
   int type;
   int id;
   String ga_prefix;
   String title;
-  ZHStoryModel.fromJson(jsonStr) {
+  ZHDailyStoryModel.fromJson(jsonStr) {
     var jsonRes = jsonStr;
     type = jsonRes["type"];
     id = jsonRes['id'];
