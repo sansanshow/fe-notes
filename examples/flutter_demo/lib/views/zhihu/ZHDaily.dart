@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
+
 import './model/ZHDailyModel.dart';
 import './model/ZHDailyStoryModel.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import './ZHDailyDetail.dart';
 // 知乎日报
@@ -29,7 +30,7 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin{
     await http.read("https://news-at.zhihu.com/api/4/news/latest").then((response) {
       setState(() {
         print("========== news list loaded =============");
-        this._dailyModel = new ZHDailyModel.fromJson(response);
+        _dailyModel = new ZHDailyModel.fromJson(response);
         _scrollController.animateTo(0.0, 
           curve: Curves.easeOut, 
           duration: const Duration(milliseconds: 300)

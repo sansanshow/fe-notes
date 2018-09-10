@@ -1,16 +1,13 @@
 import 'dart:convert';
 class ZHStoryCommentsModel {
-  List comments;
+  List comments = [];
 
-  ZHStoryCommentsModel() {
-    this.comments = [];
-  }
+  ZHStoryCommentsModel();
 
   ZHStoryCommentsModel.fromJson(jsonStr) {
     
     print("-ZHStoryCommentsModel---");
     var jsonRes = json.decode(jsonStr);
-    this.comments = [];
     var dataArr = jsonRes["comments"];
     for(var i = 0; i < dataArr.length; i++){
       comments.add(new CommentItem.fromJson(dataArr[i]));
@@ -28,7 +25,6 @@ class CommentItem {
   num likes;
 
   CommentItem.fromJson(jsonStr) {
-    print("-CommentItem---");
     var jsonRes = jsonStr;
     author = jsonRes["author"];
     content = jsonRes["content"];
