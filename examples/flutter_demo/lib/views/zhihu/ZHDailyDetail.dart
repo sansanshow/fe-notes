@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 import './model/ZHStoryDetailModel.dart';
 import './ZHComments.dart';
 
@@ -55,7 +57,7 @@ class _MainState extends State<_Main> {
         new Container(child: new Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            new Text(data?.image_source != null ? data.image_source : '', style: new TextStyle(color: const Color.fromARGB(60, 255, 255, 255)))
+            new Text(data?.imageSource != null ? data.imageSource : '', style: new TextStyle(color: const Color.fromARGB(60, 255, 255, 255)))
           ],))
       ],crossAxisAlignment: CrossAxisAlignment.start,),
     );

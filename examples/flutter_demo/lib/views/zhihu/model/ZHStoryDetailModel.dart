@@ -1,12 +1,12 @@
 import 'dart:convert';
 class ZHStoryDetailModel {
   String body = "";
-  String image_source = "";
+  String imageSource = "";
   String title = "";
   String image;
-  String share_url = "";
+  String shareUrl = "";
   List js = [];
-  String ga_prefix = "";
+  String gaPrefix = "";
   List<String> images = [];
   int type;
   num id;
@@ -15,17 +15,17 @@ class ZHStoryDetailModel {
   ZHStoryDetailModel();
 
   ZHStoryDetailModel.fromJson(jsonStr) {
-    var jsonRes = JSON.decode(jsonStr.toString());
+    var jsonRes = json.decode(jsonStr.toString());
     if(jsonRes["body"] != null) {
       body = jsonRes["body"].replaceAll(new RegExp('<.+?>'), '');
     }
     // body = jsonRes["body"];
-    image_source = jsonRes["image_source"];
+    imageSource = jsonRes["image_source"];
     title = jsonRes["title"];
     image = jsonRes["image"];
-    share_url = jsonRes["share_url"];
+    shareUrl = jsonRes["share_url"];
     js = List.from(jsonRes['js']);
-    ga_prefix = jsonRes["ga_prefix"];
+    gaPrefix = jsonRes["ga_prefix"];
     images = List.from(jsonRes['images']);
     type = jsonRes["type"];
     id = jsonRes["id"];
