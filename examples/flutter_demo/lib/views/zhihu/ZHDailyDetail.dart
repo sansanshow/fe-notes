@@ -108,13 +108,15 @@ class _MainState extends State<_Main> {
     return new Scaffold(
       appBar: new AppBar(
         title: new DefaultTextStyle(
+          textAlign: TextAlign.left,
           style: new TextStyle(
             color: Colors.white,
+            fontSize: 18.0
           ),
           maxLines: 1,
           softWrap: true,
           overflow: TextOverflow.ellipsis,
-          child: new Text(data?.title != null ? data.title : ''))
+          child: new Text(data?.title != null ? data.title : '', textDirection: TextDirection.ltr,))
         ),
       body: new Stack(
         children: [
@@ -136,6 +138,7 @@ class _MainState extends State<_Main> {
               padding: const EdgeInsets.only(left:12.0, top: 8.0, right: 12.0, bottom: 8.0),
               decoration: new BoxDecoration(color: Colors.blue[600]),
               child: new Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   new Expanded(
                     child: new Container(

@@ -15,7 +15,7 @@ class ZHStoryDetailModel {
   ZHStoryDetailModel();
 
   ZHStoryDetailModel.fromJson(jsonStr) {
-    var jsonRes = JSON.decode(jsonStr.toString());
+    var jsonRes = json.decode(jsonStr.toString());
     if(jsonRes["body"] != null) {
       body = jsonRes["body"].replaceAll(new RegExp('<.+?>'), '');
     }

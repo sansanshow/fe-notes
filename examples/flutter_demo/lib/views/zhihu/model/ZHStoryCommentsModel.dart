@@ -9,7 +9,7 @@ class ZHStoryCommentsModel {
   ZHStoryCommentsModel.fromJson(jsonStr) {
     
     print("-ZHStoryCommentsModel---");
-    var jsonRes = JSON.decode(jsonStr);
+    var jsonRes = json.decode(jsonStr);
     this.comments = [];
     var dataArr = jsonRes["comments"];
     for(var i = 0; i < dataArr.length; i++){

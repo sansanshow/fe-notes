@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict'
+        // function SuperType(name) {
+        //     this.name = name
+        // }
+        // SuperType.prototype.sayName = function() {
+        //     alert(this.name)
+        // }
+
+        // function SubType() {
+        //     SuperType.call(this, 'DDDDD')
+        //     this.age = 18
+        // }
+        // var sub1 = new SubType()
+        // sub1.name
+        // sub1.sayName()
+
+        /**
+        组合继承
+        */
+
+        function SuperType(name) {
+            this.name = name
+            this.job = 'Boss'
+            this.colors = ['red', 'blue', 'green']
+        }
+        SuperType.prototype.sayName = function() {
+            alert(this.name)
+        }
+
+        // 子类
+
+        function SubType(name = 'Greg') {
+            // 继承超类的属性--使用构造函数模式继承属性
+            // 事实上就是调用了函数，将this,指向当前对象
+            SuperType.call(this, name)
+
+            // 添加自己的属性
+            this.age = 18
+            // 也可以覆盖 超类中的属性
+
+            this.job = 'Software Enigneer'
+        }
+
+        // 使用原型继承方法
+
+        SubType.prototype = new SuperType() // 虽然name 没有传递，但是不会影响之前的赋值， 按照原型链，会先找到实例中的name属性。相当于SubType已经屏蔽了原型中的name
+        SubType.prototype.sayAge = function() {
+            alert(this.age)
+        }
+
+        var sub1 = new SubType()
+        sub1.colors.push('yellow')
+        console.log('sub1.colors', sub1.colors)
+        var sub2 = new SubType('Bob')
+        sub2.sayName()
+        console.log('sub2.colors', sub2.colors)
+
+        console.log(sub2 instanceof SubType)
+        console.log(sub2 instanceof SuperType)
+        console.log(sub2 instanceof Object)
+
+        console.log(Object.prototype.isPrototypeOf(sub2))
+        console.log(SuperType.prototype.isPrototypeOf(sub2))
+        console.log(SubType.prototype.isPrototypeOf(sub2))
+
+    </script>
+</body>
+</html>

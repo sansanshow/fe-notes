@@ -9,7 +9,7 @@ import './views/index/detail/index.dart';
 import './views/zhihu/zhuanlan.dart';
 import './views/zhihu/ZHIndex.dart';
 void main() {
-  debugPaintSizeEnabled=true;
+  // debugPaintSizeEnabled=true;
   runApp(new MyApp());
 }
 class MyApp extends StatelessWidget {

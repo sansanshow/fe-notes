@@ -6,7 +6,7 @@ class ZHDailyModel {
   String top_stories;
   ZHDailyModel.fromJson(jsonStr) {
     stories = [];
-    var jsonRes = JSON.decode(jsonStr.toString());
+    var jsonRes = json.decode(jsonStr.toString());
     // var jsonRes = jsonStr;
     date = jsonRes["date"];
     var dataArr = jsonRes['stories'];

@@ -231,6 +231,7 @@ class ListItem extends StatelessWidget {
                     padding: const EdgeInsets.only(left:8.0, right: 8.0),
                     height: 80.0,
                     child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Expanded(
                           child: new Text(_title.trim()),
