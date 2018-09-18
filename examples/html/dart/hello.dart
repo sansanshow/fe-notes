@@ -123,14 +123,145 @@ multi-line string.""";
   print("res：${res}");
   print(0 == null ? 1 : -1);
   // String toString() => msg ?? super.toString();
-}
-class Person {
-  // String toString() {
-  //   if (msg == null) {
-  //     return super.toString();
-  //   } else {
-  //     return msg;
-  //   }
-  // }
+  var p1 = new Point(1, 2);
+  var p2 = new Point(-2, 3);
+  var p3 = p1 + p2;
+  print(p3);
+  new Student('Green').eat();
+  greetBob(Person person) => person.greet('Bob');
+  print(greetBob(new Person('Rose')));
+  print(greetBob(new Student('Jack')));
 
+  print(Color.red);
+  print(Color.red.index);
+  print(Color.values);
+  var superMan = new SuperMan('Spider');
+  superMan.run();
+  print(superMan.__name);
+  print(superMan.name);
+  var cache = new CacheImpl();
+  cache.setByKey("p1", p1);
+  cache.setByKey("p2", p2);
+  cache.setByKey("superMan", superMan);
+  print(cache.getByKey("p1"));
+  print(cache.getByKey("p2"));
+  print(cache.cacheMap);
+  var cache2 = new Cache2<Person>();
+  cache2.setByKey("p1", new Person('Rose'));
+  cache2.setByKey("p2", new Person('Jack'));
+  cache2.setByKey("p2", superMan);
+  print(cache2.getByKey("p1"));
+  print(cache2.getByKey("p2"));
+}
+
+// 抽象类 
+class Person {
+  final String _name;
+
+  Person(this._name);
+  
+  void eat() {print("Person eat>>>");}
+  
+  String greet(String who) => "Hello $who, I'm Person $_name";
+  @override
+  String toString(){
+    return 'Person{_name: $_name}';
+  }
+}
+// 抽象类的实现
+class Student implements Person {
+  final String _name;
+
+  Student(this._name);
+
+  @override
+  void eat() {
+    print('Student eat...');
+  }
+  String greet(String who) => "Hello $who, Do you know Who am I? I'm Student $_name";
+  // void studyTask();
+}
+
+// 可覆盖的操作符
+
+class Point {
+  final num x;
+  final num y;
+  const Point(this.x, this.y);
+
+  Point operator + (Point other) {
+    return new Point(x + other.x, y + other.y);
+  }
+  @override
+  String toString() {
+    return 'Ponit[x: $x, y: $y]';
+  }
+}
+
+// 
+
+class Man extends Person {
+  final String name;
+  Man(this.name) : super('$name in Person');
+  Man.fromJson(json)
+    : name = json['name'],
+      super(json['name']);
+}
+class People {
+  String __name = "People Name。。。";
+  String name = "People Name。。ss。";
+  void run() {
+    print('People run...');
+  }
+}
+class SuperMan extends Man with People{
+  final String name;
+  var age;
+  SuperMan(this.name) : super('$name in Man');
+
+  SuperMan.fromJson(json)
+    : name = json['name'],
+      super('') {
+    age = json['age'];
+  }
+  @override
+  String toString(){
+    return 'SuperMan{_name: $_name}';
+  }
+}
+
+enum Color {
+  red,
+  green,
+  blue
+}
+
+// 泛型
+abstract class Cache<T> {
+  var cacheMap = <String, T>{};
+  T getByKey(String key);
+  setByKey(String key, T value);
+}
+
+class CacheImpl extends Cache {
+  @override
+  getByKey(String key) {
+    // TODO: implement getByKey
+    print('Get $key');
+    return cacheMap[key];
+  }
+
+  @override
+  setByKey(String key, value) {
+    // 
+    cacheMap[key] = value;
+    print("Set $key, $value");
+  }
+
+}
+
+class Cache2<T> {
+  var cacheMap = <String, T>{};
+  T getByKey(String key) { return cacheMap[key]; }
+  setByKey(String key, T value) { cacheMap[key] = value; }
 }

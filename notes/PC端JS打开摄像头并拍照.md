@@ -1,13 +1,14 @@
 # PC端JS打开摄像头并拍照
 
-> 主要步骤及要点
+
+## 主要步骤及要点
 1. 打开摄像头主要用到getUserMedia方法，然后将获取到的媒体流置入video标签
 
 2. 截取图片主要用到canvas绘图，使用drawImage方法将video的内容绘至canvas中
 
 3. 将截取的内容上传至服务器，将canvas中的内容转为base64格式上传，后端（PHP）通过file_put_contents将其转为图片
 
-### Html
+## Html
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -40,12 +41,10 @@
 </html>
 ```
 
-### javascript
-```
+## javascript 部分
 
-```
 
-## 1. 打开摄像头
+### 1. 打开摄像头
 
 **getUserMedia有新旧版本：**
 
@@ -112,21 +111,21 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMeida){
 同理，0对应于audio的track
 
 
-## 摄像头操作
+### 2. 摄像头操作
 
-0. 首先初始化画布
+#### 0. 首先初始化画布
 ```
  var context = canvas.getContext("2d"); 
  var canvesEle = document.getElementById("canves");
  var videoEle = document.getElementById("video");
 ```
 
-1. 拍照
+#### 1. 拍照
 document.getElementById("snap").addEventListener('click', function(e){
     context.drawImage(videoEle, 0, 0, 500, 400);
 })
 
-2. 关闭摄像头
+#### 2. 关闭摄像头
 ```
 // 关闭摄像头
 close.addEventListener('click', function() {
@@ -134,12 +133,12 @@ close.addEventListener('click', function() {
 }, false);
 ```
 
-3. 图像上传获取
+#### 3. 图像上传获取
 ```
 canvas.toDataURL('image/png')
 ```
 
-完整js
+### 完整js
 ```
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript">
@@ -218,4 +217,4 @@ canvas.toDataURL('image/png')
 </script>
 ```
  
-
+[getUserMedia支持情况-不容乐观：点击查看](https://caniuse.com/#search=getUserMedia)

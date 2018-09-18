@@ -74,7 +74,7 @@ class _ListState extends State<_List> with AutomaticKeepAliveClientMixin{
 
 // new CircleAvatar();
 class Item extends StatelessWidget {
-  final CommentItem data;
+  final ZHStoryCommentItem data;
   Item(this.data);
 
   List<Widget> _buidCommentsDetail() {

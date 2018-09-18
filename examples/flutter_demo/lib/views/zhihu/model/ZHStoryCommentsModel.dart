@@ -10,12 +10,12 @@ class ZHStoryCommentsModel {
     var jsonRes = json.decode(jsonStr);
     var dataArr = jsonRes["comments"];
     for(var i = 0; i < dataArr.length; i++){
-      comments.add(new CommentItem.fromJson(dataArr[i]));
+      comments.add(new ZHStoryCommentItem.fromJson(dataArr[i]));
     }
   }
 }
 
-class CommentItem {
+class ZHStoryCommentItem {
   String author;
   String content;
   String avatar;
@@ -24,7 +24,7 @@ class CommentItem {
   num id;
   num likes;
 
-  CommentItem.fromJson(jsonStr) {
+  ZHStoryCommentItem.fromJson(jsonStr) {
     var jsonRes = jsonStr;
     author = jsonRes["author"];
     content = jsonRes["content"];
