@@ -10,49 +10,53 @@
             padding: 0;
             margin: 0;
         }
+        
         .wrap {
+            border: 1px solid #000;
+            margin-top: 400px;
             position: relative;
             width: 600px;
             height: 80px;
-            transform-origin: center center;
-            /* transform: rotateX(120deg); */
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: 6s;
+            transition: 6s;
+            transform: rotateX(120deg);
         }
         .item {
             width: 600px;
             height: 80px;
             position: absolute;
-            width: 100%;
             /* transform: rotateZ(26.5deg); */
-            transform-origin: center center;
-            height: 100%;
-            z-index: 1;
+            transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
         }
         .red {
+            /* border-top: 3px solid chartreuse; */
             background: red;
-            transform: rotateX(120deg);
+            transform: translateZ(23px);
         }
-        .green {
+        /* top */
+        .green { 
             background: green;
-            transform: rotateX(240deg);
+            transform-origin: top center;
+            transform: translateZ(23px) rotateX(-60deg);
         }
+        /* bottom */
         .blue {
+            transform-origin: bottom center;
             background: blue;
-            transform: rotateX(360deg);
+            transform: translateZ(23px) rotateX(60deg);
             
         }
-        .step1 .red {
-            z-index: 9; 
-        }
-        .step2 .green {
-            z-index: 9; 
-        }
-        .step3 .blue {
-            z-index: 9; 
-        }
+        /* .wrap:hover {
+            transform: rotateX(120deg);
+        } */
     </style>
 </head>
 <body>
-    <div class="wrap step1">
+    <div class="wrap">
         <div class="item red"></div>
         <div class="item green"></div>
         <div class="item blue"></div>

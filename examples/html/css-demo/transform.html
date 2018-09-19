@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tranform 使用</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul.wrap {
+            margin: 50px;
+        }
+        li.stage {
+            display: block;
+            list-style: none;
+            width: 100px;
+            height: 100px;
+        }
+        .container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: 1s;
+            transition: 1s;
+        }
+        .front, .back {
+            width: 100px;
+            height: 100px;
+        }
+        .front {
+            position: absolute;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            background: #666;
+            -webkit-transform: translateZ(50px);
+	        transform: translateZ(50px);
+            -webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+        }
+        .back {
+            position: absolute;
+            text-align: center;
+	        line-height: 100px;
+            -webkit-transform: rotateY(90deg) translateZ(50px);
+            transform: rotateY(90deg) translateZ(50px);
+            -webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+        }
+        li:nth-child(1) .back {
+            background: skyblue;
+        }
+        li:nth-child(2) .back {
+            background: pink;
+        }
+        li:nth-child(3) .back {
+            background: lightyellow;
+        }
+        li:hover .container {
+            -webkit-transform: rotateY(-90deg);
+	        transform: rotateY(-90deg);
+        }
+
+        /* ---------正方形------- */
+
+        .rect_wrap {
+            margin: 50px;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: 1s;
+            transition: 1s;
+            /* animation: ani 6.4s infinite; */
+            /* animation: transAni 6.4s infinite; */
+            /* -webkit-backface-visibility: hidden;
+	        backface-visibility: hidden; */
+        }
+        .rect_wrap .face {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            text-align: center;
+            line-height: 100px;
+            font-size: 36px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+        }
+        .rect_wrap .front2 {
+            background: #666;
+            -webkit-transform: translateZ(50px);
+            transform: translateZ(50px);
+        }
+        .rect_wrap .back2 {
+            background: pink; 
+            -webkit-transform: rotateX(180deg) rotateZ(180deg) translateZ(50px);
+            transform: rotateX(180deg) rotateZ(180deg) translateZ(50px);
+        }
+        .rect_wrap .left {
+            background: lightgreen;
+            -webkit-transform: rotateY(90deg) translateZ(50px);
+            transform: rotateY(90deg) translateZ(50px);
+        }
+        .rect_wrap .right {
+            background: lightskyblue;
+            -webkit-transform: rotateY(-90deg) translateZ(50px);
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+        .rect_wrap .top {
+            background: red;
+            -webkit-transform: rotateX(90deg) translateZ(50px);
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        .rect_wrap .bottom {
+            background: blueviolet;
+            -webkit-transform: rotateX(-90deg) translateZ(50px);
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+        /* .rect_wrap:hover {
+            -webkit-transform: rotateY(90deg);
+	        transform: rotateY(90deg);
+        } */
+        
+        @keyframes ani {
+            100%{
+                transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+
+        }
+
+        @keyframes transAni{
+            12.5% {
+                -webkit-transform: rotateY(-90deg);
+	            transform: rotateY(-90deg);
+            }
+            25% {
+                -webkit-transform: rotateY(-180deg);
+	            transform: rotateY(-180deg);
+            }
+            37.5% {
+                -webkit-transform: rotateY(-270deg);
+	            transform: rotateY(-270deg);
+            }
+            50% {
+                -webkit-transform: rotateY(-360deg);
+	            transform: rotateY(-360deg);
+            }
+
+            62.5% {
+                -webkit-transform: rotateX(-90deg);
+	            transform: rotateX(-90deg);
+            }
+            75% {
+                -webkit-transform: rotateX(-180deg);
+	            transform: rotateX(-180deg);
+            }
+            87.5% {
+                -webkit-transform: rotateX(-270deg);
+	            transform: rotateX(-270deg);
+            }
+            100% {
+                -webkit-transform: rotateX(-360deg);
+	            transform: rotateX(-360deg);
+            }
+            
+        }
+
+        #rect1 {
+            animation: ani 6.4s infinite;
+        }
+        #rect2 {
+            animation: transAni 6.4s infinite;
+        }
+    </style>
+</head>
+<body>
+    <ul class="wrap">
+        <li class="stage">
+            <div class="container">
+                <div class="front"></div>
+                <p class="back">第一层</p>
+            </div>
+        </li>
+        <li class="stage">
+            <div class="container">
+                <div class="front"></div>
+                <p class="back">第二层</p>
+            </div>
+        </li>
+        <li class="stage">
+            <div class="container">
+                <div class="front"></div>
+                <p class="back">第三层</p>
+            </div>
+        </li>
+    </ul>
+
+    <hr>
+
+    <div class="rect_wrap" id="rect1">
+        <div class="face front2">前</div>
+        <div class="face back2">后</div>
+        <div class="face left">左</div>
+        <div class="face right">右</div>
+        <div class="face top">上</div>
+        <div class="face bottom">下</div>
+    </div>
+
+    <hr>
+
+    <div class="rect_wrap" id="rect2">
+        <div class="face front2">前</div>
+        <div class="face back2">后</div>
+        <div class="face left">左</div>
+        <div class="face right">右</div>
+        <div class="face top">上</div>
+        <div class="face bottom">下</div>
+    </div>
+</body>
+</html>
