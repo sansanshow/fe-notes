@@ -26,8 +26,8 @@ class _ZHIndexState extends State<ZHIndex> with SingleTickerProviderStateMixin {
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(   //Material内置控件
-              accountName: new Text('CYC', style: new TextStyle(color: Colors.white),), //用户名
-              accountEmail: new Text('example@126.com', style: new TextStyle(color: Colors.white)),  //用户邮箱
+              accountName: new Text('Kovii', style: new TextStyle(color: Colors.white),), //用户名
+              accountEmail: new Text('sansan_show@126.com', style: new TextStyle(color: Colors.white)),  //用户邮箱
               currentAccountPicture: new GestureDetector( //用户头像
                 onTap: () => print('current user'),
                 child: new CircleAvatar(    //圆形图标控件
