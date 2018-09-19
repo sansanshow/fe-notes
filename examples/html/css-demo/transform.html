@@ -94,7 +94,7 @@
             
         }
         .rect_wrap .front2 {
-            background: #666;
+            background: lightgoldenrodyellow;
             -webkit-transform: translateZ(50px);
             transform: translateZ(50px);
         }
@@ -178,6 +178,102 @@
         #rect2 {
             animation: transAni 6.4s infinite;
         }
+
+        /* 三棱柱 */
+        .gwd-page-size {
+            margin: 50px;
+            width: 728px;
+            height: 90px;
+        }
+        .gwd-page-content {
+            background-color: transparent;
+            transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            -moz-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            perspective: 1400px;
+            -webkit-perspective: 1400px;
+            -moz-perspective: 1400px;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            position: absolute;
+        }
+        .big {
+            width: 728px;
+            height: 90px;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            transition: 1.2s;
+            -webkit-transition: 1.2s;
+            -moz-transition: 1.2s;
+            transform: translate3d(-2px, 0, -26px);
+            -webkit-transform: translate3d(-2px, 0, -26px);
+            -moz-transform: translate3d(-2px, 0, -26px);
+            animation: threeAni 4.5s linear infinite;
+        }
+
+        .box {
+            position: relative;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            display: block;
+            width: 728px;
+            height: 90px;
+        }
+        .box>div {
+            position: absolute;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            perspective: 1200px;
+            -webkit-perspective: 1200px;
+            -moz-perspective: 1200px;
+            width: 728px;
+            height: 90px;
+            transform-origin: center center 0px;
+            -webkit-transform-origin: center center 0px;
+            -moz-transform-origin: center center 0px;
+        }
+        .red {
+            transform: rotateX(120deg) translateZ(26.5px);
+            -webkit-transform: rotateX(120deg) translateZ(26.5px);
+            -moz-transform: rotateX(120deg) translateZ(26.5px);
+        }
+        .blue {
+            transform: rotateX(240deg) translateZ(26.5px);
+            -webkit-transform: rotateX(240deg) translateZ(26.5px);
+            -moz-transform: rotateX(240deg) translateZ(26.5px);
+        }
+        .green {
+            transform: rotateX(360deg) translateZ(26.5px);
+            -webkit-transform: rotateX(360deg) translateZ(26.5px);
+            -moz-transform: rotateX(360deg) translateZ(26.5px);
+        }
+        @keyframes threeAni {
+            0% {
+                transform: translateZ(-26.5px) rotateX(0deg);
+            }
+            20% {
+                transform: translateZ(-26.5px) rotateX(120deg);
+            }
+            33% {
+                transform: translateZ(-26.5px) rotateX(120deg);
+            }
+            53% {
+                transform: translateZ(-26.5px) rotateX(240deg);
+            }
+            67% {
+                transform: translateZ(-26.5px) rotateX(240deg);
+            }
+            87% {
+                transform: translateZ(-26.5px) rotateX(360deg);
+            }
+            100% {
+                transform: translateZ(-26.5px) rotateX(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -222,6 +318,18 @@
         <div class="face right">右</div>
         <div class="face top">上</div>
         <div class="face bottom">下</div>
+    </div>
+    <hr/>
+
+    <div class="gwd-page-content gwd-page-size">
+            <!-- style="transform: translateZ(-26.5px) rotateX(5520deg);" -->
+        <div class="big">
+            <div class="box">
+                <div class="red" style="background: red;"></div>
+                <div class="blue" style="background: blue;"></div>
+                <div class="green" style="background: green;"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
