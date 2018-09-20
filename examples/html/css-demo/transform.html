@@ -274,62 +274,127 @@
                 transform: translateZ(-26.5px) rotateX(360deg);
             }
         }
+        .row .col {
+            position: relative;
+        }
+        .row {
+            display: flex;
+            /* min-width: 800px; */
+            flex-wrap: wrap;
+            border-bottom: 2px #666 double;
+            margin: 20px;
+
+        }
+        .col {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
-    <ul class="wrap">
-        <li class="stage">
-            <div class="container">
-                <div class="front"></div>
-                <p class="back">第一层</p>
+    <section class="row">
+        <section class="col">
+            <h3>鼠标移到上面触发动画</h3>
+            <ul class="wrap">
+                <li class="stage">
+                    <div class="container">
+                        <div class="front"></div>
+                        <p class="back">第一层</p>
+                    </div>
+                </li>
+                <li class="stage">
+                    <div class="container">
+                        <div class="front"></div>
+                        <p class="back">第二层</p>
+                    </div>
+                </li>
+                <li class="stage">
+                    <div class="container">
+                        <div class="front"></div>
+                        <p class="back">第三层</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="col">
+            <div class="rect_wrap" id="rect1">
+                <div class="face front2">前</div>
+                <div class="face back2">后</div>
+                <div class="face left">左</div>
+                <div class="face right">右</div>
+                <div class="face top">上</div>
+                <div class="face bottom">下</div>
             </div>
-        </li>
-        <li class="stage">
-            <div class="container">
-                <div class="front"></div>
-                <p class="back">第二层</p>
+        </section>
+        <section class="col">
+            <div class="rect_wrap" id="rect2">
+                <div class="face front2">前</div>
+                <div class="face back2">后</div>
+                <div class="face left">左</div>
+                <div class="face right">右</div>
+                <div class="face top">上</div>
+                <div class="face bottom">下</div>
             </div>
-        </li>
-        <li class="stage">
-            <div class="container">
-                <div class="front"></div>
-                <p class="back">第三层</p>
+        </section>
+    </section>
+    <section class="row">
+        <section class="col">
+            <h3>三棱柱旋转</h3>
+            <div class="gwd-page-size">
+                <div class="gwd-page-content">
+                    <div class="big">
+                        <div class="box">
+                            <div class="red" style="background: red;"></div>
+                            <div class="blue" style="background: blue;"></div>
+                            <div class="green" style="background: green;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </li>
-    </ul>
+        </section>
+    </section>
 
-    <hr>
+    <style>
+    #demo5 {
+        position: relative;
+        height: 300px;
+        width: 180px;
+    }
+    #demo5 .anmi_image {
+        position: absolute;
+        width: 296px;
+        height: 180px;
+        transition:all 1s ease-in-out;
+        display: block;
+    }
 
-    <div class="rect_wrap" id="rect1">
-        <div class="face front2">前</div>
-        <div class="face back2">后</div>
-        <div class="face left">左</div>
-        <div class="face right">右</div>
-        <div class="face top">上</div>
-        <div class="face bottom">下</div>
-    </div>
+    .anmi_image_top {
+        opacity: 1;
+        transform-origin: bottom left;
+        transform: scale(1, 1);
+    }
 
-    <hr>
-
-    <div class="rect_wrap" id="rect2">
-        <div class="face front2">前</div>
-        <div class="face back2">后</div>
-        <div class="face left">左</div>
-        <div class="face right">右</div>
-        <div class="face top">上</div>
-        <div class="face bottom">下</div>
-    </div>
-    <hr/>
-
-    <div class="gwd-page-content gwd-page-size">
-            <!-- style="transform: translateZ(-26.5px) rotateX(5520deg);" -->
-        <div class="big">
-            <div class="box">
-                <div class="red" style="background: red;"></div>
-                <div class="blue" style="background: blue;"></div>
-                <div class="green" style="background: green;"></div>
+    .anmi_image_bottom {
+        transform-origin: top right;
+        transform: scale(0, 0);
+        opacity: 0;
+    }
+    #demo5:hover .anmi_image_top {
+        transform: scale(0, 0);
+        opacity: 0;
+    }
+    #demo5:hover .anmi_image_bottom {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    </style>
+    <section class="row">
+        <section class="col">
+            <div id="demo5" class="img-wrap">
+                <img class="anmi_image anmi_image_top" src="../images/book/0-f.png" alt="">
+                <img class="anmi_image anmi_image_bottom" src="../images/book/3-f.png" alt="">
             </div>
-        </div>
-    </div>
+        </section>
+    </section>
+
 </body>
 </html>
