@@ -4,7 +4,7 @@ const config = require('../config')
 const isProduction = process.env.NODE_ENV === 'production'
 const sourceMapEnabled = isProduction
   ? config.build.productionSourceMap
-  : config[process.env.NODE_ENV].cssSourceMap
+  : config.dev.cssSourceMap
 
 module.exports = {
   loaders: utils.cssLoaders({
@@ -13,7 +13,7 @@ module.exports = {
   }),
   postcss: [
     require('postcss-px2rem-exclude')({
-      remUnit: 100,
+      remUnit: 75,
       exclude: /node_modules/
     })
   ],

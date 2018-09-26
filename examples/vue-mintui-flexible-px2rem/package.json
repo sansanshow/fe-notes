@@ -19,6 +19,7 @@
     "axios": "^0.18.0",
     "lib-flexible": "^0.3.2",
     "mint-ui": "^2.2.13",
+    "mint-ui-rem-dpr": "^2.2.7",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -35,6 +36,7 @@
     "chalk": "^2.0.1",
     "connect-cgi-mock": "^1.0.5",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.0",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^3.0.0",

@@ -13,20 +13,24 @@
     </mt-datetime-picker>
     <mt-button type="default" @click="openPicker">点击弹出DatePicker</mt-button>
     <section class="main">
-      这是一个示例222eee
+      这是一个示例1
+      <!-- 这是一个示例1<br/> -->
+      <!-- 这是一个示例1<br/>
+      这是一个示例1<br/> -->
     </section>
     <mt-cell title="标题文字" icon="more" value="带 icon"></mt-cell>
     <mt-cell title="标题文字" is-link>
       <span class="demo-cell" style="color: green">这里是元素</span>
     </mt-cell>
-    <mt-cell title="标题文字" icon="more" value="带 icon"></mt-cell>
+    <mt-cell v-for="(i, id) in arr" :key="id" title="标题文字" icon="more" value="带 icon" is-link>{{ id }}</mt-cell>
   </section>
 </template>
 <script>
 export default {
   data() {
     return {
-      pickerValue: ''
+      pickerValue: '',
+      arr: new Array(20)
     }
   },
   methods: {
@@ -47,11 +51,13 @@ export default {
 </script>
 <style>
 .main {
-  height: 100px;
+  height: 120px; 
   font-size: 24px;
+  line-height: 1;
 }
 .demo-cell {
-  font-size: 56px; 
+  font-size: 32px;
+  line-height: 1;
 }
 </style>
 

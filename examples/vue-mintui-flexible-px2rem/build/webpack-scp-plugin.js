@@ -1,5 +1,5 @@
 var client = require('scp2')
-
+const chalk = require('chalk')
 class WebpackScpPlugin {
     constructor (options) {
         this.options = {
@@ -20,7 +20,7 @@ class WebpackScpPlugin {
             console.log('[webpack-scp-plugin] scp begin...')
             client.scp(options.src, remote, (err)=>{
                 if(err){
-                    console.log('[webpack-scp-plugin] scp faild!' + err.message)
+                    console.log(chalk.red('[webpack-scp-plugin] scp faild!' + err.message))
                 }else{
                     console.log('[webpack-scp-plugin] scp successful')
                 }

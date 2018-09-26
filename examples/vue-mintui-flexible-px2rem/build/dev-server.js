@@ -18,7 +18,7 @@ var compiler = webpack(config);
 var proxyTable = {}
 
 if(process.env.npm_config_proxydev) {
-    proxyTable = config[process.env.NODE_ENV].proxyTable
+    proxyTable = config.dev.proxyTable
 }
 
 var app = express();
@@ -65,7 +65,7 @@ var readyPromise = new Promise(resolve => {
 console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
   console.log('> Listening at ' + uri + '\n')
-  opn(uri)
+  // opn(uri)
   _resolve()
 })
 

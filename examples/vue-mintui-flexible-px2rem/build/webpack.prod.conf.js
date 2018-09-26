@@ -12,7 +12,8 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var WebpackScpPlugin = require('./webpack-scp-plugin')
 
-const env = require('../config/prod.env')
+// const env = require('../config/prod.env')
+// const env = require('../config/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -29,20 +30,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      'process.env': env
-    }),
-    // new UglifyJsPlugin({
-    //   uglifyOptions: {
-    //     compress: {
-    //       warnings: false
-    //     }
-    //   },
-    //   sourceMap: config.build.productionSourceMap,
-    //   parallel: true
-    // }),
-
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css'),
@@ -145,7 +132,6 @@ if (config.build.bundleAnalyzerReport) {
 }
 
 if(process.env.NODE_ENV === 'production'){
-  console.log("webpack.prod.conf ---- production>> UglifyJsPlugin");
   webpackConfig.plugins.push(
     new UglifyJsPlugin({
       uglifyOptions: {

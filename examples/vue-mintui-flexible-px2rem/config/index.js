@@ -5,13 +5,17 @@
 const path = require('path')
 
 module.exports = {
+  // 本地开发环境
   development: {
+
+  },
+  dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     baseURL: '/api',
-    fileURL: 'https://dev2.5udaikuan.com/api/admin/file/',
+    fileURL: 'https://XXXXX.com/api/admin/file/',
     proxyTable: {},
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -37,6 +41,19 @@ module.exports = {
     cssSourceMap: true
   },
 
+  test: {
+    publicPath: '/admin/',
+    baseURL: '/api/admin',
+    fileURL: 'https://dev2.5udaikuan.com/api/admin/file/',
+    baiduKey: 'vfVfmbix47Uks5DX54CC4GVB',
+    deploy: {
+      ip: 'xx.x.x.x',
+      user: 'root',
+      password: 'password',
+      src: path.resolve(__dirname, '../dist'),
+      dist: '/somedir/'
+    }
+  },
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
@@ -44,9 +61,9 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/fbank',
+    assetsPublicPath: './',
     baseURL: '/api',
-    fileURL: 'https://dev2.5udaikuan.com/api/admin/file/',
+    fileURL: 'https://XXXXX.com/api/admin/file/',
     
     /**
      * Source Maps

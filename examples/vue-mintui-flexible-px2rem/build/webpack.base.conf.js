@@ -1,8 +1,11 @@
 'use strict'
 const path = require('path')
+const webpack = require('webpack')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+
+var env = process.env.NODE_ENV
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -78,5 +81,12 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(env),
+      }
+    }),
+  ]
 }
