@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
+  <section class="mint">
+    <mt-header fixed title="标题过长会隐藏后面的内容啊哈哈哈哈">
         <router-link to="/" slot="left">
           <mt-button icon="back">返回</mt-button>
         </router-link>
@@ -19,6 +19,9 @@
       这是一个示例1<br/> -->
     </section>
     <mt-cell title="标题文字" icon="more" value="带 icon"></mt-cell>
+    <mt-cell is-link>
+      <p class="single-line">Mint-ui是饿了么团队推出的一个基于Vue.js移动端组</p>
+    </mt-cell>
     <mt-cell title="标题文字" is-link>
       <span class="demo-cell" style="color: green">这里是元素</span>
     </mt-cell>
@@ -50,6 +53,9 @@ export default {
 }
 </script>
 <style>
+.mint {
+  padding-top: 100px;/*no*/
+}
 .main {
   height: 120px; 
   font-size: 24px;
@@ -58,6 +64,16 @@ export default {
 .demo-cell {
   font-size: 32px;
   line-height: 1;
+}
+.single-line {
+  word-wrap: none;
+  line-height: 48px; /*no*/
+  height: 48px; /*no*/
+  width: 100%;
+  font-size: 32px; /*px*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
 
