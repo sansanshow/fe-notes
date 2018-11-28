@@ -70,7 +70,8 @@ relative相对定位的div放在td总共，他的定位是相对于本td的的�
 
 当把td设置成相对或者绝对定位，所有定位都正常了，也就是说在内层使用定位，外层必须也要使用定位。
 
-
+INPUT设置placeholder及disabled在iPhone下显示的问题
+http://www.phpvar.com/archives/4060.html
   
      
         
