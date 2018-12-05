@@ -18,7 +18,7 @@ div
 var sty = document.createElement("div").style;
 ```
 通过chrome控制台打印出来的是这样的
-![document.createElement("div").style](./images/1/style.png)
+![document.createElement("div").style](../../images/1/style.png)
 
 ### 遍历样式表
 现在前缀主要有这四种：webkit,moz,o,ms   
@@ -73,7 +73,7 @@ function prefixStyle(style) {
 ```
 
 ### 测试
-![测试结果](./images/1/test.png)
+![测试结果](../../images/1/test.png)
 
 ### 完整代码
 

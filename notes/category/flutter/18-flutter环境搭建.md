@@ -23,7 +23,7 @@ FLUTTER_STORAGE_BASE_URL  https://storage.flutter-io.cn
 ## 2. 设置环境变量
 我的电脑-> 属性-> 高级系统设置-> 环境变量-> 系统变量
 添加`FLUTTER_HOME`
-![FLUTTER_HOME](./images/18/18-1.png)
+![FLUTTER_HOME](../../images/18/18-1.png)
 
 
 
