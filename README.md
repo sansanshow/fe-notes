@@ -67,7 +67,8 @@
 
 
 
-
+INPUT设置placeholder及disabled在iPhone下显示的问题
+http://www.phpvar.com/archives/4060.html
   
      
         
