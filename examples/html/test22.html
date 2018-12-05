@@ -61,8 +61,18 @@
         <div class="item green"></div>
         <div class="item blue"></div>
     </div>
-    <script>
-
+    <script defer>
+        function sleep(sleepTime) {
+            var now = Date.now();
+            var curr = now;
+            while (curr - now < sleepTime) {
+               curr = Date.now(); 
+            }
+            return true;
+        }
+        sleep(2000);
+        console.log(1111);
     </script>
+    <div>sss12211ss</div>
 </body>
 </html>
