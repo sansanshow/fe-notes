@@ -53,7 +53,8 @@
 ```
 
 ### 3. 添加一个过渡屏
-
+### flutter 使用 iconfont
+https://blog.csdn.net/ZuoYueLiang/article/details/81475250
 ## Android 打包
 按照文档一步一步来之后。
 
