@@ -12,6 +12,11 @@ export default {
       date: new Date().toString(),
     };
   },
+  created() {
+    this.$bridge.registerHandler("refreshPage",function() {
+      alert(1222);
+    })
+  },
 }
 </script>
 <style lang="less">
