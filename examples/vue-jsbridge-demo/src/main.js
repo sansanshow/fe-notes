@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueBridgeWebview)
 // set default config 
-VueBridgeWebview.config(0,true);
+VueBridgeWebview.config(1000, true);
 
 /* eslint-disable no-new */
 new Vue({

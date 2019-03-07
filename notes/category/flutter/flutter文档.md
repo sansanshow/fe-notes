@@ -6,12 +6,15 @@
 6. 总结与对比其他语言的实现
 
 
-## 基础
+## 一. 基本介绍
+### 1.1 flutter中运行平台判断
 
 ### Dart
 
-## 案例实现
-### 1. 给应用程序添加一个logo
+## 二. 案例实现
+### 2.1 发布
+#### 2.1.1 android发布
+1. 给应用程序添加一个logo
 > android: 
 
 添加启动图标   
@@ -28,9 +31,10 @@
 ![FLUTTER_HOME](../../images/18/demo/res_drawable.png)
 
 要验证图标是否已被替换，请运行您的应用程序并检查应用图标
-### 2. 添加一个首屏
-首屏是放
-在<app dir>/android/app/src/main/res/drawable目录中的launch_background.xml文件中的。
+
+2. 添加一个首屏  
+
+首屏是放在<app dir>/android/app/src/main/res/drawable目录中的launch_background.xml文件中的。
 
 这个是运行时启动第一个屏
 
@@ -52,9 +56,15 @@
 
 ```
 
-### 3. 添加一个过渡屏
-### flutter 使用 iconfont
+3. 添加一个过渡屏
+
+#### 2.1.2 flutter 使用 iconfont
+1. 直接使用   
 https://blog.csdn.net/ZuoYueLiang/article/details/81475250
+
+2. 通过python 转换，使用   
+https://www.jianshu.com/p/1cfde18dc283
+
 ## Android 打包
 按照文档一步一步来之后。
 
