@@ -113,3 +113,10 @@ android{
 }
 ````
 
+采坑2   
+### [ERROR:flutter/shell/gpu/gpu_surface_gl.cc(55)] Failed to setup Skia Gr context.
+
+[解决方法: https://github.com/flutter/flutter/issues/9108](https://github.com/flutter/flutter/issues/9108) 
+
+
+检查了CLI参数并尝试flutter run --enable-software-rendering，这应该强制软件渲染，对吧？这摆脱了Skia Gr上下文错误，但应用程序仍然只在模拟器中呈现纯黑色屏幕。我可以收集任何其他信息以帮助继续调试吗？
