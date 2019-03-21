@@ -81,7 +81,10 @@ class Logger {
 }
 
 
-
+enableFlags({bool bold, bool hidden}) {
+  // ...
+  print(hidden);
+}
 main() {
   var emp = new Employee.fromJson({});
   var p1 = new Point.fromJson({"x": 1, "y": 2});
@@ -102,4 +105,5 @@ main() {
     emp.firstName = 'Bob';
   }
   (emp as Person).firstName = 'Bob';
+  enableFlags(hidden: false);
 }
