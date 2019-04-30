@@ -66,3 +66,6 @@ function splitNum(num,n,symbol) {
     return num;
 }
 ```
+
+### 银行卡 每四位隔开 
+'111222333444555666'.replace(/[\s]/g, '').replace(/(.{4})(?=.)/g, '$1 ')
