@@ -67,5 +67,19 @@ function splitNum(num,n,symbol) {
 }
 ```
 
+## 带小数点的千分位
+```
+function formatData(num)
+{
+    num = num + '';
+    if (!num.includes('.')) {
+        num += '.'
+    }
+    return num.replace(/(\d)(?=(\d{3})+\.)/g, function ($0, $1) {
+        return $1 + ',';
+    }).replace(/\.$/, '');
+}
+```
+
 ### 银行卡 每四位隔开 
 '111222333444555666'.replace(/[\s]/g, '').replace(/(.{4})(?=.)/g, '$1 ')
