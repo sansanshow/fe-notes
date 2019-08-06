@@ -21,6 +21,7 @@
 | :-: | :- | :- | :-: | :-: |
 | 0 | [ api:window.requestAnimationFrame](./notes/category/js/7-window.requestAnimationFrame.md) | 无 | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/requestAnimationFrame.html) | 无 |
 | 1 | [ 由div位移引导性的对requestAnimationFrame的思考](./notes/category/css/8-由div左位移300px动画实现引导性的对requestAnimationFrame的思考.md) | [source] | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/8-div-move.html) | 无 |
+| # | [转:你知道渐进增强和优雅降级吗？[css3兼容性写法]](./notes/category/css/你知道渐进增强和优雅降级吗？[css3兼容性写法].md) | 无 | 无 | 无 |
 
 ## html
 | 序号 | 课题 | src | demo | 备注 |

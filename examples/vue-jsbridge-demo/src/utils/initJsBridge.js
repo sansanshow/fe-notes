@@ -25,4 +25,4 @@ function callJS (action, params, whoAmI) {
 // JS暴露给应用的通用接口
 const SpkJSBridge = {}
 // 全部接口
-window.JSBridge.callJS = callJS
+JSBridge.callJS = callJS
