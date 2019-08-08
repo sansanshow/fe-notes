@@ -22,9 +22,10 @@
 | 0 | [ api:window.requestAnimationFrame](./notes/category/js/7-window.requestAnimationFrame.md) | 无 | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/requestAnimationFrame.html) | 无 |
 | 1 | [ 由div位移引导性的对requestAnimationFrame的思考](./notes/category/css/8-由div左位移300px动画实现引导性的对requestAnimationFrame的思考.md) | [source] | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/8-div-move.html) | 无 |
 | # | [转:你知道渐进增强和优雅降级吗？[css3兼容性写法]](./notes/category/css/你知道渐进增强和优雅降级吗？[css3兼容性写法].md) | 无 | 无 | 无 |
-| # | [css居中](https://css-tricks.com/centering-css-complete-guide/) | 无 | [点击查看](https://sansanshow.github.io/fe-notes/examples/css-demo/center-awesome-method.html) | 无 |
-| # | [你未必知道的css技巧](./notes/category/css/9-你未必知道的css技巧.md) | 无 | [点击查看](https://sansanshow.github.io/fe-notes/examples/css-demo/css-u-must-know.html) | 文档待整理 |
-| # | [float文本环绕之图片居中](./notes/category/css/10-float文本环绕之图片居中.md) | 无 | [点击查看](https://sansanshow.github.io/fe-notes/examples/css-demo/text-around-image.html) | 文档待整理 |
+| # | [css居中](https://css-tricks.com/centering-css-complete-guide/) | [source](../master/examples/html/css-demo/center-awesome-method.html) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/css-demo/center-awesome-method.html) | 无 |
+| # | [你未必知道的css技巧](./notes/category/css/9-你未必知道的css技巧.md) | [source](../master/examples/html/css-demo/css-u-must-know.html) | [点击查看](https://sansanshow.github.io/fe-notes/examples/css-demo/html/css-u-must-know.html) | 文档待整理 |
+| # | [float文本环绕之图片居中](./notes/category/css/10-float文本环绕之图片居中.md) | [source](../master/examples/html/css-demo/text-around-image.html) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/css-demo/text-around-image.html) | 文档待整理 |
+| # | [css-loading](./notes/category/css/11-css-loading.md) | [source](../master/examples/html/css-demo/loading-demo.html) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/css-demo/loading-demo.html) | 文档待整理 |
 ## html
 | 序号 | 课题 | src | demo | 备注 |
 | :-: | :- | :- | :-: | :-: |
