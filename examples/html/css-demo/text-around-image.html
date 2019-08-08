@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+    }
+    .img {
+      /* float: left;
+      margin-left: 55%; */
+      position: absolute;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .l::before, .r::before {
+      content: "";
+      width: 60px;
+      height: 91px;
+    }
+    .l::before {
+      float: right;
+    }
+    .r::before {
+      float: left;
+    }
+    .l, .r {
+      position: relative;
+      width: 49%;
+    }
+    .l {
+      float: left;
+    }
+    .r {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <img class="img" src="./imgs/bg_demo.jpg" alt="">
+  <p class="l">
+    <span>Left</span>
+    That's reasonable right? Especially if your article was about cats liking to be the CENTER of attention. GET IT?! (Kitten via PlaceKitten).、
+    Well this isn't particularly easy to do. Our current layout methods aren't really built with this in mind. In fact sometimes they feel like they don't really have "web design" in mind. AM I RIGHT? Even the bleeding edge CSS layout systems I don't think would handle this very well. This is a little bit like float, as the text wraps around the image, but the text wraps around both directions, so it would be a bit like float: center; or float: both; which don't exist.
+  </p>
+  <p class="r">
+    <span>Right</span>
+    But this is doable! Proof:
+    View Demo   Download Files
+    We're going to do it by using floated pseudo element placeholders. We'll put one in each column of text1, one floated left, one floated right. The pseudo element should be the height of the image, and half of the width (or so... remember you'll want some padding and there is the gutter to factor in).
+    Essentially:
+  </p>
+</body>
+</html>
