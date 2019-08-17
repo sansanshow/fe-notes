@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>一些居中技巧</title>
+  <style>
+  .m-container {
+    width: 800px;
+    height: 600px;
+    background: #0ff;
+    margin: 20px;
+  }
+  .m-container .content {
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 0;
+    background: #ccc;
+  }
+  .m-container::before {
+    content: " ";
+    display: inline-block;
+    width: 1%;
+    height: 100%;
+    vertical-align: middle;
+  }
+  </style>
+</head>
+<body>
+  <div class="m-container">
+    <p class="content">
+      这是一个垂直居中的段落！这是一个垂直居中的段落！这是一个垂直居中的段落！
+    </p>
+  </div>
+</body>
+</html>

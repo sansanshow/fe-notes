@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>你不知道的css技巧（你必须知道的技巧）</title>
+</head>
+<body>
+  <a href="https://juejin.im/post/5d3eca78e51d4561cb5dde12">原文：掘金-你未必知道的49个CSS知识点</a>
+  <h3>1： 层叠上下文</h3>
+  <style>
+  .ex1 > div {
+    background: greenyellow;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+  }
+  .ex1 .inner {
+    background: red;
+    width: 50px;
+    height: 50px;
+  }
+  </style>
+  <div class="ex1">
+    <div style="position: relative;">
+      <div class="inner">
+
+      </div>
+    </div>
+    <div style="position: relative; margin-left: 30px; margin-top: -70px;"></div>
+    <div style="position: relative; margin-left: 60px; margin-top: -70px;"></div>
+  </div>
+  <h3>2: 粘性定位】💛position:sticky，粘性定位要起作用，需要设置最后滞留位置。chrome有bug，firefox完美</h3>
+  <style>
+  .ex2 p {
+    line-height: 30px;
+  }
+  .ex2 .stk {
+    position: sticky;
+    height: 48px;
+    line-height: 48px;
+    background: #ccc;
+    top: 5vh; /*最后滞留位置*/
+    bottom: 6vh; /*最后滞留位置*/
+  }
+  </style>
+  <div class="ex2">
+    <div>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+    </div>
+    <div class="stk">这是个很重要的sticky</div>
+    <div>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+    </div>
+  </div>
+  <h3>3: 相邻兄弟的妙用</h3>
+  <style>
+    .ex3 {
+      padding: 0;
+      border: 1px solid red;
+      line-height: 24px;
+      width: 200px;
+      text-align: center;
+      list-style: none;
+    }
+    .ex3 li+li {
+      border-top: 1px solid red;
+    }
+  </style>
+  <ul class="ex3">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+  </ul>
+  <h3>4. 渐变 彩带 </h3>
+  <style>
+  .ex4 {
+    height: 100px;
+    background: linear-gradient(10deg, red, blue, green)
+  }
+  </style>
+  <div class="ex4"></div>
+  <h3>5: 居中 flex outer； margin: auto inner</h3>
+  <style>
+    .ex5 {
+      min-height: 100vh;
+      display: flex;
+    }
+    .ex5 .main {
+      margin: auto;
+      height: 100px;
+      width: 100px;
+      background: greenyellow;
+    }
+  </style>
+  <div class="ex5">
+    <div class="main"></div>
+  </div>
+  <h3>6: 渐变的圆形</h3>
+  <style>
+  .ex6 {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background: conic-gradient(red 0 15%, blue 15% 60%, green 60% 90%, purple 90% 100%);
+  }
+  </style>
+  <div class="ex6">
+
+  </div>
+  <h3>7: outline 添加边框</h3>
+  <style>
+    .ex7 {
+      width: 200px;
+      height: 200px;
+      border: 10px dashed red;
+      outline: 10px dashed blue;
+      outline-offset: 0px;
+      background-image: url('http://e.hiphotos.baidu.com/image/pic/item/b21c8701a18b87d6f383aaef0a0828381e30fd79.jpg');
+      background-repeat: no-repeat;
+      background-size: 80px 70px;
+      background-attachment: fixed;
+      background-position: 50% 0;
+    }
+  </style>
+  <div class="ex7">
+  </div>
+  <h3>【table布局】display:table实现多列等高布局</h3>
+  <style>
+  .ex8-main {
+    display: table;
+    width: 100%;
+    border-spacing: 30px;
+  }
+  .ex8-main > div {
+    height: 200px;
+    background: #00ffff;
+    display: table-cell;
+    border: 1px solid red;
+  }
+  .ex8-table {
+    display: table;
+    width: 100%;
+    vertical-align: middle;
+    border: 1px solid red;
+    border-collapse:collapse;
+    caption-side:top;
+  }
+  .table-caption {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    display: table-caption;
+  }
+  .table-header {
+    display: table-header-group;
+  }
+  .table-body {
+    display: table-row-group;
+  }
+  .table-footer {
+    display: table-footer-group;
+  }
+  .table-tr {
+    height: 50px;
+    display: table-row;
+    text-align: center;
+  }
+  .table-td {
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid #00ffff;
+  }
+  </style>
+  <section class="ex8-main">
+    <div></div>
+    <div></div>
+    <div></div>
+  </section>
+
+  <section class="ex8-table">
+    <div class="table-caption">表格标题</div>
+    <div class="table-header">
+      <div class="table-tr">
+        <div class="table-td">header1</div>
+        <div class="table-td">header1</div>
+        <div class="table-td">header1</div>
+      </div>
+    </div>
+    <div class="table-body">
+      <div class="table-tr">
+        <div class="table-td">body-tr-1</div>
+        <div class="table-td">body-tr-1</div>
+        <div class="table-td">body-tr-1</div>
+      </div>
+      <div class="table-tr">
+        <div class="table-td">body-tr-2</div>
+        <div class="table-td">body-tr-2</div>
+        <div class="table-td">body-tr-2</div>
+      </div>
+    </div>
+    <div class="table-footer">
+
+    </div>
+  </section>
+  <h3>9：动画暂停 animation-play-state:paused </h3>
+  鼠标移动到上面停止动画
+  <style>
+  .ex9 {
+    width: 100px;
+    height: 100px;
+    margin: 30px;
+    background: #00ffff;
+    animation: roateAni 1s linear infinite;
+  }
+  .ex9:hover {
+    animation-play-state: paused;
+  }
+  @keyframes roateAni {
+    from {
+      transform: rotateZ(0);
+    }
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+  </style>
+  <div class="ex9"></div>
+
+<h3>背景虚化: css - filter: blur(2px);</h3>
+<style>
+  .ex10 {
+    width: 330px;
+    height: 600px;
+    /* display: flex; */
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    filter: blur(2px);
+  }
+  .ex10 .pop-win {
+    position: absolute;
+    width: 100px;
+    height: 160px;
+    background: #cccccc;
+    outline: 2px #333;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+<div class="ex10">
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <p>背景虚化背景虚化背景虚化背景虚化背景虚化</p>
+  <div class="pop-win">
+    弹窗
+  </div>
+</div>
+<h3>设置宽度为fill-available，可以使inline-block像block那样填充整个空间-webkit-fill-available;</h3>
+<style>
+  .ex11 {
+    width: 100%;
+    border: 1px solid #ccc;
+  }
+  .ex11 span {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #00ffff;
+    width: -webkit-fill-available;
+  }
+</style>
+<div class="ex11">
+<span>我是文字我是文字</span>
+</div>
+<h3>css 自定义属性 编写进度条</h3>
+<style>
+  .ex12 {
+    --percent: 50%;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    margin: 0 20px;
+    background-image: linear-gradient(left, #0ff, #0ff, green);
+    background-repeat: no-repeat;
+    background-size: 50%;
+  }
+</style>
+<div class="ex12"></div>
+
+<h3>13: max-content/ min-content 让内容尽可能的展开/ 让内容尽可能的小</h3>
+<i>width: max-content</i>
+<div class="ex13" style="width: max-content;"></div>
+  <img src="./imgs/bg_demo.jpg" alt="">
+  让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小
+</div>
+<i>width: min-content</i>
+<div class="ex13" style="width: min-content;">
+  <img src="./imgs/bg_demo.jpg" alt="">
+  让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小让内容尽可能的展开/ 让内容尽可能的小
+</div>
+<h3>14: div 渐变 制作进度条</h3>
+<style>
+.ex14 {
+  --color: #0ff;
+  --percent: 60%;
+  height: 60px;
+  background: #ccc;
+  border-radius: 30px;
+  background-image: radial-gradient(closest-side circle at var(--percent), var(--color), var(--color) 100%, transparent), linear-gradient(var(--color), var(--color));
+  background-size: 100%, var(--percent);
+  background-repeat: no-repeat;
+}
+</style>
+<div class="ex14">
+
+</div>
+
+<h3>15: 面包屑：before伪元素实现面包屑</h3>
+<style>
+  .ex15 {
+    list-style: none;
+    display: flex;
+  }
+  .ex15 li.item {
+    display: list-item;
+  }
+  .ex15 li.item::before {
+    content: "\27a5";
+    color: #0ff;
+  }
+  .ex15 li.item:first-child::before {
+    content: "";
+  }
+</style>
+<ul class="ex15">
+  <li class="item">首页</li>
+  <li class="item">活动</li>
+  <li class="item">关于</li>
+</ul>
+
+<h3>16: 水波效果</h3>
+<style>
+  .ex16 {
+    --dur: 11s;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 20px;
+    animation: water-waves linear infinite;
+  }
+  .ex16 .wave1 {
+    position: absolute;
+    top: 40%;
+    left: -35%;
+    background: #15dada;
+    width: 200%;
+    height: 200%;
+    border-radius: 40%;
+    animation: inherit;
+    animation-duration: var(--dur);
+    opacity: 0.7;
+  }
+  .ex16 .wave2 {
+    position: absolute;
+    top: 40%;
+    left: -50%;
+    background: #15dada;
+    width: 200%;
+    height: 200%;
+    border-radius: 35%;
+    animation: inherit;
+    animation-duration: var(--dur);
+    opacity: 0.5;
+  }
+  .ex16 .wave3 {
+    position: absolute;
+    top: 40%;
+    left: -40%;
+    background: #15dada;
+    width: 200%;
+    height: 200%;
+    border-radius: 33%;
+    animation: inherit;
+    animation-duration: var(--dur);
+    opacity: 0.3;
+  }
+  @keyframes water-waves {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+<div class="ex16">
+  <div class="wave3"></div>
+  <div class="wave2"></div>
+  <div class="wave1"></div>
+</div>
+</body>
+</html>
