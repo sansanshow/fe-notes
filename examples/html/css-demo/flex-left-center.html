@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flex最后一列元素不能左对齐</title>
+  <style>
+  .list {
+    border: 1px solid;
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .item {
+    background: skyblue;
+    width: 24%;
+    height: 150px;
+    margin-top: 15px;
+  }
+  .list::after {
+    content: '';
+    flex: 1;    /* 或者flex: 1 */
+  }
+  /* .item:not(:nth-last-child(4n)) {
+    margin-right: calc(4% / 3);
+  } */
+
+  /* 如果最后一行是3个元素 */
+  /* .item:last-child:nth-child(4n - 1) {
+      margin-right: calc(24% + 4% / 3);
+  } */
+  /* 如果最后一行是2个元素 */
+  /* .item:last-child:nth-child(4n - 2) {
+      margin-right: calc(48% + 8% / 3);
+  } */
+  .item1 {
+    width: 80px;
+  }
+  .item2 {
+    width: 60px;
+  }
+  .item3 {
+    width: 90px;
+  }
+  .item4 {
+    width: 40px;
+  }
+  .item5 {
+    width: 100px;
+  }
+  .item6 {
+    width: 80px;
+  }
+  .item7 {
+    width: 100px;
+  }
+  .item8 {
+    width: 90px;
+  }
+  .item9 {
+    width: 150px;
+  }
+  .item10 {
+    width: 40px;
+  }
+  .item11 {
+    width: 80px;
+  }
+  .item12 {
+    width: 60px;
+  }
+  .item13 {
+    width: 90px;
+  }
+  .item14 {
+    width: 40px;
+  }
+  .item15 {
+    width: 100px;
+  }
+  .list2 .item {
+    margin: 10px;
+  }
+  .list2 .item:last-child {
+    /* margin-right: auto */
+  }
+  </style>
+</head>
+<body>
+  <div class="list">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+  <div class="list list2">
+    <div class="item item1"></div>
+    <div class="item item2"></div>
+    <div class="item item3"></div>
+    <div class="item item4"></div>
+    <div class="item item5"></div>
+    <div class="item item6"></div>
+    <div class="item item7"></div>
+    <div class="item item8"></div>
+    <div class="item item9"></div>
+    <div class="item item10"></div>
+    <div class="item item11"></div>
+    <div class="item item12"></div>
+    <div class="item item13"></div>
+    <div class="item item14"></div>
+  </div>
+</body>
+</html>
