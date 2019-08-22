@@ -31,6 +31,7 @@
 | :-: | :- | :- | :-: | :-: |
 | 0 | [table相关问题](./notes/category/html/table相关问题.md) | 无 | 无 | 无 |
 | 1 | [table相关问题](./notes/category/html/iframe问题.md) | 无 | 无 | 无 |
+| 2 | [input file 文件上传各属性详解](./notes/category/html/input-file.md) | 无 | 无 | 无 |
 
 ## vue
 | 序号 | 课题 | src | demo | 备注 |
