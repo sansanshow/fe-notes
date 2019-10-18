@@ -28,10 +28,10 @@ console.log("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 
 for (let index = 0; index < 5; index++) {
   pickedCard1 = myDeck[pickCard(myDeck)];
-  console.log("pop: card: " + pickedCard1.card + " of " + pickedCard1.suit);
+  console.log("出: card: " + pickedCard1.card + " of " + pickedCard1.suit);
 
   pickedCard2 = pickCard(Math.floor(Math.random() * 52));
   myDeck.push(pickedCard2);
-  console.log("push: card: " + pickedCard2.card + " of " + pickedCard2.suit);
+  console.log("摸: card: " + pickedCard2.card + " of " + pickedCard2.suit);
 }
 console.log(myDeck);
