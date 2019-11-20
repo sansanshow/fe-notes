@@ -1,5 +1,5 @@
 // sw.js
-const cacheName = 'v2';
+const cacheName = 'v512';
 self.addEventListener('install', function (e) {
     console.log('install: update server-worker 2')
     e.waitUntil(
@@ -18,11 +18,12 @@ self.addEventListener('fetch', function (event) {
         .then(function (response) {
             // 检测是否已经缓存过
             if (response) {
+                console.log('fetch-caches: matched');
                 return response;
             }
 
             var fetchRequest = event.request.clone();
-
+            console.log('fetch-caches: not matched');
             return fetch(fetchRequest).then(
                 function (response) {
                     // 检测请求是否有效

@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+// 修改控制台字符串的样式
+const chalk = require('chalk')
+// 交互式命令行
+const inquirer = require('inquirer')
+
+program
+  .usage('args: dev test')
+program.parse(process.argv)
+
+console.log('args', program.args)
+const tplObj = require(`${__dirname}/../template.json`)
+const repoKeys = Object.keys(tplObj)
+if (repoKeys.length === 0) {
+  console.log(chalk.red('你还没有添加可发布项目'));
+  console.log(chalk.green('  使用 `fo add` 添加新仓库'));
+  process.exit(1);
+}
+
+let keys = repoKeys
+// list = repoKeys.map((v, i) => `${i}: ${v}`)
+let question = [
+  {
+    name: "project",
+    type: 'rawlist',
+    choices: keys
+  }
+]
+
+inquirer.prompt(question).then(answers => {
+  // console.log(answers); // 返回的结果
+  require(`${__dirname}/../deploy/test.js`)()
+})

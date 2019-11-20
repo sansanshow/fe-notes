@@ -1,2 +1,13 @@
 #!/usr/bin/env node
-console.log('add-list');
+console.log('all-of-list');
+const chalk = require('chalk');
+
+const tplObj = require(`${__dirname}/../template.json`)
+
+const repos = Object.keys(tplObj)
+const list = repos.map((v, i) => `${chalk.red(i+1)} ${chalk.blue(v)}: ${tplObj[v]}`)
+
+list.forEach(i => {
+  // console.log(chalk.green(i))
+  console.log(i)
+})
