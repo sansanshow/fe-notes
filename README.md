@@ -1,6 +1,7 @@
 # FE笔记
 
 [TODO](./TODO/TODO.md)
+[高频面试题](./interview/)
 
 ## js
 | 序号 | 课题 | src | demo | 备注 |
