@@ -235,3 +235,49 @@ a.target = a;
 ## 跳台阶和变态跳台阶（一共N阶台阶,每次只能跳1阶或2阶,问一共有多少种跳法）
 
 ## canvas api 
+
+## 小程序setData
+想要改 isChecked 的某个值怎么办？
+```
+data: {
+    main_view_bgcolor: "",
+    border: "",
+    isChecked: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
+}
+```
+解决方式如下
+```
+var str = "isChecked[" + id + "]"//重点在这里，组合出一个字符串 id: 0 1 2 3 4 5 6...
+this.setData({
+  [str]: false//用中括号把str括起来即可
+})
+```
+
+还有一中key-value的
+```
+data: {
+    main_view_bgcolor: "",
+    border: "",
+    isChecked: [
+      { 
+        key: true 
+      },
+      { 
+        key: true 
+      },
+      { 
+        key: true
+      }
+    ]
+}
+```
+方法如下：
+```
+var str = "isChecked[" + id + "].key" // id 是下标
+this.setData({
+  [str]: false
+})
+```
+
+
+## vue学的怎么样，给你一个单选框，一个按钮，用vue实现点击单选框切换按钮的颜色(不要操作dom)
