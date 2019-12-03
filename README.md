@@ -1,7 +1,7 @@
 # FE笔记
 
 [TODO](./TODO/TODO.md)
-[高频面试题](./interview/)
+[高频面试题](./interview/index.md)
 
 ## js
 | 序号 | 课题 | src | demo | 备注 |
@@ -66,6 +66,7 @@
 | * | [ 面试题 ](./notes/category/other/10-面试题.md) | [source](./notes/10-answers.md) | 无 | 无 |
 | * | [ Node入门.md ](./notes/category/other/17-Node入门.md) | [source](../master/examples/nodejs/index.js) | 无 | 无 |
 | * | [ indexDB入门.md ](./notes/category/other/19-indexDB入门.md) | [source](../master/examples/html/indexDB.html.) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/indexDB.html) | 待整理 |
+| * | [ apktool-android反编译 ](./notes/category/other/apktool/apktool-android反编译.md) | [apktool](../master/examples/html/indexDB.html.) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/indexDB.html) | 待整理 |
 
 
 ## 其他链接
