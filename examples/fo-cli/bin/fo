@@ -13,6 +13,8 @@ program
   .command('delete', 'delete a new tempalte')
   .command('list', 'list all tempalte')
   .command('init', 'generate a new project from tempalte')
+  .command('deployTest', 'generate a new project from tempalte')
+  .command('deploy', 'deploy test2 or dev2')
   // .action((e) => {console.log(e)})
 
 // 解析命令行参数

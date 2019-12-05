@@ -1,4 +1,4 @@
-var version = 'v3';
+var version = 'v5';
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/server-worker.js').then(reg => {
         console.log('service worker registed!');

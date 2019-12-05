@@ -28,3 +28,24 @@ npm i node-sass
 # 下载完成后删除 http 代理
 npm config delete proxy
 ```
+
+## 有时候 也有 一些安装报错: sass-loader 版本问题
+- 安装node-scss报错
+在搭建vue脚手架 或者是在vue项目中，想使用sass的功能，
+
+```
+npm install node-sass --save-dev 		//安装node-sass 
+npm install sass-loader --save-dev 		//安装sass-loader 
+npm install style-loader --save-dev 		//安装style-loader
+```
+安装完成后，运行时出现了错误
+```
+Modele build failed: TypeError: this.getResolve is not a function at Object.loader...
+```
+这是因为当前sass的版本太高，webpack编译时出现了错误，这个时候只需要换成低版本的就行，下面说一下修改方法，很简单，如下，找到package.json文件，里面的 "sass-loader"的版本更换掉 就行了。
+
+我本地是将    
+```
+"sass-loader": "^8.0.0"，更换成了 "sass-loader": "^7.3.1",
+```
+这时候重新跑项目，就运行成功了。
