@@ -234,3 +234,48 @@ function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
 }
 console.log("getProperty(person, 'name'):", getProperty(person, 'name'));
 console.log("getProperty(person, 'name'):", getProperty(person, 'addr'));
+
+
+// # 映射类型
+// 已知的类型每个属性都变为可选的
+interface PersonPartial {
+  name?: string;
+  age?: number;
+}
+
+// 只读版本
+interface PersonReadonly {
+  readonly name: string;
+  readonly age: string;
+}
+
+// 映射类型
+type ReadOnly<T> = {
+  readonly [P in keyof T]: T[P];
+}
+
+// 可选映射
+type Partial2<T> = {
+  [P in keyof T]?: T[P];
+}
+
+// 使用
+type PersonPartial2 = Partial2<Person>;
+type PersonReadonly2 = ReadOnly<Person>;
+
+
+console.log('-----for of-----');
+let numbers = [2, 3, 4, 5];
+
+// for of 对键对应的值的访问
+for (let val of numbers) {
+  console.log(val);
+}
+console.log('-----for in-----');
+// for in 对键 进行访问
+for (let key in numbers) {
+  if (numbers.hasOwnProperty(key)) {
+    const val = numbers[key];
+    console.log(key, val);
+  }
+}
