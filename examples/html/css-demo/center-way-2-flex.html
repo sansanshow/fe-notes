@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>absolute + transform 实现居中</title>
+  <style>
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  .modal {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+  }
+  .modal .ctx {
+    width: 40px;
+    border: 1px solid red;
+  }
+  </style>
+</head>
+<body>
+  <div class="modal">
+    <div class="ctx">
+      这个要居中, 不定宽高
+    </div>
+  </div>
+</body>
+</html>

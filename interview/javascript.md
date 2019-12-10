@@ -114,7 +114,7 @@ IE比较奇异，使用`attachEvent`，里面的`this`默认指向`window`。
 ### 5. new + 构造函数
 此时构造函数中的this指向实例对象。
 ### 6. 箭头函数？
-箭头函数没有this, 因此也`不能绑定`。里面的this会指向`当前最近的非箭头函数的this`，找不到就是window(严格模式是undefined)。比如:
+箭头函数没有this, 因此也`不能绑定`。里面的`this`会指向`当前最近的非箭头函数的this`，找不到就是window(严格模式是undefined)。比如:
 ```
 let obj = {
   a: function() {

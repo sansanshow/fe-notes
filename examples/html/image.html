@@ -29,13 +29,6 @@
     <canvas id="viewer" width="800" height="600" style="border: 1px solid #000">
         当前浏览器不支持canvas
     </canvas>
-    <div>
-        <img onclick="showImage()" class="imgsty" src="https://dev2.5udaikuan.com/api/admin/file/image/20180717/c944a86d5ede4e6a8966667cc73faa3d.jpeg"
-            alt="2222">
-    </div>
-    <!-- <div class="img-wrap" id="img">
-        <img class="imgsty" src="https://dev2.5udaikuan.com/api/admin/file/image/20180717/c944a86d5ede4e6a8966667cc73faa3d.jpeg" alt="2222">
-    </div> -->
     <div class="fixed-footer">
         <button onclick="rotateL()">旋转</button>
         <br/>
@@ -70,7 +63,7 @@
         var ctx = canvas.getContext('2d')
         function showImage() {
             var img = new Image()
-            img.src = "https://dev2.5udaikuan.com/api/admin/file/image/20180717/c944a86d5ede4e6a8966667cc73faa3d.jpeg"
+            img.src = ""
             img.onload = function () {
                 console.log(this.width, this.height)
                 if (this.width) {
