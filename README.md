@@ -16,6 +16,8 @@
 | 6 | [ setTimeout的思考.md ](./notes/category/js/20-setTimeout的思考.md) | 无 | 无 | 无 |
 | 7 | [ LocalStorage在退出浏览器时清空.md ](./notes/category/js/LocalStorage在退出浏览器时清空.md) | 无 | 无 | 无 |
 | 8 | [ 网页全屏实践.md ](./notes/category/js/网页全屏实践.md) | [source](../master/examples/html/full_screen/fullScreen.js) | [点击查看](https://sansanshow.github.io/fe-notes/examples/html/full_screen/index.html) | 文档待整理 |
+| # | [ 对象-构造函数 ](./notes/category/js/对象-构造函数.md) | -- | 无 | 待整理 |
+| # | [ 对象-继承 ](./notes/category/js/对象-继承.md) | -- | 无 | 待整理 |
 
 ## css
 | 序号 | 课题 | src | demo | 备注 |
