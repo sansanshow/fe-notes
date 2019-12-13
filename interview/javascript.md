@@ -281,3 +281,29 @@ this.setData({
 
 
 ## vue学的怎么样，给你一个单选框，一个按钮，用vue实现点击单选框切换按钮的颜色(不要操作dom)
+
+
+## Object 构造函数也会像工厂方法一样根据传入的类型返回相应基本包装类型对象；
+
+将字符串 传入`Object`构造函数，就会得到 String 类型的实例   
+
+
+将数值 传入`Object`构造函数，就会得到 Number 类型的实例 
+
+将布尔值 传入`Object`构造函数，就会得到 Boolean 类型的实例 
+
+```
+var str = new Object('some string'); // 创建一个String 对象
+typeof str; // 'object'
+str instanceof String;  // true
+str === 'some string'; // false
+str.valueOf() === 'some string'; // true
+```
+Boolean 也有相同的有意思
+```
+var bool = new Object(true);
+typeof bool; // 'object'
+bool instanceof Boolean; // true
+bool === true; // false
+bool.valueOf() === true; // true
+```
