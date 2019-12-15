@@ -114,7 +114,7 @@ IE比较奇异，使用`attachEvent`，里面的`this`默认指向`window`。
 ### 5. new + 构造函数
 此时构造函数中的this指向实例对象。
 ### 6. 箭头函数？
-箭头函数没有this, 因此也`不能绑定`。里面的this会指向`当前最近的非箭头函数的this`，找不到就是window(严格模式是undefined)。比如:
+箭头函数没有this, 因此也`不能绑定`。里面的`this`会指向`当前最近的非箭头函数的this`，找不到就是window(严格模式是undefined)。比如:
 ```
 let obj = {
   a: function() {
@@ -281,3 +281,29 @@ this.setData({
 
 
 ## vue学的怎么样，给你一个单选框，一个按钮，用vue实现点击单选框切换按钮的颜色(不要操作dom)
+
+
+## Object 构造函数也会像工厂方法一样根据传入的类型返回相应基本包装类型对象；
+
+将字符串 传入`Object`构造函数，就会得到 String 类型的实例   
+
+
+将数值 传入`Object`构造函数，就会得到 Number 类型的实例 
+
+将布尔值 传入`Object`构造函数，就会得到 Boolean 类型的实例 
+
+```
+var str = new Object('some string'); // 创建一个String 对象
+typeof str; // 'object'
+str instanceof String;  // true
+str === 'some string'; // false
+str.valueOf() === 'some string'; // true
+```
+Boolean 也有相同的有意思
+```
+var bool = new Object(true);
+typeof bool; // 'object'
+bool instanceof Boolean; // true
+bool === true; // false
+bool.valueOf() === true; // true
+```

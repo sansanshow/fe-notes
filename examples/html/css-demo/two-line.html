@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>两行省略实现</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .wrapper {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    width: 120px;
+    height: 40px;
+    padding: 5px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    /* display: -webkit-box;
+    -webkit-box-orient: vertical; */
+    flex-wrap: nowrap;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <span class="text">文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略文本省略</span>
+  </div>
+  <script>
+    function add(a, b) {
+      return a + b;
+    }
+
+    function curry(fn) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      return function() {
+        var innerArgs = Array.prototype.slice.call(arguments);
+        var finalArgs = args.concat(innerArgs);
+        return fn.apply(null, finalArgs);
+      }
+    }
+
+    var curriedAdd = curry(add)
+    console.log(curriedAdd())
+    console.log(curriedAdd(3, 5))
+    console.log(curriedAdd(5,9,3))
+
+    var newAdd = wrapper(add)
+    console.log(newAdd(1)(2))
+
+    function wrapper(fn) {
+      return function(a) {
+        return function(b) {
+          return add(a, b)
+        }
+      } 
+    }
+
+    console.log('------------------------------------')
+    // console.log(1);
+    // setTimeout(() => {console.log(2)}, 0);
+    // p1 = new Promise(function(resolve, reject){
+    //   setTimeout(() => {console.log('3-1')}, 0);
+    //   console.log(3);
+    //   setTimeout(() => {console.log('3-2')}, 0);
+    //     resolve(4);
+    //   console.log('3-3');
+    // })
+    // console.log(5)
+    // setTimeout(() => {console.log(6)}, 0);
+    // p1.then(function(value){
+    //   setTimeout(() => {console.log('4-1')}, 0);
+    //     console.log(value);
+    //   setTimeout(() => {console.log('4-2')}, 0);
+    // })
+    // setTimeout(() => {console.log(7)}, 0);
+    // console.log(8);
+
+    console.log('----------------222-----------');
+    setTimeout(function(){console.log(4)}, 0);
+    new Promise(function(resolve){
+      console.log(1);
+      for(var i=0 ; i<10000 ; i++) {
+        i==9999 && resolve()
+      }
+      console.log(2)
+    }).then(function(){
+      console.log(5) }
+    );
+    console.log(3);
+  </script>
+</body>
+</html>
