@@ -23,6 +23,7 @@ class fullScreen {
    * @param {*} domName 
    */
   ExitFullscreen() {
+    if (!this.hasElementFullScreen()) return;
     if (!this.isEnabledFullScreen) return;
     const methodName = this.prefixName === '' ?
       'exitFullscreen' : `${this.prefixName}ExitFullscreen`;

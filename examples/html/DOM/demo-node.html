@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nodes">
+        <span>sss</span>
+        <p>1</p>
+        <p>12</p>
+        <p>123</p>
+        <p>1234</p>
+    </div>
+    <script>
+        var divNode = document.querySelector('.nodes');
+        var nodes = divNode.childNodes;
+        for (let index = 0; index < nodes.length; index++) {
+            const ele = nodes[index];
+            console.log(ele.nodeName, ele.nodeType, ele.nodeValue);
+        }
+        function flatNode(selector) {
+            var node = document.querySelector(selector);
+            // if()
+        }
+    </script>
+</body>
+</html>
