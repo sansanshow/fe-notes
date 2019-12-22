@@ -9,22 +9,53 @@
 <body>
     <div class="nodes">
         <span>sss</span>
-        <p>1</p>
+        <p id="p1">1</p>
         <p>12</p>
         <p>123</p>
-        <p>1234</p>
+        <p class="node">1234</p>
     </div>
     <script>
         var divNode = document.querySelector('.nodes');
         var nodes = divNode.childNodes;
+        var attrs = divNode.attributes;
         for (let index = 0; index < nodes.length; index++) {
             const ele = nodes[index];
             console.log(ele.nodeName, ele.nodeType, ele.nodeValue);
+            if (ele.previousSibling === null) {
+                console.log(ele, "1st node in the parents's childNodes list");
+            } else if (ele.nextSibling === null) {
+                console.log(ele, "Last node in the parents's childNodes list");
+            }
+            console.log('ownerDocument:', ele.ownerDocument)
         }
+        console.log('--------');
+        for (let index = 0; index < attrs.length; index++) {
+            const attr = attrs[index];
+            console.log(attr.name, attr.value);
+            
+        }
+
+        console.log(nodes[0]);
+        console.log(nodes.item(0));
         function flatNode(selector) {
             var node = document.querySelector(selector);
             // if()
         }
+
+        function convertToArray(nodes) {
+            var array = null;
+            try {
+                array = Array.prototype.slice.call(nodes, 0); // 针对非IE 
+            } catch (error) {
+                array = new Array();
+                for (var index = 0; index < nodes.length; index++) {
+                    array.push(nodes[index])
+                }
+            }
+            return array;
+        }
+        var arr = convertToArray(nodes);
+        console.log(arr);
     </script>
 </body>
 </html>
