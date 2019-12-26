@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p id="iddd">sasda1</p>
+  <p id="iddd">sasd2a</p>
+  <p id="iddd">sasda3</p>
+  <frameset rows="160,*">
+    <frame src="top.html" name="topFrame">
+    <frameset cols="50%,50%">
+      <frame src="left.html" name="left"></frame>
+      <frame src="right.html" name="right"></frame>
+    </frameset>
+  </frameset>
+  <script>
+  function fetch(url, { body = '', method = 'GET', headers = {} } = {}) {
+    console.log(method);
+  }
+  </script>
+</body>
+</html>

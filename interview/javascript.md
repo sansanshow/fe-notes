@@ -1,3 +1,17 @@
+
+- 知识点大纲：
+https://juejin.im/post/5c64d15d6fb9a049d37f9c20#heading-31
+
+- (1.6w字)浏览器与前端性能灵魂之问，请问你能接得住几个？（上）
+https://juejin.im/post/5df5bcea6fb9a016091def69
+
+- (建议精读)原生JS灵魂之问(中)，检验自己是否真的熟悉JavaScript？
+https://juejin.im/post/5dbebbfa51882524c507fddb#heading-12
+
+- (2.4w字,建议收藏)😇原生JS灵魂之问(下), 冲刺🚀进阶最后一公里(附个人成长经验分享)
+https://juejin.im/post/5dd8b3a851882572f56b578f
+
+
 ## 1: 闭包是什么
 闭包的优势 与 缺点
 - 优势：
@@ -212,31 +226,31 @@ a.target = a;
 
 ## 12. 给你一个长度为N的排好序的数组，要求给出数组元素之和为M的情况，例如长度为10的数组，数组元素为[1,2,3,4,5,6,7,8,9,10],要求给出数组元素之和为11的情况，如[1,10],[1,2,9],[1,3,4,6]
 
-## 了解es6吗？说一下es6新增的字符串方法
+## 13. 了解es6吗？说一下es6新增的字符串方法
 
-## 说一下es6中promise及其实现原理
+## 14. 说一下es6中promise及其实现原理
 
-## vue里面双向数据绑定的实现原理
+## 15. vue里面双向数据绑定的实现原理
 
-## 说一下输入url地址到回来的过程(详细)
+## 16. 说一下输入url地址到回来的过程(详细)
 
-## http缓存
-
-
-## 数组是如何在内存中存储的
-
-## 给你一个只有左右括号字符串，判断它是不是正常的括号匹配机制，如'(()())'是正常，‘())(()’是不正常
+## 17. http缓存
 
 
-## 数组去重的方法(ES5,ES6)
+## 18. 数组是如何在内存中存储的
+
+## 19. 给你一个只有左右括号字符串，判断它是不是正常的括号匹配机制，如'(()())'是正常，‘())(()’是不正常
+
+
+## 20. 数组去重的方法(ES5,ES6)
 
 去重的细节(比如空对象和空数组不相等,不能去除)
 
-## 跳台阶和变态跳台阶（一共N阶台阶,每次只能跳1阶或2阶,问一共有多少种跳法）
+## 21. 跳台阶和变态跳台阶（一共N阶台阶,每次只能跳1阶或2阶,问一共有多少种跳法）
 
-## canvas api 
+## 22. canvas api 
 
-## 小程序setData
+## 23. 小程序setData
 想要改 isChecked 的某个值怎么办？
 ```
 data: {
@@ -280,10 +294,10 @@ this.setData({
 ```
 
 
-## vue学的怎么样，给你一个单选框，一个按钮，用vue实现点击单选框切换按钮的颜色(不要操作dom)
+## 24. vue学的怎么样，给你一个单选框，一个按钮，用vue实现点击单选框切换按钮的颜色(不要操作dom)
 
 
-## Object 构造函数也会像工厂方法一样根据传入的类型返回相应基本包装类型对象；
+## 25. Object 构造函数也会像工厂方法一样根据传入的类型返回相应基本包装类型对象；
 
 将字符串 传入`Object`构造函数，就会得到 String 类型的实例   
 
@@ -307,3 +321,97 @@ bool instanceof Boolean; // true
 bool === true; // false
 bool.valueOf() === true; // true
 ```
+## 26. 防抖 (debounce) & 节流 (throttle)
+
+- `防抖 (debounce)`: 将多次高频操作优化为只在最后一次执行，通常使用的场景是：用户输入，只需再输入完成后做一次输入校验即可。
+```
+function debounce(fn, wait, immediate) {
+    let timer = null
+
+    return function() {
+        let args = arguments
+        let context = this
+
+        if (immediate && !timer) {
+            fn.apply(context, args)
+        }
+
+        if (timer) clearTimeout(timer) // 延迟动作的执行，并创建新的动作
+        timer = setTimeout(() => {
+            fn.apply(context, args)
+        }, wait)
+    }
+}
+```
+
+- `节流(throttle)`: 每隔一段时间后执行一次，也就是降低频率，将高频操作优化成低频操作，通常使用场景: 滚动条事件 或者 resize 事件，通常每隔 100~500 ms执行一次即可。
+
+```
+function throttle(fn, wait, immediate) {
+    let timer = null
+    let callNow = immediate
+    
+    return function() {
+        let context = this,
+            args = arguments
+
+        if (callNow) {
+            fn.apply(context, args)
+            callNow = false
+        }
+
+        if (!timer) {
+            timer = setTimeout(() => {
+                fn.apply(context, args)
+                timer = null
+            }, wait)
+        }
+    }
+}
+```
+
+## 27 重绘 & 回流
+当元素的样式发生变化时，浏览器需要触发更新，重新绘制元素。这个过程中，有两种类型的操作，即重绘与回流。
+
+
+- 重绘(repaint):   
+当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此 损耗较少
+
+
+- 回流(reflow):    
+当元素的尺寸、结构或触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。会触发回流的操作:
+
+- 页面初次渲染
+- 浏览器窗口大小改变
+- 元素尺寸、位置、内容发生改变
+- 元素字体大小变化
+- 添加或者删除可见的 dom 元素
+- 激活 CSS 伪类（例如：:hover）
+- 查询某些属性或调用某些方法
+> clientWidth、clientHeight、clientTop、clientLeft   
+offsetWidth、offsetHeight、offsetTop、offsetLeft   
+scrollWidth、scrollHeight、scrollTop、scrollLeft   
+getComputedStyle()   
+getBoundingClientRect()   
+scrollTo()  
+
+
+
+回流必定触发重绘，重绘不一定触发回流。重绘的开销较小，回流的代价较高。
+
+**最佳实践:**
+
+
+- css   
+避免使用table布局
+将动画效果应用到position属性为absolute或fixed的元素上
+
+
+
+- javascript   
+避免频繁操作样式，可汇总后统一 一次修改
+尽量使用class进行样式修改
+减少dom的增删次数，可使用 字符串 或者 documentFragment 一次性插入
+极限优化时，修改样式可将其display: none后修改
+避免多次触发上面提到的那些会触发回流的方法，可以的话尽量用 变量存住
+

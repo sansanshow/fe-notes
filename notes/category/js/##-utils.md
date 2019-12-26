@@ -39,7 +39,6 @@ function queryToJson (url) {
     }
     return result
 }
-exprot default queryToJson
 ```
 
 ## 千分位分隔符
