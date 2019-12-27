@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .moveDiv {
+            position: relative;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background: green;
+            border-radius: 50%;
+            position: relative;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ex1 -->
+    <h2>进度条</h2>
+    <div id="requestAnimationFrame-test" style="width: 1px;height: 18px;background: #666;">0%</div>
+    <button onclick="run()">Run</button>
+
+    <!-- ex2 -->
+    <h3>div平移300px(面试题)</h3>
+    <p>除了动画animation,过渡transition，也可以使用requestAnimationFrame</p>
+    <div id="moveDiv" class="moveDiv">
+
+    </div>
+    <button onclick="moveBtn()">向右移动300px</button>
+
+    <!-- ex3 -->
+    <h3>使用requestAnimationFrame模仿animation: infinite,实现无线循环</h3>
+
+    <div id="moveDiv2" class="moveDiv">
+
+    </div>
+
+    <button onclick="moveBtnInfinite()">向右移动300px,然后往复来回</button>
+
+    <h3>晃动元素--模仿摆钟</h3>
+    <div id="box" class="box">
+
+    </div>
+
+    <script>
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
+        var start = 0;
+        var ele = document.getElementById('requestAnimationFrame-test');
+        var progress = 0
+        var stepUniqueId = null;
+        function step(timestamp) {
+            progress += 1;
+            ele.style.width = progress+'%';
+            ele.innerHTML = progress+'%';
+            if(progress < 100) {
+                requestAnimationFrame(step)
+            }
+        }
+        
+        function run() {
+            ele.style.width = "1px";
+            progress = 0;
+            window.cancelAnimationFrame(stepUniqueId);
+            stepUniqueId = requestAnimationFrame(step);
+        }
+
+        // ex2
+        var offestX = 0;
+        var moveDiv = document.getElementById('moveDiv');
+        var originX = moveDiv.style.left;
+        var moveUniqueId = [];
+        function moveBtn() {
+            moveDiv.style.left = "0px";
+            offestX = 0;
+            moveUniqueId.forEach(uniqueId => { // 防止重复触发动画。如果没有此操作，会发现，连续点击运行按钮，会使得动画运行越来越快
+                window.cancelAnimationFrame(uniqueId);
+            })
+            moveUniqueId.push(requestAnimationFrame(move))
+        }
+        
+        function move(timestamp) {
+            offestX += 1;
+            moveDiv.style.left = offestX + "px";
+            if(offestX < 300) {
+                moveUniqueId.push(requestAnimationFrame(move))
+            }
+        }
+
+        // ex3
+        var offestX2 = 0;
+        var moveDiv2 = document.getElementById('moveDiv2');
+        var moveUniqueId2 = [];
+        function moveBtnInfinite() {
+            moveDiv2.style.left = "0px";
+            offestX2 = 0;
+            moveUniqueId2.forEach(uniqueId => { // 防止重复触发动画。如果没有此操作，会发现，连续点击运行按钮，会使得动画运行越来越快
+                window.cancelAnimationFrame(uniqueId);
+            })
+            moveUniqueId2.push(requestAnimationFrame(moveForward))
+        }
+        function moveForward(timestamp) {
+            offestX2 += 1;
+            moveDiv2.style.left = offestX2 + "px";
+            if(offestX2 < 60) {
+                moveUniqueId2.push(requestAnimationFrame(moveForward))
+            } else {
+                requestAnimationFrame(moveBack)
+            }
+        }
+        function moveBack(timestamp) {
+            offestX2 += -1;
+            moveDiv2.style.left = offestX2 + "px";
+            if(offestX2 > -1) {
+                moveUniqueId2.push(requestAnimationFrame(moveBack))
+            } else {
+                requestAnimationFrame(moveForward)
+            }
+        }
+
+
+        //从网页中获取一个元素
+        var box = document.getElementById('box')
+        shake(box, 500, 200)
+
+        //接受三个参数：动画元素，持续时间，晃动距离
+        function shake(elm, dur, distance) {
+            var r = distance * 1.4142;
+            if (elm) {    
+                var dur = dur || 500
+                var distance = distance || 10  
+                dur =  distance * 500 / 40 // 计算速度
+                //保存原样式
+                var original_css = elm.style.cssText
+                    elm.addEventListener('click', ani, false)
+            } else {
+                return 'no param'
+            }
+
+            function ani() {
+                var start = null
+                requestAnimationFrame(act)
+                //requestAnimationFrame每次调用向callback中传入一个时间戳time_stamp，时间戳为每次调用的时间点
+                function act(time_stamp) {
+                    if(start === null) start = time_stamp
+                    var elapsed = (time_stamp - start) % dur
+                    if ((elapsed / dur) < 1) {
+                        //乘以4PI，来回往复两次， 使用正弦函数得到比例
+                        // elm.style.transform = 'translateX(' + distance * Math.sin((elapsed / dur) * 4 * Math.PI) + 'px' + ')'
+                        var cita = Math.abs(Math.sin((elapsed / dur) * 2 * Math.PI)) * Math.PI *0.25
+                        elm.style.transform = 'translate(' + distance * Math.sin((elapsed / dur) * 2 * Math.PI) + 'px, ' + r * (Math.cos(cita) - 1) + 'px)'
+                        //调用该方法将返回一个ID值用于结束调用
+                    var time_id = requestAnimationFrame(act)
+                    } else {
+                        //恢复原样式，停止动画
+                        elm.style.cssText = original_css
+                        cancelAnimationFrame(time_id)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

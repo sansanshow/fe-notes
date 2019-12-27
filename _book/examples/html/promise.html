@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+<body>
+    <div id="response">
+
+    </div>
+    <script>
+        /**
+        
+        window.http = function(url) {
+            const promise = new Promise(function(resolve, reject) {
+                const handler = function() {
+                    if(this.readyState !== 4) {
+                        return;
+                    }
+                    if(this.status === 200) {
+                        resolve(this.response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                }
+                const client = new XMLHttpRequest();
+                client.open('GET', url);
+                client.onreadystatechange = handler;
+                client.responseType = 'text';
+                client.setRequestHeader('Accept', 'application/json');
+                client.send();
+            })
+            return promise;
+        }
+        // http('https://www.baidu.com').then((res)=>{
+        //     document.getElementById('response').innerHTML = res;
+        // })
+
+        const p1 = new Promise(function (resolve, reject) {
+            // ...
+            var a = Math.random();
+            console.log('start--', a);
+            setTimeout(() => {
+                // if(a > 0.5) {
+                    resolve(a);
+                // } else {
+                    // reject(a);
+                // }
+            }, 3000);
+        });
+
+        const p2 = new Promise(function (resolve, reject) {
+            // ...
+            // resolve(p1)
+            setTimeout(() => resolve(p1), 1000);
+        });
+
+        p2.then(function(resolve) {
+            console.log('resolve', resolve);
+            return '1'
+        }).then(res => {
+            console.log('2then', res);
+        }).catch(function(error) {
+            console.log('error', error);
+        });
+
+        const pm1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1);
+            }, 1000)
+        });
+        const pm2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(2);
+            }, 2000)
+        });
+        const pm3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(3);
+            }, 3000)
+        });
+
+        Promise.all([pm1, pm2, pm3]).then(([res1, res2, res3]) =>  {
+            console.log(...[res1, res2, res3]);
+        })
+
+        
+        const pp1 = new Promise((resolve, reject) => {
+            resolve('hello');
+        })
+        .then(result => result)
+        .catch(e => {e});
+
+        const pp2 = new Promise((resolve, reject) => {
+            throw new Error('报错了');
+        })
+        .then(result =>{console.log('1000', result); return result;})
+        .catch(e => {console.log('1111', e);return e;});
+
+        Promise.all([pp1, pp2])
+            .then(result => console.log(result))
+            .catch(e => console.log(e));     
+
+        const pp3 = new Promise((resolve, reject) => {
+            resolve(pp2);
+        })
+        .then(result => {console.log('000', result); return result;})
+        .catch(e => {console.log('111', e); return e;})
+        .then(res => {console.log('222', res)});
+
+        
+
+        // ex
+        var p = new Promise((resolve, reject) => {
+            console.log('this...........');
+        });
+
+        // Promise.reject(p).then(resolve => {
+        //     console.log("resolved:", resolve);
+        // }, reject => {
+        //     console.log("rejected:", reject);
+        // }).catch(error => {
+        //     console.log(p === error);
+        // })
+
+        Promise.reject(p).then(resolve => {
+            console.log("resolved--:", resolve);
+        }).catch(error => {
+            console.log(p === error);
+        })
+
+        Promise.reject('该prormise已被拒绝')
+        .catch(function(reason){
+            console.log('catch:', reason);
+        });
+
+        // 结果 ??? 为什么  'catch: 该prormise已被拒绝' 比 true(p === error) 先输出
+        // 个人猜想 跟 resolve 类似
+
+        // this...........
+        // rejected: Promise {<pending>}
+        // catch: 该prormise已被拒绝
+        // true
+
+
+        const p1 = Promise.reject('出错了');
+        // 等同于
+        // const p = new Promise((resolve, reject) => reject('出错了'))
+
+        p1.then(null, function (s) {
+            console.log(s)
+        });
+        
+        Promise.reject('该prormise已被拒绝233333').then(null, function (s) {
+            console.log(s)
+        });
+
+        */
+        // ex 
+
+        // console.log(1);
+        // console.log(2);
+        // setTimeout(function(){
+        //     console.log('setTimeout1')
+        //     Promise.resolve().then(function(){
+        //         console.log('Promise')
+        //     })
+        // })
+        // setTimeout(function(){
+        //     console.log('setTimeout2')
+        // })
+
+
+        const p1 = new Promise((resolve, reject) => {
+
+        })
+    </script>
+</body>
+</html>

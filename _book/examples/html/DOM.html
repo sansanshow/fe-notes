@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM方法回顾</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        some text 
+        <p>ssss</p>
+        ssss
+        <input type="button" value="iiiii" onclick="alert(value)">
+    </div>
+    <form method="post">
+        <input type="text" name="userName" value="default">
+        <input type="button" value="Clieck Me!" onclick="alert(userName.value)">
+    </form>
+    <s:sml xmlns:s="http://www.w3.org/2000/sml" align="center2" class="id2">
+        <s:div id="id2">
+            <s:span>ssss222</s:span>
+            <s:span>1111222</s:span>
+        </s:div>
+    </s:sml>
+    <div id="test">
+        <p>1111</p>
+        <p id="willDel"></p>http://www.w3.org/199/xhtml
+
+        <div align="center" id="id" class="id">
+            <span>ssss</span>
+            <span>1111</span>
+        </div>
+       
+    </div>
+    <script>
+        // console.log(document.getElementById('test') == document.body.childNodes[0])
+        var div = document.getElementById('test')
+        var divNodes = div.childNodes;
+        console.log(divNodes)
+        console.log(Array.prototype.slice.call(divNodes, 0))
+        var ele = document.getElementById('willDel')
+        console.log(ele.ownerDocument)
+        // setTimeout(function(){
+            div.removeChild(document.getElementById('willDel'))
+            ele.innerHTML = 'sssss'
+            console.log(divNodes)
+            console.log(Array.prototype.slice.call(divNodes, 0))
+        // }, 2000) 
+        console.log(document.getElementById('id').attributes);
+        var div1 = document.getElementById('id')
+        var div2 = document.getElementById('id2')
+        console.log('id2.localName', id2.localName)
+        console.log('id2.namespaceURI', id2.namespaceURI)
+        console.log('id2.prefix', id2.prefix)
+        console.log('----------------------------------')
+        function getStyleSheet(element) {
+            return element.sheet || element.styleSheet
+        }
+        var link = document.getElementsByTagName('link')[0]
+        var styleSheet = getStyleSheet(link)
+        console.log(styleSheet)
+        var body = document.body
+        var it = document.createNodeIterator(body, NodeFilter.SHOW_ALL, null, false)
+        var node = it.nextNode()
+        
+        while(node !== null) {
+            console.log(node.tagName)
+            node = it.nextNode()
+        }
+    </script>
+</body>
+</html>

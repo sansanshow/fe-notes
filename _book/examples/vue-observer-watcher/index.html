@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>实现简易版本vue</title>
+</head>
+<body>
+  <div id="app">
+    <h1 id="name">{{title}}</h1>
+    <h2 id="name">{{name}}</h2>
+    <input type="text" v-model="name" />
+    <button v-on:click="resetName">reset</button>
+    <h2>年龄：{{ age }}</h2>
+    <h2>其他信息：</h2>
+    <h3>其他信息-学校：{{ other.school }}</h3>
+  </div>
+</body>
+<script src="./js/observer.js"></script>
+<script src="./js/watcher.js"></script>
+<script src="./js/compile.js"></script>
+<script src="./js/index.js"></script>
+<script>
+  var selfVue = new SelfVue({
+    el: '#app',
+    data: {
+      title: 'hello world',
+      name: 'hello world',
+      age: 18,
+      other: {
+        school: '第一中学'
+      }
+    },
+    methods: {
+      resetName: function() {
+        this.title = ''
+      }
+    },
+  })
+
+  setTimeout(function () {
+    console.log('name值改变了');
+    selfVue.name = 'canfoo';
+    selfVue.age = 21;
+  }, 2000)
+</script>
+</html>

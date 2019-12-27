@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>格式化宽度</title>
+    <style>
+        .wrap {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background: #cfd1cf;
+            border: 1px solid #333;
+        }
+        .wrap .pos-abs {
+            position: absolute;
+            border: 1px solid red;
+            /* left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0; */
+            word-wrap: break-word;
+        }
+        .w100 {
+            width: 100%;
+        }
+
+        .box {
+            display: inline-block;
+            white-space: nowrap;
+            background-color: #cd0000;
+        }
+        .text {
+            display: inline-block;
+            width: 100%;
+            background-color: #34538b;
+            color: #fff;
+        }
+        .list {
+            background: #ccc;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .list.active {
+            max-height: 333px;
+        }
+        .youling {
+            background-color: #cd0000;
+        }
+        .youling span {
+            display: inline-block;
+        }
+        .replaceEle:before {
+            content: url(http://demo.cssworld.cn/images/common/m/1.jpg);
+            display: block;
+            width: 200px; 
+            height: 200px;
+            object-fit:contain;
+        }
+        img {
+            display: inline-block;
+            object-fit: contain;
+            margin: 0;
+            padding: 0;
+        }
+
+        .img-wrap {
+            width: 180px;
+            background: red;
+        }
+        .img-wrap img{
+            width: 180px;
+            height: 180px;
+        }
+    </style>
+</head>
+<body>
+    <h3>position: absolute的宽度</h3>
+    <div class="wrap">
+        <div class="pos-abs w100">
+            2222222222222111111111111111111111111111111111111111111111111111111111111
+            3333333333333333333
+            444444444444444444444444
+            55555555555555555555555
+            6666666666666666666
+        </div>
+    </div>
+    <h3>ssssss</h3>
+    <div class="box">
+        <img src="http://demo.cssworld.cn/images/common/m/1.jpg">
+        <span class="text">红色背景是父级sssssssss1111</span>
+    </div>
+    <h3>css实现展开</h3>
+    <div>
+        <button id="open">展开</button>
+        <ul class="list">
+            <li>11111</li>
+            <li>22222</li>
+            <li>33333</li>
+        </ul>
+    </div>
+    
+    <h3>幽灵空白节点</h3>
+    <div class="youling"><span></span></div>
+
+    <h3>替换元素</h3>
+    <div class="replaceEle"></div>
+
+    <div class="img-wrap"><img src="http://demo.cssworld.cn/images/common/m/1.jpg"></div>
+    <script>
+        document.getElementById('open').addEventListener("click", function(e) {
+            console.log(document.getElementsByClassName('list')[0].classList);
+            document.getElementsByClassName('list')[0].classList.add('active')
+        })
+    </script>
+</body>
+</html>

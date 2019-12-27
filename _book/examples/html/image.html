@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片测试</title>
+    <style>
+        .img-wrap {
+            padding: 20px;
+            max-height: 100%;
+        }
+
+        .imgsty {
+            display: block;
+            width: 100px;
+        }
+
+        .fixed-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="viewer" width="800" height="600" style="border: 1px solid #000">
+        当前浏览器不支持canvas
+    </canvas>
+    <div class="fixed-footer">
+        <button onclick="rotateL()">旋转</button>
+        <br/>
+        <br/>
+
+        <button onclick="scale(1)">放大</button>
+        <br/>
+        <br/>
+        <button onclick="scale(-0.2)">缩小</button>
+        <br/>
+        <br/>
+    </div>
+    <script>
+        // var curr = 0
+        // var currScale = 1
+        // function rotateL() {
+        //     console.log('rotateL')
+        //     curr += 90
+        //     document.getElementById('img').style.transform = 'rotate(' + curr + 'deg)'
+        // }
+        // function scale(num) {
+        //     console.log('scale')
+        //     if(currScale >= 0.2) {
+        //         currScale += num
+        //     }
+        //     var origin = document.getElementById('img').style.transform
+        //     console.log('transform', origin, currScale)
+        //     document.getElementById('img').style.transform = origin.length ? (origin + ',scale(' + currScale + ',' + currScale + ')') : 'scale(' + currScale + ',' + currScale + ')'
+        // }
+
+        var canvas = document.getElementById('viewer')
+        var ctx = canvas.getContext('2d')
+        function showImage() {
+            var img = new Image()
+            img.src = ""
+            img.onload = function () {
+                console.log(this.width, this.height)
+                if (this.width) {
+
+                }
+                ctx.drawImage(this, 0, 0, 800, 600)
+            }
+        }
+    </script>
+</body>
+
+</html>

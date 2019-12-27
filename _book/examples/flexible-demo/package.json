@@ -1,0 +1,19 @@
+{
+  "name": "flexible-demo",
+  "version": "1.0.0",
+  "description": "对flexiable的探索",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-postcss": "^7.0.1",
+    "postcss-px2rem": "^0.3.0",
+    "px2rem": "^0.5.0"
+  },
+  "dependencies": {}
+}

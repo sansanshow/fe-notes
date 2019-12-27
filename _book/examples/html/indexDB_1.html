@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IndexDB学习</title>
+</head>
+<body>
+    <button onclick="add()">添加一条数据</button><br/>
+    <!-- <input type="text" id='osName'/> -->
+    <button onclick="createDBObjectStore()">创建数据库ObjectStore</button><br/>
+    <button onclick="read()">读取数据</button><br/>
+    <button onclick="readAll()">读取数据（全部）</button><br/>
+    <script src="./indexDBApi.js"></script>
+    <script>
+        console.log(DB)
+        var APP = {
+            IDB_NAME: 'test_idb', // 数据库名字
+            IDB_VERSION: 2, // 数据库版本
+            IDB_DB: null, // 数据库对象
+            GenID: function() {
+                return APP.ID++
+            }
+        }
+        var db;
+        DB.openDB(APP.IDB_NAME, APP.IDB_VERSION, succCB, errrCB, upgrdCB)
+
+        function succCB(iDBDatabase) {
+            console.log('数据库打开成功--iDBDatabase');
+            console.log('===', APP.IDB_DB === iDBDatabase)
+            APP.IDB_DB = db = iDBDatabase;
+        }
+        function errrCB(iDBDatabase) {
+            console.log('数据库打开失败--iDBDatabase');
+        }
+        function upgrdCB(iDBDatabase) {
+            console.log('数据库需要升级--iDBDatabase');
+            APP.IDB_DB = db = iDBDatabase;
+            createdTable()
+        }
+        // 打开数据库
+        // function openDB() {
+        //     var request = window.indexedDB.open(APP.IDB_NAME, APP.IDB_VERSION)
+        //     request.onerror = function(event) {
+        //         console.warn('数据库打开错误', event)
+        //     }
+
+        //     request.onsuccess = function(event) {
+        //         APP.IDB_DB = request.result
+        //         db = request.result
+        //         console.log('数据库打开成功', event)
+        //         // createdTable()
+        //         // var db = request.result
+        //         // var objectStore;
+        //         // if (!db.objectStoreNames.contains('person')) {
+        //         //     objectStore = db.createObjectStore('person', { keyPath: 'id' });
+        //         //     console.log('创建表person成功')
+        //         // }
+        //         // add();
+        //     }
+
+        //     request.onupgradeneeded = function(event) {
+        //         APP.IDB_DB = event.target.result;
+        //         console.log('指定数据库版本过高，升级数据库')
+        //         createdTable()
+        //     }
+        // }
+        
+        function GenNonDuplicateID(randomLength = 8){
+             return Number(Math.random().toString().substr(3,randomLength) + Date.now()).toString(36);
+        }
+        
+        // 创建一个自定义表名的objectStore
+        function createDBObjectStore() {
+            var name = prompt("请输入objectStor","student")
+            if (name != null && name != ""){
+                createObjectStore(name)
+            }
+        }
+        // 创建表
+        function createObjectStore(name = 'person') {
+            var objectStore;
+            if (!db.objectStoreNames.contains(name)) {
+                // 创建表
+                // objectStore = db.createObjectStore('person', { keyPath: 'id' }); // 指定主键为id
+                objectStore = db.createObjectStore(name, { autoIncrement: true }); // 主键自增，，指定主键为一个递增的整数
+                // 创建索引
+                // objectStore.createIndex('index_name', 'name', { unique: false });
+                // objectStore.createIndex('index_email', 'email', { unique: true });
+                console.log(`创建表${name}成功`)
+            }
+            return objectStore
+        }
+
+        // 创建表
+        function createdTable(name = 'person') {
+            var objectStore;
+            if (!APP.IDB_DB.objectStoreNames.contains(name)) {
+                // 创建表
+                // objectStore = APP.IDB_DB.createObjectStore('person', { keyPath: 'id' }); // 指定主键为id
+                objectStore = APP.IDB_DB.createObjectStore(name, { autoIncrement: true }); // 主键自增，，指定主键为一个递增的整数
+                // IDBDatabase.createObjectStore()：创建存放数据的对象仓库，类似于传统关系型数据库的表格，返回一个 IDBObjectStore 对象。该方法只能在versionchange事件监听函数中调用。
+                // 创建索引
+                objectStore.createIndex('index_name', 'name', { unique: false });
+                objectStore.createIndex('index_email', 'email', { unique: true });
+                console.log(`创建表${name}成功`)
+            }
+            return objectStore
+        }
+
+        // 添加数据
+        function add() {
+            var request = APP.IDB_DB.transaction(['person'], 'readwrite')
+                .objectStore('person')
+                .add({id: 1, name: `${GenNonDuplicateID()}`, age: Math.floor(Math.random()*80), email: `${GenNonDuplicateID()}@mail.com`});
+            
+            request.onsuccess = function(e) {
+                console.log('数据写入成功');
+            }
+
+            request.onerror = function(e) {
+                console.warn('数据写入失败',e);
+            }
+        }
+
+        // 读取数据
+        function read() {
+            var transaction = APP.IDB_DB.transaction(['person']);
+            var objectStore = transaction.objectStore('person');
+            var request = objectStore.get(20);  // objectStore.get()方法用于读取数据，参数是主键的值。
+
+            request.onerror = function(event) {
+                console.log('事务失败');
+            };
+
+            request.onsuccess = function( event) {
+                if (request.result) {
+                    console.log('Name: ' + request.result.name);
+                    console.log('Age: ' + request.result.age);
+                    console.log('Email: ' + request.result.email);
+                } else {
+                    console.log('未获得数据记录');
+                }
+            };
+        }
+
+        // 遍历数据
+        function readAll() {
+            var objectStore =  APP.IDB_DB.transaction('person').objectStore('person');
+            var ulEle = document.createElement('ul');
+            objectStore.openCursor().onsuccess = function (event) {  // 新建指针对象的openCursor()方法是一个异步操作，所以要监听success事件。
+                var cursor = event.target.result;
+
+                if (cursor) {
+                    console.log('Id: ' + cursor.key);
+                    console.log('Name: ' + cursor.value.name);
+                    console.log('Age: ' + cursor.value.age);
+                    console.log('Email: ' + cursor.value.email);
+
+                    var liEle = document.createElement('li');
+                    liEle.innerHTML = 'Id: ' + cursor.key + 'Name: ' + cursor.value.name + 'Age: ' + cursor.value.age + 'Email: ' + cursor.value.email;
+                    ulEle.appendChild(liEle);
+
+                    cursor.continue();
+                } else {
+                    var liEle = document.createElement('li');
+                    liEle.innerHTML = '没有更多数据了！';
+                    ulEle.appendChild(liEle);
+                    document.body.appendChild(ulEle);
+                    console.log('没有更多数据了！');
+                }
+            };
+            // var keyCursor = objectStore.openKeyCursor();
+            // var ulEle = document.createElement('ul');
+            // keyCursor.onsuccess = function(event) {
+            //     var keyNext = event.target.result;
+            //     if (keyNext) {
+            //         console.log(keyNext.value)
+            //         var liEle = document.createElement('li');
+            //         liEle.innerHTML = 'Id: ' + keyNext.key + 'Name: ' + keyNext.value.name + 'Age: ' + keyNext.value.age + 'Email: ' + keyNext.value.email;
+            //         ulEle.appendChild(liEle);
+            //         keyNext.continue();
+            //     } else {
+            //         var liEle = document.createElement('li');
+            //         liEle.innerHTML = '没有更多数据了！';
+            //         ulEle.appendChild(liEle);
+            //         document.body.appendChild(ulEle);
+            //     }
+            // };
+            // keyCursor.onerror = function(event) {
+            //     console.warn('openKeyCursor 失败！！！');
+            // };
+        }
+    </script>
+</body>
+</html>

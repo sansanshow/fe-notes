@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Page2</title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    #iframe_id {
+      min-width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>这是Page2</h2>
+  <iframe id="iframe_id" src="" frameborder="1"></iframe>
+  <script>
+    setTimeout(function() {
+      document.getElementById('iframe_id').src='https://openapi.bestsign.info/fe/intf/v2/#/signPage?developerId=1800566115802284641&rtick=15486422080710&signType=token&sign=eyJkZXZlbG9wZXJJZCI6IjE4MDA1NjYxMTU4MDIyODQ2NDEiLCJjYXRhbG9nSWQiOiI1NjA1OTE0ODY3NjQyOTg5NTg2IiwiY29udHJhY3RJZCI6IiIsImV4cGlyZUF0IjoiMTU0OTI0Njk4NiIsImFjY291bnQiOiIyMzA3MDExOTg5MDUxNjgyNDAtMDUxMSJ9LjE1NDg2NDIyMDgwNzE4NzU0.d60469d30cb28f7b6b12f1c53125b28d&catalogId=5605914867642989586&signerAccount=230701198905168240-0511&dpi=96&sid=';
+      // alert('src 修改成功');
+    },1000)
+  </script>
+</body>
+</html>

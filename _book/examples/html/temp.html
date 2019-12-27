@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .baseDiv {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .transDiv {
+
+            transition: all 1s ease-in-out 3s;
+
+
+        }
+
+        .transClass {
+            transform: translateX(300px);
+        }
+
+        @keyframes divmove {
+            0% {
+                left: 0;
+                width: 150px;
+                background: green;
+            }
+            100% {
+                left: 300px;
+                background: blue;
+            }
+        }
+
+        .animateDiv {
+            animation: divmove 1s ease-in-out 3s infinite both alternate-reverse;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode;  */
+        }
+
+        #ele {
+            background: #ccc;
+            margin-left: 50px;
+            height: 100px;
+            padding: 10px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ivu-select-dropdown" style="min-width: 363px; max-height: 200px;position: absolute; will-change: top, left; transform-origin: center top 0px; top: 32px; left: 0px;"
+        x-placement="bottom-start">
+        <ul class="ivu-select-dropdown-list">
+            <li data-v-3b65da71="" class="ivu-select-item">纺织品、服装和鞋帽零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">正餐服务</li>
+            <li data-v-3b65da71="" class="ivu-select-item">理发及美容服务</li>
+            <li data-v-3b65da71="" class="ivu-select-item">纺织服饰制造</li>
+            <li data-v-3b65da71="" class="ivu-select-item">家具制造</li>
+            <li data-v-3b65da71="" class="ivu-select-item">纸制品制造</li>
+            <li data-v-3b65da71="" class="ivu-select-item">木材加工</li>
+            <li data-v-3b65da71="" class="ivu-select-item">金属门窗制造</li>
+            <li data-v-3b65da71="" class="ivu-select-item">通用零部件制造</li>
+            <li data-v-3b65da71="" class="ivu-select-item">市政工程</li>
+            <li data-v-3b65da71="" class="ivu-select-item">建筑装饰业</li>
+            <li data-v-3b65da71="" class="ivu-select-item">食品、饮料及烟草制品批发</li>
+            <li data-v-3b65da71="" class="ivu-select-item">百货超市</li>
+            <li data-v-3b65da71="" class="ivu-select-item">食品、饮料及烟草制品零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">厨房用具及其他日用杂品零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">药品零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">摩托车及零部件零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">家用电器及电子产品专门零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">家具零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">家居建材零售</li>
+            <li data-v-3b65da71="" class="ivu-select-item">互联网零售(电商）</li>
+            <li data-v-3b65da71="" class="ivu-select-item">道路货物运输</li>
+            <li data-v-3b65da71="" class="ivu-select-item">快递服务</li>
+            <li data-v-3b65da71="" class="ivu-select-item">住宿旅馆</li>
+            <li data-v-3b65da71="" class="ivu-select-item">快餐服务</li>
+            <li data-v-3b65da71="" class="ivu-select-item">其他饮料及冷饮服务</li>
+            <li data-v-3b65da71="" class="ivu-select-item">教育辅助（培训）</li>
+            <li data-v-3b65da71="" class="ivu-select-item">家庭服务（家政）</li>
+            <li data-v-3b65da71="" class="ivu-select-item">洗染服务（干洗服务）</li>
+            <li data-v-3b65da71="" class="ivu-select-item">汽车、摩托车修理与维护</li>
+            <li data-v-3b65da71="" class="ivu-select-item">家用电器修理</li>
+            <li data-v-3b65da71="" class="ivu-select-item">网吧活动</li>
+            <li data-v-3b65da71="" class="ivu-select-item">彩票活动</li>
+            <li data-v-3b65da71="" class="ivu-select-item">其他生产</li>
+            <li data-v-3b65da71="" class="ivu-select-item ivu-select-item-selected ivu-select-item-focus">其他贸易</li>
+            <li data-v-3b65da71="" class="ivu-select-item">其他服务</li>
+        </ul>
+        <ul class="ivu-select-loading" style="display: none;">加载中</ul>
+    </div>
+
+
+    <div id="ele"></div>
+    <input type="password" id="test">
+    <button onclick="getPwd()">getPwd</button>
+    <div class="baseDiv transDiv">
+
+    </div>
+    <div class="baseDiv animateDiv">
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+    <script>
+        var cookieObj = {
+            add: function (key, val, seconds, domain = '') {
+                var expire = '';
+                if (seconds != null) {
+                    expire = new Date(new Date().getTime() + seconds * 1000);
+                    espire = ";espires=" + espire.toGMTString();
+                }
+
+                document.cookie = key + '=' + escape(val) + expire + ';path:/;domain=' + domain
+            },
+            get: function (key) {
+                if (document.cookie.length > 0) {
+                    var start = document.cookie.indexOf(key + '=');
+                    if (start != -1) { // 存在 key
+                        var end = document.cookie.indexOf(';', start);
+                        var hasSymbol = true
+                        if (end === -1) {
+                            end = document.cookie.length;
+                            hasSymbol = false
+                        }
+                        var keyVal = unescape(document.cookie.substr(start, end))
+                        var kv_start = (key + '=').length
+                        var kv_end = hasSymbol ? keyVal.length - 1 : keyVal.length
+                        keyVal.substr(kv_start, kv_end)
+                    }
+                }
+            }
+        }
+        $(function () {
+            $('.transDiv').addClass('transClass');
+        });
+
+        function ajax(url, method, params, succ, err) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    var status = +xhr.status;
+                    if (+status === 200) { // 成功
+
+                    } else if (+status >= 300 && +status < 400) { // 重定向
+
+                    } else if (+status >= 400 && +status < 500) { //  
+
+                    } else if (+status >= 500) { // 服务器端错误 
+
+                    }
+                }
+            }
+            if (method.toUpperCase() === 'GET') {
+                //post相比get方式提交多了个这个
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                params = (function (value) {
+                    for (var key in value) {
+                        oStr += key + "=" + value[key] + "&";
+                    };
+                    return oStr;
+                }(params));
+            }
+            xhr.open(method, url)
+            xhr.send(params);
+        }
+        // var questions = [{"id":72,"code":"#PL_KM11_CC1_Y1#","defVal":"","inRule":"","notNull":"0","optDesc":"[{\"optName\":\"是\",\"optVal\":1},{\"optName\":\"否\",\"optVal\":2}]","optId":null,"perCondition":"","questionDesc":"您的经营活动需要开具发票吗？","questionType":"1","valUnit":"","var":"#PL_KM11_CC1_Y1#","taskId":5263,"answer":null,"interfaceDisplay":null},{"id":73,"code":"#PL_KM11_CC1_X1#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|([1-9][0-9]{1,9})|([1-9][0-9]{1,9}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您开票的税点是多少","questionType":"2","valUnit":"元","var":"#PL_KM11_CC1_X1#","taskId":5264,"answer":null,"interfaceDisplay":null},{"id":74,"code":"#PL_KM11_CC1_X2#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|([1-9][0-9]{1,9})|([1-9][0-9]{1,9}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您每个月开票缴纳的税费是多少？","questionType":"2","valUnit":"元","var":"#PL_KM11_CC1_X2#","taskId":5265,"answer":null,"interfaceDisplay":null},{"id":75,"code":"#PL_KM11_CC1_X3#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|(100|100.0|100.00)|([1-9][0-9]{1})|(|[1-9][0-9]{1}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您开发票的销售收入占全部销售收入的比例","questionType":"2","valUnit":"%","var":"#PL_KM11_CC1_X3#","taskId":5266,"answer":null,"interfaceDisplay":null}];
+        // function isShowQuestion (item) {
+        //     if (!item.perCondition) {
+        //         return true
+        //     }
+        //     var optIds = `${item.optId}`.split(',')
+        //     var values = optIds.map(item => questions[item].inputVal)
+        //     var condition = item.perCondition.replace(/{\d+}/g, m => {
+        //         var index = /\d+/.exec(m)[0]
+        //         return values[index] || '0'
+        //     })
+        //     /* eslint-disable no-new-func */
+        //     var f = new Function(`return (${condition})`)
+        //     return f()
+        // }
+        // var i ={"id":74,"code":"#PL_KM11_CC1_X2#","defVal":"0","inRule":"((\\d{1})|(\\d{1}\\.\\d{1,2})|([1-9][0-9]{1,9})|([1-9][0-9]{1,9}\\.\\d{1,2}))$","notNull":"0","optDesc":"","optId":0,"perCondition":"==1","questionDesc":"您每个月开票缴纳的税费是多少？","questionType":"2","valUnit":"元","var":"#PL_KM11_CC1_X2#","taskId":5265,"answer":null,"interfaceDisplay":null};
+
+        // function getPwd() {
+        //     console.log(1);
+        //     alert(document.getElementById('test').value);
+        // }
+
+
+        // for(var i=0;i<10;i++){
+        //     (function(i) {
+        //         setTimeout(function() {
+        //             console.log(i);
+        //         }, 1000)
+        //     })(i)
+        // }
+
+
+    </script>
+</body>
+
+</html>

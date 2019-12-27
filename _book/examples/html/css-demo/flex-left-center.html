@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flex最后一列元素不能左对齐</title>
+  <style>
+    .container-border {
+      border: 1px solid;
+      width: 600px;
+    }
+  /**
+    * 1
+    */
+  .container {
+    border: 1px solid;
+    display: flex;
+    width: 600px;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .item {
+    background: skyblue;
+    width: 24%;
+    height: 150px;
+    margin-top: 15px;
+  }
+  .container .item:not(:nth-last-child(4n)) {
+    margin-right: calc(4% / 3);
+  }
+  .listnnn::after {
+    content: '';
+    flex: 1;    /* 或者flex: 1 */
+  }
+  /**
+    * 2
+    */
+  .container2 {
+    border: 1px solid;
+    display: flex;
+    width: 600px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  /* 如果最后一行是3个元素 */
+  .container2 .item:last-child:nth-child(4n - 1) {
+      margin-right: calc(24% + 4% / 3);
+  }
+  /* 如果最后一行是2个元素 */
+  .container2 .item:last-child:nth-child(4n - 2) {
+      margin-right: calc(48% + 8% / 3);
+  }
+
+  /**
+    * 3
+    */
+  .item1 {
+    width: 80px;
+  }
+  .item2 {
+    width: 60px;
+  }
+  .item3 {
+    width: 90px;
+  }
+  .item4 {
+    width: 40px;
+  }
+  .item5 {
+    width: 100px;
+  }
+  .item6 {
+    width: 80px;
+  }
+  .item7 {
+    width: 100px;
+  }
+  .item8 {
+    width: 90px;
+  }
+  .item9 {
+    width: 150px;
+  }
+  .item10 {
+    width: 40px;
+  }
+  .item11 {
+    width: 80px;
+  }
+  .item12 {
+    width: 60px;
+  }
+  .item13 {
+    width: 90px;
+  }
+  .item14 {
+    width: 40px;
+  }
+  .item15 {
+    width: 100px;
+  }
+  .list2 .item {
+    margin: 10px;
+  }
+  .list2 .item:last-child {
+    /* margin-right: auto */
+  }
+  </style>
+</head>
+<body>
+  <h3>1. 模拟space-between和间隙</h3>
+  <pre>
+      .container {
+        display: flex;
+        width: 600px;
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
+      .item {
+        background: skyblue;
+        width: 24%;
+        height: 150px;
+        margin-top: 15px;
+      }
+      .item:not(:nth-last-child(4n)) {
+        margin-right: calc(4% / 3);
+      }
+      html：
+      &lt;div class="container">
+        &lt;div class="item"></div>
+        &lt;div class="item"></div>
+        &lt;div class="item"></div>
+        &lt;div class="item"></div>
+        &lt;div class="item"></div>
+        &lt;div class="item"></div>
+        &lt;div class="item"></div>
+      &lt;/div>
+  </pre>
+  <div class="container">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+<h3>2. 根据个数最后一个元素动态margin</h3>
+<pre>
+    .container {
+      display: flex;
+      width: 600px;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    /* 如果最后一行是3个元素 */
+    .item:last-child:nth-child(4n - 1) {
+        margin-right: calc(24% + 4% / 3);
+    }
+    /* 如果最后一行是2个元素 */
+    .item:last-child:nth-child(4n - 2) {
+        margin-right: calc(48% + 8% / 3);
+    }
+</pre>
+  <div class="container2">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+  <div class="container2">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+  <div class="container2">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+  <h1>二: 如果每一子项宽度不固定</h1>
+  <h3>1:</h3>
+  <style>
+  .container2-1 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .container2-1 .item {
+    margin-right: 10px
+  }
+  .container2-1 .item {
+    background-color: skyblue;
+    margin: 10px;
+  }
+  /* 最后一项margin-right:auto */
+  .container2-1 .item:last-child {
+      margin-right: auto;
+  }
+  </style>
+  <pre>
+      .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .item {
+        background-color: skyblue;
+        margin: 10px;
+      }
+      /* 最后一项margin-right:auto */
+      .item:last-child {
+          margin-right: auto;
+      }
+  </pre>
+  <div class="container2-1 container-border">
+    <div class="item item1"></div>
+    <div class="item item2"></div>
+    <div class="item item3"></div>
+    <div class="item item4"></div>
+    <div class="item item5"></div>
+    <div class="item item6"></div>
+    <div class="item item7"></div>
+    <div class="item item8"></div>
+    <div class="item item9"></div>
+    <div class="item item10"></div>
+    <div class="item item11"></div>
+    <div class="item item12"></div>
+    <div class="item item13"></div>
+    <div class="item item14"></div>
+  </div>
+</body>
+</html>

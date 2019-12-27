@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* [class|=value] {
+      color: red;
+    } */
+    .value:nth-child(2n + 6) {
+      color: paleturquoise;
+    }
+    /* div:nth-last-child(2n + 6) {
+      color: blue;
+    } */
+    .hide {
+      visibility: hidden;
+    }
+    .hide :first-child {
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="value">1</div>
+  <div class="value value2">2</div>
+  <div class="value value">3</div>
+  <div class="value value-1">41</div>
+  <div class="value value-2">42</div>
+  <div class="value value-3">43</div>
+  <div class="value value-4">44</div>
+  <div class="value value-5">45</div>
+  <div class="value value-6">46</div>
+  <div class="value value-7">47</div>
+  visibility: hidden;
+  <div class="hide">
+    parent
+    <div>children</div>
+  </div>
+</body>
+</html>

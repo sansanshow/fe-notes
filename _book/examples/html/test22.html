@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .wrap {
+            border: 1px solid #000;
+            margin-top: 400px;
+            position: relative;
+            width: 600px;
+            height: 80px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: 6s;
+            transition: 6s;
+            transform: rotateX(120deg);
+        }
+        .item {
+            width: 600px;
+            height: 80px;
+            position: absolute;
+            /* transform: rotateZ(26.5deg); */
+            transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+        }
+        .red {
+            /* border-top: 3px solid chartreuse; */
+            background: red;
+            transform: translateZ(23px);
+        }
+        /* top */
+        .green { 
+            background: green;
+            transform-origin: top center;
+            transform: translateZ(23px) rotateX(-60deg);
+        }
+        /* bottom */
+        .blue {
+            transform-origin: bottom center;
+            background: blue;
+            transform: translateZ(23px) rotateX(60deg);
+            
+        }
+        /* .wrap:hover {
+            transform: rotateX(120deg);
+        } */
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="item red"></div>
+        <div class="item green"></div>
+        <div class="item blue"></div>
+    </div>
+    <script defer>
+        function sleep(sleepTime) {
+            var now = Date.now();
+            var curr = now;
+            while (curr - now < sleepTime) {
+               curr = Date.now(); 
+            }
+            return true;
+        }
+        sleep(2000);
+        console.log(1111);
+    </script>
+    <div>sss12211ss</div>
+</body>
+</html>
