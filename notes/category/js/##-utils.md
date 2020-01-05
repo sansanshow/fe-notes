@@ -81,4 +81,19 @@ function formatData(num)
 ```
 
 ### 银行卡 每四位隔开 
+```
 '111222333444555666'.replace(/[\s]/g, '').replace(/(.{4})(?=.)/g, '$1 ')
+```
+
+### JS 获取当天零点时间戳
+```
+new Date(new Date().toLocaleDateString()).getTime()
+```
+> 7天前
+```
+const start = new Date(new Date().toLocaleDateString());
+start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+const t = start.getTime();
+console.log(start)
+console.log(t)
+```
