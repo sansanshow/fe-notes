@@ -32,7 +32,7 @@
             <span>ssss</span>
             <span>1111</span>
         </div>
-       
+        <div id="cdata"><![CDATA[this is content~]]></div>
     </div>
     <script>
         // console.log(document.getElementById('test') == document.body.childNodes[0])
@@ -69,6 +69,10 @@
             console.log(node.tagName)
             node = it.nextNode()
         }
+
+        let cdata = document.querySelector('#cdata');
+        console.log('----cdata----', cdata);
+        console.log(cdata.firstChild.nodeValue);
     </script>
 </body>
 </html>
